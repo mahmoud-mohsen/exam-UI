@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
+        <div class="sidebar-header">
+            <h3>{{user.displayName}}</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="">Home</a>
+            </li>
+            <li>
+                <a href="users">Users</a>
+            </li>
+            <li>
+                <a href="teacher/2/courses">Courses</a>
+            </li>
+        </ul>
+
+        <ul class="list-unstyled CTAs">
+            <li>
+                <a (click)="logout()">Logout</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" (click)="clickEvent()" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="nav navbar-nav mx-auto" id="navbarSupportedContent">
+                    <h2>TOGETHER TO BUILD OUR FUTURE</h2>
+                </div>
+
+                <a class="navbar-brand" href="#">
+                    <img src="/assets/img/logo.jpg" height="30" alt="mdb logo">
+                </a>
+            </div>
+        </nav>
+        <div class="jumbotron vertical-center">
+
+            <ng-content select=".container-body">
+
+            </ng-content>
+        </div>
+
+    </div>
+</div>

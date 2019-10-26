@@ -1,0 +1,20 @@
+<layout>
+    <ng-container class="container-body">
+            <a href="newCourse" class="btn btn-primary" role="button" aria-pressed="true">Add New Course</a>
+        <div class="row" style="margin-top: 7px;">
+            <div *ngFor="let course of user.createdCourses" class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">{{course.title}}</h3>
+                        <h6>level</h6>
+                        <p class="card-text">{{course.level}}</p>
+                        <h6>created in</h6>
+                        <p class="card-text">{{course.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}</p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block">View</button>
+                        <button type="button" class="btn btn-secondary btn-lg btn-block" [hidden]="user.type!='STUDENT'">Enroll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</layout>

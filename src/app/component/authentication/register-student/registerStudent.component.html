@@ -1,0 +1,207 @@
+<div class="wrapper">
+  <!-- Page Content Holder -->
+  <div id="content">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <i class="fas fa-align-justify"></i>
+        </button>
+
+        <div class="nav navbar-nav mx-auto" id="navbarSupportedContent">
+          <h2>TOGETHER TO BUILD OUR FUTURE</h2>
+        </div>
+
+        <a class="navbar-brand" href="#">
+          <img src="/assets/img/logo.jpg" height="30" alt="mdb logo">
+        </a>
+      </div>
+    </nav>
+    <div class="jumbotron vertical-center">
+
+      <div class="row">
+        <div class="col-md-5 mx-auto">
+          <div id="second">
+            <div class="myform form ">
+              <div class="logo mb-3">
+                <div class="col-md-12 text-center">
+                  <h1>Sign up</h1>
+                </div>
+              </div>
+              <form action="#" name="registration">
+                <div class="form-group">
+                  <label for="firstName">First Name</label>
+                  <input required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel" id="firstName" type="text"
+                    class="form-control" placeholder="Enter your first name">
+                  <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+                    <div *ngIf="firstName.errors.required">first name is required </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="lastName">Last Name</label>
+                  <input required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" id="lastName" type="text"
+                    class="form-control" placeholder="Enter your last name">
+                  <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+                    <div *ngIf="lastName.errors.required">Last Name is required </div>
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input required [(ngModel)]="user.email" name="email" #email="ngModel" id="email" type="text"
+                    class="form-control" placeholder="Enter your Email">
+                  <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+                    <div *ngIf="email.errors.required">Email is required </div>
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input required [(ngModel)]="user.password" name="password" #password="ngModel" id="password" type="text"
+                    class="form-control" placeholder="Enter your password">
+                  <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+                    <div *ngIf="password.errors.required">Password is required </div>
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="age">Age</label>
+                  <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control" placeholder="Enter your age">
+                  <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
+                    <div *ngIf="age.errors.required">Age is required </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input [(ngModel)]="user.phone" name="phone" #phone="ngModel" id="phone" type="text" class="form-control" placeholder="Enter your phone">
+                  <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
+                    <div *ngIf="phone.errors.required">Phone is required </div>
+                  </div>
+                </div>
+          
+                <div class="form-group">
+                  <label for="lavel">Level</label>
+                  <select required [(ngModel)]="user.level" name="level" #level="ngModel" id="level"
+                    class="custom-select mb-2 mr-sm-2 mb-sm-0" >
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="A3">A3</option>
+                    <option value="A4">A4</option>
+                    <option value="A5">A5</option>
+                    <option value="A6">A6</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="B3">B3</option>
+                    <option value="BC">C1</option>
+                    <option value="C2">C2</option>
+                    <option value="C3">C3</option>
+                  </select>
+                  <div class="alert alert-danger" *ngIf="level.touched && !level.valid">
+                    <div *ngIf="level.errors.required">Level is required </div>
+                  </div>
+                </div>
+          
+                
+                <div class="col-md-12 text-center mb-3">
+                  <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">sign Up Now</button>
+                </div>
+                <div class="col-md-12 ">
+                  <div class="form-group">
+                    <p class="text-center"><a href="login" id="signin">Already have an account?</a></p>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!--<layout>
+  <ng-container class="container-body">
+    <form>
+      <div class="row justify-content-center">
+        <h1>Sign Up</h1>
+      </div>
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel" id="firstName" type="text"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+          <div *ngIf="firstName.errors.required">first name is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" id="lastName" type="text"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+          <div *ngIf="lastName.errors.required">Last Name is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input required [(ngModel)]="user.email" name="email" #email="ngModel" id="email" type="text"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+          <div *ngIf="email.errors.required">Email is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input required [(ngModel)]="user.password" name="password" #password="ngModel" id="password" type="text"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+          <div *ngIf="password.errors.required">Password is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="age">Age</label>
+        <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control">
+        <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
+          <div *ngIf="age.errors.required">Age is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lavel">Level</label>
+        <select required [(ngModel)]="user.level" name="level" #level="ngModel" id="level"
+          class="custom-select mb-2 mr-sm-2 mb-sm-0">
+          <option value="A1">A1</option>
+          <option value="A2">A2</option>
+          <option value="A3">A3</option>
+          <option value="A4">A4</option>
+          <option value="A5">A5</option>
+          <option value="A6">A6</option>
+          <option value="B1">B1</option>
+          <option value="B2">B2</option>
+          <option value="B3">B3</option>
+          <option value="BC">C1</option>
+          <option value="C2">C2</option>
+          <option value="C3">C3</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="level.touched && !level.valid">
+          <div *ngIf="level.errors.required">Level is required </div>
+        </div>
+      </div>
+
+
+      <button (click)="createNewStudent()" class="btn btn-primary">Submit</button>
+    </form>
+  </ng-container>
+</layout>
+-->

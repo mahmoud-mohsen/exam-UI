@@ -1,0 +1,23 @@
+<layout>
+    <ng-container class="container-body">
+
+            <a href="newUser" class="btn btn-primary" role="button" aria-pressed="true">Add New User</a>
+            <div *ngFor="let user of users.content" class="card text-center" style="margin-top:7px ;">
+                <div class="card-header">
+                    {{user.firstName}} {{user.lastName}}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{user.type}}</h5>
+                    <p class="card-text" [hidden]="user.type!='TEACHER'">{{user.teacherTitle}}</p>
+                    <p class="card-text">{{user.age}}</p>
+                    <p class="card-text" [hidden]="user.type!='STUDENT'">{{user.studentLevel}}</p>
+                    <p class="card-text">{{user.email}}</p>
+                    
+                    <a type="button" [routerLink]="['/teacher',user.id,'courses']"  class="btn btn-primary btn-lg btn-block" [hidden]="user.type!='TEACHER'">View Courses</a>
+                    <a type="button" [routerLink]="['/userProfile',user.id]" class="btn btn-secondary btn-lg btn-block">View Profile</a>
+                </div>
+                <div class="card-footer text-muted">
+                </div>
+            </div>
+    </ng-container>
+</layout>
