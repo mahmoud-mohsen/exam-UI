@@ -1,3 +1,7 @@
+import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
+import { ViewQuestionsComponent } from './component/question/view-questions/view-questions.component';
+import { NewExamComponent } from './component/exam/new-exam/new-exam.component';
+import { ViewExamsComponent } from './component/exam/view-exams/view-exams.component';
 import { Active } from './active';
 import { LoginComponent } from './component/authentication/login/login.component';
 import { CreateCourseComponent } from './component/course/create-course/create-course.component';
@@ -12,43 +16,79 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [{
-  path:'' ,
-  component:HomeComponent,
-  canActivate: [ Active ]
+  path: '',
+  component: HomeComponent,
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
 }
-,{
-  path:'signUp',
-  component:RegisterStudent
-},{
-  path:'newUser',
-  component:CreateUser,
-  canActivate: [ Active ]
-},{
-  path:'users',
-  component:ViewUsersComponent,
-  canActivate: [ Active ]
-},{
-  path:'userProfile/:id',
-  component:ViewUserProfileComponent,
-  canActivate: [ Active ]
-},{
-  path:'teacher/:id/courses',
-  component:ViewCoursesComponent,
+  , {
+  path: 'signUp',
+  component: RegisterStudent
+}, {
+  path: 'newUser',
+  component: CreateUser,
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN'] }
+}, {
+  path: 'users',
+  component: ViewUsersComponent,
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+
+}, {
+  path: 'userProfile/:id',
+  component: ViewUserProfileComponent,
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+
+}, {
+  path: 'user/:id/courses',
+  component: ViewCoursesComponent,
   pathMatch: 'full',
-  canActivate: [ Active ]
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+}, {
+  path: 'course/:id/exams',
+  component: ViewExamsComponent,
+  pathMatch: 'full',
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+
 },{
-  path:'newCourse',
-  component:CreateCourseComponent,
-  canActivate: [ Active ]
+  path: 'exam/:id/questions',
+  component: ViewQuestionsComponent,
+  pathMatch: 'full',
+  canActivate: [Active],
+  data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+
+}, {
+  path: 'newCourse',
+  component: CreateCourseComponent,
+  canActivate: [Active],
+  data: { expectedType: ['TEACHER'] }
+
+}, {
+  path: 'enrollRequests',
+  component: ViewEnrollRequestsComponent,
+  canActivate: [Active],
+  data: { expectedType: ['TEACHER'] }
+
 },{
-  path:'login',
-  component:LoginComponent,
+  path: 'login',
+  component: LoginComponent,
+}, {
+  path: 'course/:id/newExam',
+  component: NewExamComponent,
+  pathMatch: 'full',
+  data: { expectedType: ['TEACHER'] }
 }
+
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    anchorScrolling: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

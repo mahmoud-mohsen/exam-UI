@@ -1,0 +1,53 @@
+<div class="col-md-12">
+    <div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <div class="float-right">
+                    <a class="btn btn-sm btn-primary" role="button" *ngxPermissionsOnly="['TEACHER']"
+                        [hidden]="!isCourseOwner()" aria-pressed="true" href="course/{{courseId}}/newExam"><i
+                            class="icofont-headphone-alt"></i>New Exam</a>
+                </div>
+                <h4 class="font-weight-bold mt-0 mb-4">Exams</h4>
+                <div *ngFor="let exam of exams" class="bg-white card mb-4 order-list shadow-sm">
+                    <div class="gold-members p-4">
+                        <a href="#">
+                        </a>
+                        <div class="media">
+                            <a href="#">
+                                <img class="mr-4" src="">
+                            </a>
+                            <div class="media-body">
+                                <h6 class="mb-2">
+                                    <a href="#"></a>
+                                    <a href="#" class="text-black">{{exam.title}}</a>
+                                </h6>
+                                <p class="text-gray mb-1"><span class="text-black font-weight-bold"> Start:
+                                    </span> {{exam.fromDate | date:'dd/MM/yyyy hh:mm:ss'}} </p>
+                                <p class="text-gray mb-3"><span class="text-black font-weight-bold"> End:
+                                    </span>{{exam.fromDate | date:'dd/MM/yyyy hh:mm:ss'}}</p>
+                                <hr>
+                                <div class="float-right">
+                                    <a *ngxPermissionsOnly="['STUDENT']" class="btn btn-sm btn-outline-primary"
+                                        href="#"><i class="icofont-headphone-alt"></i>
+                                        Solve</a>
+                                    <a *ngxPermissionsOnly="['TEACHER']" (click)="viewQuestionExamPage(exam.id)"
+                                        class="btn btn-sm btn-outline-primary"><i class="icofont-headphone-alt"></i>
+                                        View</a>
+                                    <a hidden *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
+                                        href="#"><i class="icofont-headphone-alt"></i> Delete</a>
+                                    <a hidden *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
+                                        href="#"><i class="icofont-refresh"></i>
+                                        Update</a>
+                                </div>
+                                <p class="mb-0 text-black text-primary pt-2" [hidden]="!exam.note"><span
+                                        class="text-black font-weight-bold"> Note:</span> {{exam.note}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

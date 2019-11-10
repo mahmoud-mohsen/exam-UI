@@ -1,109 +1,105 @@
-<layout>
-    <ng-container class="container-body">
-        <div class="container">
-            <div class="row my-2">
-                <div class="col-lg-8 order-lg-2">
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a data-target="#profile" aria-expanded="false" aria-controls="profile" data-toggle="tab"
-                                class="nav-link active">Profile</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content py-4">
-                        <div class="tab-pane active" id="profile">
-                            <h5 class="mb-3">{{user.firstName}} {{user.lastName}}</h5>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="email-column">
-                                        <h6>Email</h6>
-                                        <p>
-                                            {{user.email}}
-                                        </p>
-                                    </div>
-                                    <div class="level-column" [hidden]="user.type!='STUDENT'">
-                                        <h6>Title</h6>
-                                        <p>
-                                            {{user.studentLevel}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-6" [hidden]="user.type!='TEACHER'">
-
-                                    <h6>Title</h6>
-                                    <p>
-                                        {{user.teacherTitle}}
-                                    </p>
-
-                                    <h6>Mobile Number</h6>
-                                    <p>
-                                        {{user.phone}}
-                                    </p>
-
-                                    <h6>Created Courses</h6>
-                                    <div *ngFor="let course of user.createdCourses" class="course-title">
-                                        <h5> <a href="#" class="badge badge-dark badge-pill">{{course.title}}</a></h5>
-                                    </div>
-                                    <hr>
-
-                                    <span class="badge badge-primary"><i class="fa fa-user"></i>
-                                        {{user.createdCourses.length}} Courses</span>
-                                    <span class="badge badge-success"><i class="fa fa-eye"></i>
-                                        {{user.numberOfActivestudents}} Students</span>
-                                    <hr>
-
-                                    <ng-template #t let-fill="fill">
-                                        <span class="star" [class.full]="fill === 100">
-                                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-                                        </span>
-                                    </ng-template>
-
-                                    <ngb-rating [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
-                                    </ngb-rating>
-
-                                </div>
-
-                                <div class="col-md-6" [hidden]="user.type!='STUDENT'">
-                                    <h6>Courses</h6>
-                                    <div *ngFor="let course of user.enrollCourse" class="course-title">
-                                        <h5> <a href="#" class="badge badge-dark badge-pill">{{course.title}}</a></h5>
-                                    </div>
-                                    <hr>
-
-                                    <span class="badge badge-primary"><i class="fa fa-user"></i>
-                                        {{user.enrollCourse.length}} Courses</span>
-                                    <hr>
-
-                                    <ng-template #t let-fill="fill">
-                                        <span class="star" [class.full]="fill === 100">
-                                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
-                                        </span>
-                                    </ng-template>
-
-                                    <ngb-rating [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
-                                    </ngb-rating>
-
-                                </div>
-
-                                <div class="col-md-12" [hidden]="user.type!='TEACHER'">
-                                    <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>
-                                        Sammury</h5>
-                                    <p>
-                                        {{user.sammury}}
-                                    </p>
-                                </div>
+<div class="container">
+    <div class="row my-2">
+        <div class="col-lg-8 order-lg-2">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a data-target="#profile" aria-expanded="false" aria-controls="profile" data-toggle="tab"
+                        class="nav-link active">Profile</a>
+                </li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane active" id="profile">
+                    <h5 class="mb-3">{{user.firstName}} {{user.lastName}}</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="email-column">
+                                <h6>Email</h6>
+                                <p>
+                                    {{user.email}}
+                                </p>
                             </div>
-                            <!--/row-->
+                            <div class="level-column" [hidden]="!(user.type=='STUDENT')">
+                                <h6>Title</h6>
+                                <p>
+                                    {{user.studentLevel}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6" [hidden]="!(user.type=='TEACHER')">
+
+                            <h6>Title</h6>
+                            <p>
+                                {{user.teacherTitle}}
+                            </p>
+
+                            <h6>Mobile Number</h6>
+                            <p>
+                                {{user.phone}}
+                            </p>
+
+                            <h6>Created Courses</h6>
+                            <div *ngFor="let course of user.createdCourses" class="course-title">
+                                <h5> <a class="badge badge-dark badge-pill" style="color: aliceblue;">{{course.title}}</a></h5>
+                            </div>
+                            <hr>
+
+                            <span class="badge badge-primary"><i class="fa fa-user"></i>
+                                {{user.createdCourses.length}} Courses</span>
+                            <span class="badge badge-success"><i class="fa fa-eye"></i>
+                                {{user.numberOfActivestudents}} Students</span>
+                            <hr>
+
+                            <ng-template #t let-fill="fill">
+                                <span class="star" [class.full]="fill === 100">
+                                    <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                                </span>
+                            </ng-template>
+
+                            <ngb-rating [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
+                            </ngb-rating>
+
                         </div>
 
+                        <div class="col-md-6" [hidden]="!(user.type=='STUDENT')">
+                            <h6>Courses</h6>
+                            <div *ngFor="let course of user.enrollCourse" class="course-title">
+                                <h5> <a class="badge badge-dark badge-pill" style="color: aliceblue;">{{course.courseName}}</a></h5>
+                            </div>
+                            <hr>
+
+                            <span class="badge badge-primary"><i class="fa fa-user"></i>
+                                {{user.enrollCourse.length}} Courses</span>
+                            <hr>
+
+                            <ng-template #t let-fill="fill">
+                                <span class="star" [class.full]="fill === 100">
+                                    <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                                </span>
+                            </ng-template>
+
+                            <ngb-rating [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
+                            </ngb-rating>
+
+                        </div>
+
+                        <div class="col-md-12" [hidden]="!(user.type=='TEACHER')">
+                            <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>
+                                Sammury</h5>
+                            <p>
+                                {{user.sammury}}
+                            </p>
+                        </div>
                     </div>
+                    <!--/row-->
                 </div>
-                <div class="col-lg-4 order-lg-1 text-center">
-                    <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
-                    <label class="custom-file">
-                        <input type="button" id="file" class="custom-file-input">
-                    </label>
-                </div>
+
             </div>
         </div>
-    </ng-container>
-</layout>
+        <div class="col-lg-4 order-lg-1 text-center">
+            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <label class="custom-file">
+                <input type="button" id="file" class="custom-file-input">
+            </label>
+        </div>
+    </div>
+</div>

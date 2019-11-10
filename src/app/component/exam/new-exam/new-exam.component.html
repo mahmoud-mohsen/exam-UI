@@ -1,0 +1,222 @@
+    <form #createExamForm="ngForm">
+      <div class="row justify-content-center">
+        <h1>New Exam</h1>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input required [(ngModel)]="createExamRequest.title" name="title" #title="ngModel" id="title" type="text"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
+          <div>Title is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input [(ngModel)]="createExamRequest.code" name="code" #code="ngModel" id="code" type="text"
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="note">Note</label>
+        <input [(ngModel)]="createExamRequest.note" name="note" #note="ngModel" id="note" type="text"
+          class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="startDate">Start Date</label>
+        <input required [(ngModel)]="examStartDate" name="startDate" #startDate="ngModel" id="startDate" type="date"
+          class="form-control">
+        <div class="alert alert-danger" *ngIf="startDate.touched && !startDate.valid">
+          <div>Start date is required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="endDate">End Date</label>
+        <input required [(ngModel)]="examEndDate" name="endDate" #endDate="ngModel" id="endDate" type="date"
+          class="form_datetime" class="form-control">
+        <div class="alert alert-danger" *ngIf="endDate.touched && !endDate.valid">
+          <div>end date is required </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <ul class="nav nav-tabs" role="tablist">
+          <li>
+            <button class="nav-link" [ngClass]="{
+            'active':trueOrFalseForm
+          }" (click)="viewTrueOrFalseForm()">True Or false</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" [ngClass]="{
+            'active':mCQForm
+          }" (click)="viewMCQForm()">MCQ</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" [ngClass]="{
+            'active':essayForm
+          }" (click)="viewEssayForm()">Essay</button>
+          </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="trueOrFalse" [ngClass]="{
+                      'container tab-pane fade active':trueOrFalseForm,
+                      'container tab-pane fade':!trueOrFalseForm
+
+                    }"><br>
+            <div class="form-group">
+              <label for="trueOrFalseQuestion">Question</label>
+              <input [(ngModel)]="trueOrFalseQ.question" name="trueOrFalseQuestion" #trueOrFalseQuestion="ngModel"
+                id="trueOrFalseQuestion" type="text" class="form-control" placeholder="Enter true or false question">
+              <div class="alert alert-danger" *ngIf="trueOrFalseQuestion.touched && !trueOrFalseQuestion.valid">
+                <div>Question is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="trueOrFalseQ.question.length==0">
+              <label for="torfcorrect">Correct Answer</label>
+              <select [required]="trueOrFalseQ.question.length!=0" [(ngModel)]="trueOrFalseQ.correct" name="torfcorrect"
+                #torfcorrect="ngModel" id="torfcorrect" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                <option value="true">TRUE</option>
+                <option value="false">FALSE</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="torfcorrect.touched && !torfcorrect.valid">
+                <div>Correct Answer is required </div>
+              </div>
+            </div>
+            <div class="form-group" [hidden]="trueOrFalseQ.question.length==0">
+              <label for="trueOrFalseSize">Question Poin</label>
+              <input [required]="trueOrFalseQ.question.length!=0" [(ngModel)]="trueOrFalseQ.size" name="trueOrFalseSize"
+                #trueOrFalseSize="ngModel" id="trueOrFalseSize" type="number" class="form-control form-group col-md-2"
+                placeholder="Enter question point">
+              <div class="alert alert-danger" *ngIf="trueOrFalseSize.touched && !trueOrFalseSize.valid">
+                <div>Question Poin is required </div>
+              </div>
+            </div>
+            <div class="float-right" style="margin-bottom: 10px;">
+              <button class="btn btn-sm btn-secondary" role="button" aria-pressed="true"
+                [disabled]="trueOrFalseQ.question.length==0" (click)="addTrueOrFalseQuestion()"><i
+                  class="icofont-headphone-alt"></i>Add</button>
+            </div>
+          </div>
+          <div id="mCQ" [ngClass]="{
+                      'container tab-pane fade active':mCQForm,
+                      'container tab-pane fade':!mCQForm
+                    }"><br>
+            <div class="form-group">
+              <label for="mCQuestion">Question</label>
+              <input [(ngModel)]="mCQ.question" name="mCQuestion" #mCQuestion="ngModel" id="mCQuestion" type="text"
+                class="form-control" placeholder="Enter multiple choice question">
+              <div class="alert alert-danger" *ngIf="mCQuestion.touched && !mCQuestion.valid">
+                <div>Question is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0">
+              <label for="answer1">Answer 1</label>
+              <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer1" name="answer1" #answer1="ngModel"
+                id="answer1" type="text" class="form-control" placeholder="Enter answer 1">
+              <div class="alert alert-danger" *ngIf="answer1.touched && !answer1.valid">
+                <div>Answer 1 is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0">
+              <label for="answer2">Answer 2</label>
+              <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer2" name="answer2" #answer2="ngModel"
+                id="answer2" type="text" class="form-control" placeholder="Enter answer 2">
+              <div class="alert alert-danger" *ngIf="answer2.touched && !answer2.valid">
+                <div>Answer 2 is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0">
+              <label for="answer3">Answer 3</label>
+              <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer3" name="answer3" #answer3="ngModel"
+                id="answer3" type="text" class="form-control" placeholder="Enter answer 3">
+              <div class="alert alert-danger" *ngIf="answer3.touched && !answer3.valid">
+                <div>Answer 3 is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0">
+              <label for="answer4">Answer 4</label>
+              <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer4" name="answer4" #answer4="ngModel"
+                id="answer4" type="text" class="form-control" placeholder="Enter answer 4">
+              <div class="alert alert-danger" *ngIf="answer4.touched && !answer4.valid">
+                <div>Answer 4 is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0
+              ||mCQ.answer1.length==0
+              ||mCQ.answer2.length==0
+              ||mCQ.answer3.length==0
+              ||mCQ.answer4.length==0">
+              <label for="mcqCorrect">Correct Answer</label>
+              <select [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.correct" name="mcqCorrect"
+                #mcqCorrect="ngModel" id="mcqCorrect" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                <option [value]="mCQ.answer1">answer1</option>
+                <option [value]="mCQ.answer2">answer2</option>
+                <option [value]="mCQ.answer3">answer3</option>
+                <option [value]="mCQ.answer4">answer4</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="mcqCorrect.touched && !mcqCorrect.valid">
+                <div>Correct answer is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="mCQ.question.length==0">
+              <label for="mcqSize">Question Poin</label>
+              <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.size" name="mcqSize" #mcqSize="ngModel"
+                id="mcqSize" type="number" class="form-control form-group col-md-2" placeholder="Enter question point">
+              <div class="alert alert-danger" *ngIf="mcqSize.touched && !mcqSize.valid">
+                <div>Question Poin is required </div>
+              </div>
+            </div>
+            <div class="float-right" style="margin-bottom: 10px;">
+              <button [disabled]="mCQ.question.length==0" class="btn btn-sm btn-secondary" role="button"
+                aria-pressed="true" (click)="addMCQQuestion()"><i class="icofont-headphone-alt"></i>Add</button>
+            </div>
+          </div>
+          <div id="essay" [ngClass]="{
+          'container tab-pane fade active':essayForm,
+          'container tab-pane fade':!essayForm
+                    }"><br>
+            <div class="form-group">
+              <label for="essayQuestion">Question</label>
+              <input [(ngModel)]="essayQ.question" name="essayQuestion" #essayQuestion="ngModel" id="essayQuestion"
+                type="text" class="form-control" placeholder="Enter essay question">
+              <div class="alert alert-danger" *ngIf="essayQuestion.touched && !essayQuestion.valid">
+                <div>Question is required </div>
+              </div>
+            </div>
+
+            <div class="form-group" [hidden]="essayQ.question.length==0">
+              <label for="essayQuestionSize">Question Poin</label>
+              <input [required]="essayQ.question.length!=0" [(ngModel)]="essayQ.size" name="essayQuestionSize"
+                #essayQuestionSize="ngModel" id="essayQuestionSize" type="number"
+                class="form-control form-group col-md-2" placeholder="Enter question point">
+              <div class="alert alert-danger" *ngIf="essayQuestionSize.touched && !essayQuestionSize.valid">
+                <div>Question Poin is required </div>
+              </div>
+            </div>
+
+            <div class="float-right" style="margin-bottom: 10px;">
+              <button [disabled]="essayQ.question.length==0" class="btn btn-secondary btn-sm" role="button"
+                aria-pressed="true" (click)="addEssayQuestion()"><i class="icofont-headphone-alt"></i>Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button (click)="createNewExam()" class="btn btn-primary btn-lg btn-block"
+        [disabled]="!createExamForm.valid">Save</button>
+    </form>
+
+    <view-questions [(mcQuestions)]="createExamRequest.mcQuestion"
+      [(trueOrFalseQuestions)]="createExamRequest.trueOrFalseQuestion"
+      [(essayQuestions)]="createExamRequest.essayQuestion" [(totalPoints)]="totalPoints" [isSavedQuestions]="false">
+    </view-questions>

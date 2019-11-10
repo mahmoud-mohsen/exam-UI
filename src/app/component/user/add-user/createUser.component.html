@@ -1,114 +1,114 @@
-<layout>
-  <ng-container class="container-body">
-    <form #createUserForm="ngForm">
-      <div class="row justify-content-center">
-        <h2>New User</h2>
-      </div>
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel"
-          id="firstName" type="text" class="form-control" placeholder="Enter firstName">
-        <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-          <div *ngIf="firstName.errors.required">first name is required </div>
-        </div>
-      </div>
+<form #createUserForm="ngForm">
+  <div class="row justify-content-center">
+    <h2>New User</h2>
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel" id="firstName" type="text"
+      class="form-control" placeholder="Enter firstName">
+    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
+      <div>first name is required </div>
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <input required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" id="lastName" type="text"
-          class="form-control" placeholder="Enter lastName">
-        <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
-          <div *ngIf="lastName.errors.required">Last Name is required </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" id="lastName" type="text"
+      class="form-control" placeholder="Enter lastName">
+    <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+      <div>Last Name is required </div>
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input required [(ngModel)]="user.email" name="email" #email="ngModel" id="email" type="text"
-          class="form-control" placeholder="Enter Email">
-        <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
-          <div *ngIf="email.errors.required">Email is required </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input required [(ngModel)]="user.email" name="email" #email="ngModel" id="email" type="text" class="form-control"
+      placeholder="Enter Email">
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+      <div>Email is required </div>
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input required [(ngModel)]="user.password" name="password" #password="ngModel" id="password" type="text"
-          class="form-control" placeholder="Enter password">
-        <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-          <div *ngIf="password.errors.required">Password is required </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input required [(ngModel)]="user.password" name="password" #password="ngModel" id="password" type="text"
+      class="form-control" placeholder="Enter password">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+      <div>Password is required </div>
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label for="age">Age</label>
-        <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control" placeholder="Enter age">
-        <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
-          <div *ngIf="age.errors.required">Age is required </div>
-        </div>
-      </div>
-      
-      <div class="form-group">
-          <label for="phone">Phone</label>
-          <input [required]="type.value=='TEACHER'"  [(ngModel)]="user.phone" name="phone" #phone="ngModel" id="phone" type="text" class="form-control" placeholder="Enter phone">
-          <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
-            <div *ngIf="phone.errors.required">Phone is required </div>
-          </div>
-        </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control"
+      placeholder="Enter age">
+    <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
+      <div>Age is required </div>
+    </div>
+  </div>
 
-      <div class="form-group">
-        <label for="lavel">Type</label>
-        <select required [(ngModel)]="user.type" name="type" #type="ngModel" id="type"
-          class="custom-select mb-2 mr-sm-2 mb-sm-0">
-          <option value="ADMIN">Admin</option>
-          <option value="TEACHER">Teacher</option>
-          <option value="STUDENT">Student</option>
-        </select>
-        <div class="alert alert-danger" *ngIf="type.touched && !type.valid">
-          <div *ngIf="type.errors.required">type is required </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input [required]="type.value=='TEACHER'" [(ngModel)]="user.phone" name="phone" #phone="ngModel" id="phone"
+      type="text" class="form-control" placeholder="Enter phone">
+    <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
+      <div>Phone is required </div>
+    </div>
+  </div>
 
-      <div class="form-group" [hidden]="type.value!='TEACHER'">
-        <label for="teacherTitle">Title</label>
-        <input [(ngModel)]="user.teacherTitle" name="teacherTitle" #teacherTitle="ngModel" id="teacherTitle" type="text" class="form-control" placeholder="Enter teacher title">
-        <div class="alert alert-danger" *ngIf="teacherTitle.touched && !teacherTitle.valid">
-          <div *ngIf="teacherTitle.errors.required">teacherTitle is required </div>
-        </div>
-      </div>
+  <div class="form-group">
+    <label for="lavel">Type</label>
+    <select required [(ngModel)]="user.type" name="type" #type="ngModel" id="type"
+      class="custom-select mb-2 mr-sm-2 mb-sm-0">
+      <option value="ADMIN">Admin</option>
+      <option value="TEACHER">Teacher</option>
+      <option value="STUDENT">Student</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="type.touched && !type.valid">
+      <div>type is required </div>
+    </div>
+  </div>
 
-      <div class="form-group" [hidden]="type.value!='TEACHER'">
-        <label for="sammury">Sammury</label>
-        <input [(ngModel)]="user.sammury" name="sammury" #sammury="ngModel" id="sammury" type="textarea" class="form-control" placeholder="Enter teacher Sammury">
-        <div class="alert alert-danger" *ngIf="sammury.touched && !sammury.valid">
-          <div *ngIf="sammury.errors.required">Sammury is required </div>
-        </div>
-      </div>
+  <div class="form-group" [hidden]="type.value!='TEACHER'">
+    <label for="teacherTitle">Title</label>
+    <input [(ngModel)]="user.teacherTitle" name="teacherTitle" #teacherTitle="ngModel" id="teacherTitle" type="text"
+      class="form-control" placeholder="Enter teacher title">
+    <div class="alert alert-danger" *ngIf="teacherTitle.touched && !teacherTitle.valid">
+      <div>teacherTitle is required </div>
+    </div>
+  </div>
 
-      
+  <div class="form-group" [hidden]="type.value!='TEACHER'">
+    <label for="sammury">Sammury</label>
+    <input [(ngModel)]="user.sammury" name="sammury" #sammury="ngModel" id="sammury" type="textarea"
+      class="form-control" placeholder="Enter teacher Sammury">
+    <div class="alert alert-danger" *ngIf="sammury.touched && !sammury.valid">
+      <div>Sammury is required </div>
+    </div>
+  </div>
 
-      <div class="form-group" [hidden]="type.value!='STUDENT'">
-        <label for="lavel">Level</label>
-        <select [required]="type.value=='STUDENT'" [(ngModel)]="user.level" name="level" #level="ngModel" id="level"
-          class="custom-select mb-2 mr-sm-2 mb-sm-0">
-          <option [value]="A1">A1</option>
-          <option [value]="A2">A2</option>
-          <option [value]="A3">A3</option>
-          <option [value]="A4">A4</option>
-          <option [value]="A5">A5</option>
-          <option [value]="A6">A6</option>
-          <option [value]="B1">B1</option>
-          <option [value]="B2">B2</option>
-          <option [value]="B3">B3</option>
-          <option [value]="BC">C1</option>
-          <option [value]="C2">C2</option>
-          <option [value]="C3">C3</option>
-        </select>
-        <div class="alert alert-danger" *ngIf="level.touched && !level.valid">
-          <div *ngIf="level.errors.required">Level is required </div>
-        </div>
-      </div>
-      <button (click)="createNewUser()" class="btn btn-primary" [disabled]="!createUserForm.valid">Submit</button>
-    </form>
-  </ng-container>
-</layout>
+
+
+  <option class="form-group" [hidden]="type.value!='STUDENT'">
+    <label for="lavel">Level</label>
+    <select [required]="type.value=='STUDENT'" [(ngModel)]="user.level" name="level" #level="ngModel" id="level"
+      class="custom-select mb-2 mr-sm-2 mb-sm-0">
+      <option value="A1">A1</option>
+      <option value="A2">A2</option>
+      <option value="A3">A3</option>
+      <option value="A4">A4</option>
+      <option value="A5">A5</option>
+      <option value="A6">A6</option>
+      <option value="B1">B1</option>
+      <option value="B2">B2</option>
+      <option value="B3">B3</option>
+      <option value="BC">C1</option>
+      <option value="C2">C2</option>
+      <option value="C3">C3</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="level.touched && !level.valid">
+      <div>Level is required </div>
+    </div>
+  </option>
+  <button (click)="createNewUser()" class="btn btn-primary" [disabled]="!createUserForm.valid">Submit</button>
+</form>

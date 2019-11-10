@@ -1,3 +1,4 @@
+import { EnrollCourse } from './enrollCourse.model';
 import { Course } from './Course.model';
 export enum type { TEACHER, STUDENT, ADMIN }
 export enum level { A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C2, C3 }
@@ -5,7 +6,7 @@ export class User {
   id: Number;
   firstName: String;
   lastName: String;
-  level: level;
+  studentLevel: level;
   email: String;
   password: String;
   type: type;
@@ -16,14 +17,14 @@ export class User {
   createdCourses: Course[];
   teacherTitle: String;
   numberOfActivestudents:Number;
-  enrollCourse:Course[];
+  enrollCourse:EnrollCourse[];
   phone:String;
   constructor() {
     this.id = null;
     this.firstName = '';
     this.type = null;
     this.lastName = '';
-    this.level = null;
+    this.studentLevel = null;
     this.email = '';
     this.password = '';
     this.image = '';

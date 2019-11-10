@@ -1,5 +1,7 @@
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActiveUser } from '../../../model/ActiveUser.model';
+import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { Course } from './../../../model/Course.model';
-import { UserService } from './../../../service/user.service';
 import { Component, OnInit } from '@angular/core';
 import { CourseCourse } from 'src/app/model/CreateCourse.model';
 
@@ -10,7 +12,12 @@ import { CourseCourse } from 'src/app/model/CreateCourse.model';
 })
 export class CreateCourseComponent implements OnInit {
   courseRequest: CourseCourse;
-  constructor(private userService: UserService) { }
+  activeUser: ActiveUser;
+  course:Course;
+  constructor(private router:Router, private userService: GlobalBackEndService) {
+    this.activeUser = JSON.parse(localStorage.getItem('user'));
+
+  }
 
 
   ngOnInit() {
@@ -18,7 +25,12 @@ export class CreateCourseComponent implements OnInit {
   }
 
   createNewCourse() {
-    this.userService.createNewEntity(this.courseRequest, "courses", '2').subscribe((data: Course) => this.courseRequest = { ...data });
+
+    this.userService.createNewEntity(this.courseRequest, "courses", String(this.activeUser.id)).subscribe((data: any) => {
+      this.course = { ...data };
+      this.router.navigate([`user/${this.activeUser.id}/courses`]);
+
+  });
   }
 
 

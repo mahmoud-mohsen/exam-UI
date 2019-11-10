@@ -1,63 +1,95 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Course } from './../model/Course.model';
+import { ActiveUser } from './../model/ActiveUser.model';
+import { User } from './../model/user.model';
+import { GlobalBackEndService } from './backEnd.service';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  loggedInUserDetails: User;
+  activeUser: ActiveUser;
 
-  baseUrl: string = 'http://localhost:8080/';
+  constructor(private globalBackEndService: GlobalBackEndService) {
+    this.activeUser = JSON.parse(localStorage.getItem('user'));
+    console.log(this.activeUser);
 
-  httpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Accept': 'application/json'
-  });
-  options = {
-    headers: this.httpHeaders
-  };
-
-
-  constructor(private http: HttpClient) {
+    if (this.activeUser) {
+      this.getLoggedInUserDetails();
+    }
   }
 
-  createNewEntity(entity: any, url: String, callerUserId: string) {
-   this.httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'USER_ID': callerUserId
+  public getLoggedInUserDetails(callback?: () => void) {
+    this.activeUser = JSON.parse(localStorage.getItem('user'));
+    let url = `user/${this.activeUser.id}`;
+    this.globalBackEndService.ViewEntity(url, String(this.activeUser.id)).subscribe((response: any) => {
+      this.loggedInUserDetails = response;
+      console.log(this.loggedInUserDetails);
+
+      if (callback) {
+        callback();
+      }
     });
 
-    this.httpHeaders.set('USER_ID', callerUserId);
-    this.options = { headers: this.httpHeaders };
-    console.log(this.baseUrl + url);
-
-    console.log(this.httpHeaders);
-    console.log(this.baseUrl + url);
-
-
-
-    return this.http.post(this.baseUrl + url, JSON.stringify(entity), this.options);
   }
 
-  ViewEntities(url: String, callerUserId: string) {
-    this.httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'USER_ID': callerUserId
-    });
-    this.options = { headers: this.httpHeaders };
-
-    return this.http.get(this.baseUrl + url, this.options);
+  public IsCourseCreatedByUser(CourseId) {
+    if (this.loggedInUserDetails) {
+      return this.checkCourseInUserCreatedCourses(CourseId)
+    } else {
+      this.getLoggedInUserDetails(() => {
+        return this.checkCourseInUserCreatedCourses(CourseId);
+      })
+    }
+    return false;
   }
 
-  ViewEntity(url: String, entityId: string, callerUserId: string) {
-    this.httpHeaders = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'USER_ID': callerUserId
-    });
-    this.options = { headers: this.httpHeaders };
+  private checkCourseInUserCreatedCourses(CourseId) {
 
-    return this.http.get(this.baseUrl + url + "/" + entityId, this.options);
+    if (this.loggedInUserDetails.createdCourses) {
+      for (let index = 0; index < this.loggedInUserDetails.createdCourses.length; index++) {
+        if (this.loggedInUserDetails.createdCourses[index].id == CourseId) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  public IsUserIsEnrolledInCourse(CourseId) {
+    if (this.loggedInUserDetails.id) {
+      return this.checkUserIsEnrolledInCourse(CourseId)
+    } else {
+      this.getLoggedInUserDetails(() => {
+        return this.checkUserIsEnrolledInCourse(CourseId);
+      })
+    }
+    return false;
+  }
+
+  private checkUserIsEnrolledInCourse(CourseId) {
+    if (this.loggedInUserDetails.enrollCourse) {
+      for (let index = 0; index < this.loggedInUserDetails.enrollCourse.length; index++) {
+        if (this.loggedInUserDetails.enrollCourse[index].courseId == CourseId) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+
+  isUserIsEnrolledInCourseWithStatus(CourseId, status) {
+    
+    if (this.loggedInUserDetails.enrollCourse) {
+
+      for (let index = 0; index < this.loggedInUserDetails.enrollCourse.length; index++) {
+        if (this.loggedInUserDetails.enrollCourse[index].status == status && this.loggedInUserDetails.enrollCourse[index].courseId== CourseId) {          
+          return true;
+        }
+      }
+    }
+    return false;
   }
 }

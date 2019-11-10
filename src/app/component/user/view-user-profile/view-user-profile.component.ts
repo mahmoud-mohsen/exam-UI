@@ -1,4 +1,6 @@
-import { UserService } from './../../../service/user.service';
+import { FirebaseService } from './../../../service/firebase.service';
+import { ActiveUser } from '../../../model/ActiveUser.model';
+import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { User } from './../../../model/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -10,19 +12,30 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewUserProfileComponent implements OnInit {
   userId;
-  user:User;
-  constructor(private route: ActivatedRoute,private userService:UserService) {
-   this.user=new User();
+  activeUser: ActiveUser;
+  user: User;
+  constructor(private route: ActivatedRoute, private userService: GlobalBackEndService) {
+    this.user = new User();
+    this.activeUser = JSON.parse(localStorage.getItem('user'));
+
   }
 
-ngOnInit() {
-this.route.paramMap.subscribe(params =>{  
-  this.userId=+params.get('id');
-  this.viewUserProfile();
-});
-}
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.userId = +params.get('id');
+      this.viewUserProfile();
+    });
+  }
 
-viewUserProfile(){
-  this.userService.ViewEntity("user",this.userId,'2').subscribe((data: any) => this.user = {...data});  
-}
+  viewUserProfile() {
+    console.log(this.activeUser.id);
+    let url = `user/${this.userId}`;
+    
+    this.userService.ViewEntity(url, String(this.activeUser.id)).subscribe((data: any) => {
+      this.user = data
+    },
+      (error: any) => {
+        alert(error.error.message);
+      });
+  }
 }

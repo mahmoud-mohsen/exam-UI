@@ -1,7 +1,7 @@
+import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { Active } from './active';
 import { CreateUser } from './component/user/add-user/createUser.component';
 import { RegisterStudent } from './component/authentication/register-student/registerStudent.component';
-import { UserService } from './service/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,12 @@ import { CreateCourseComponent } from './component/course/create-course/create-c
 import { LoginComponent } from './component/authentication/login/login.component';
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { ViewExamsComponent } from './component/exam/view-exams/view-exams.component';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { NewExamComponent } from './component/exam/new-exam/new-exam.component';
+import { ViewQuestionsComponent } from './component/question/view-questions/view-questions.component';
+import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -42,6 +48,10 @@ const firebaseConfig = {
     ViewCoursesComponent,
     CreateCourseComponent,
     LoginComponent,
+    ViewExamsComponent,
+    NewExamComponent,
+    ViewQuestionsComponent,
+    ViewEnrollRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,9 +61,11 @@ const firebaseConfig = {
     HttpClientModule,
     NgbModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    NgxPermissionsModule.forRoot()
+
   ],
-  providers: [UserService,Active],
+  providers: [GlobalBackEndService,Active],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

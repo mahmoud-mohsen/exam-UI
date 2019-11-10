@@ -1,0 +1,98 @@
+<div class="form-group" style="margin-top: 10px;">
+    <div *ngFor="let mcqQ of mcQuestions" class="bg-white card mb-4 order-list shadow-sm">
+        <div class="gold-members p-4">
+            <a href="#">
+            </a>
+            <div class="media">
+                <a href="#">
+                    <img class="mr-4" src="">
+                </a>
+                <div class="media-body">
+                    <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
+                        </span>{{mcqQ.size}}<i class="icofont-check-circled text-success"></i></span>
+                    <h6 class="mb-2">
+                        <a href="#"></a>
+                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                            </span>{{mcqQ.question}}</a>
+                    </h6>
+                    <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
+                        </span> {{mcqQ.answer1}} </p>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
+                        </span>{{mcqQ.answer2}}</p>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 3-:
+                        </span>{{mcqQ.answer3}}</p>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 4-:
+                        </span>{{mcqQ.answer4}}</p>
+                    <hr>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> Correct-:
+                        </span>{{mcqQ.correct}}</p>
+                </div>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
+                    (click)="deleteMCQQuestion(mcqQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngFor="let TFQ of trueOrFalseQuestions" class="bg-white card mb-4 order-list shadow-sm">
+        <div class="gold-members p-4">
+            <a href="#">
+            </a>
+            <div class="media">
+                <a href="#">
+                    <img class="mr-4" src="">
+                </a>
+                <div class="media-body">
+                    <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
+                        </span>{{TFQ.size}}<i class="icofont-check-circled text-success"></i></span>
+                    <h6 class="mb-2">
+                        <a href="#"></a>
+                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                            </span>{{TFQ.question}}</a>
+                    </h6>
+                    <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
+                        </span>true</p>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
+                        </span>false</p>
+                    <hr>
+                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> Correct-:
+                        </span>{{TFQ.correct}}</p>
+                </div>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
+                    (click)="deleteTOFQuestion(TFQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngFor="let essayQ of essayQuestions" class="bg-white card mb-4 order-list shadow-sm">
+        <div class="gold-members p-4">
+            <a href="#">
+            </a>
+            <div class="media">
+
+                <a href="#">
+                    <img class="mr-4" src="">
+                </a>
+                <div class="media-body">
+                    <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
+                        </span>{{essayQ.size}}<i class="icofont-check-circled text-success"></i></span>
+                    <h6 class="mb-2">
+                        <a href="#"></a>
+                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                            </span>{{essayQ.question}}</a>
+                    </h6>
+                </div>
+            </div>
+            <div class="float-right" style="margin-bottom: 10px;">
+                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
+                    (click)="deleteEssayQuestion(essayQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+            </div>
+        </div>
+    </div>
+    <span [hidden]="!totalPoints" class="float-right text-info"><span class="text-black font-weight-bold"> totla Exam points-:
+        </span>{{totalPoints}}<i class="icofont-check-circled text-success"></i></span>
+</div>

@@ -1,0 +1,39 @@
+<div class="col-md-12">
+    <div>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                <h4 class="font-weight-bold mt-0 mb-4">Pending Requests</h4>
+                <div *ngFor="let enroll of enrollCourse" class="bg-white card mb-4 order-list shadow-sm">
+                    <div class="gold-members p-4">
+                        <a href="#">
+                        </a>
+                        <div class="media">
+                            <a href="#">
+                                <img class="mr-4" src="">
+                            </a>
+                            <div class="media-body">
+                                <p class="text-gray mb-1"><span class="text-black font-weight-bold"> {{enroll.userName}}
+                                    </span> asked to join course: <span
+                                        class="text-black font-weight-bold">{{enroll.courseName}}</span>
+                                </p>
+
+                                <hr>
+                                <div class="float-right">
+                                    <a class="btn btn-sm btn-success" (click)="approveEnrollRequest(enroll)">
+                                        Approve</a>
+                                    <a class="btn btn-sm btn-danger" (click)="rejectEnrollRequest(enroll)">
+                                        Reject</a>
+                                </div>
+                                <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">
+                                        Date:</span> {{enroll.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

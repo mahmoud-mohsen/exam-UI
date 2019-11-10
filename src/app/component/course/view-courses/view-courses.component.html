@@ -1,20 +1,42 @@
-<layout>
-    <ng-container class="container-body">
-            <a href="newCourse" class="btn btn-primary" role="button" aria-pressed="true">Add New Course</a>
-        <div class="row" style="margin-top: 7px;">
-            <div *ngFor="let course of user.createdCourses" class="col-sm-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h3 class="card-title">{{course.title}}</h3>
-                        <h6>level</h6>
-                        <p class="card-text">{{course.level}}</p>
-                        <h6>created in</h6>
-                        <p class="card-text">{{course.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}</p>
-                        <button type="button" class="btn btn-primary btn-lg btn-block">View</button>
-                        <button type="button" class="btn btn-secondary btn-lg btn-block" [hidden]="user.type!='STUDENT'">Enroll</button>
+<div class="float-right">
+    <a class="btn btn-sm btn-primary" role="button" [hidden]="activeUser.id!=userId" *ngxPermissionsOnly="['TEACHER']"
+        aria-pressed="true" [routerLink]="['/newCourse']"><i class="icofont-headphone-alt"></i>New course</a>
+</div>
+<h4 class="font-weight-bold mt-0 mb-4">Courses</h4>
+
+<div class="row">
+    <div *ngFor="let course of courses" class="col-sm-6">
+        <div class="card" style="margin-bottom: 7px;">
+            <div class="card-body">
+                <h3 class="card-title">{{course.title}}</h3>
+                <p class="card-text"><span class="text-black font-weight-bold">Level: </span>{{course.level}}</p>
+                <p class="card-text"><span class="text-black font-weight-bold">Created in:
+                    </span>{{course.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}</p>
+
+                <span [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsRejectEnrolledInCourse(course.id))"
+                    class="float-right bg-danger text-white">Your request is
+                    rejected</span>
+
+                <span [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsPendingEnrolledInCourse(course.id))"
+                    class="float-right bg-warning text-white">Your request is
+                    pending. Waiting teacher approval</span>
+
+                <button type="button"
+                    [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsApproveEnrolledInCourse(course.id))&&!(activeUser.type=='TEACHER')"
+                    (click)="viewCourseExams(course.id)" class="btn btn-outline-primary btn-lg btn-block">View</button>
+
+                <div *ngxPermissionsOnly="['STUDENT']" [hidden]="isUserIsEnrolledInCourse(course.id)"
+                    class="input-group mb-3">
+                    <input type="text" class="form-control" (input)="courseCode=$event.target.value"
+                        placeholder="Enter course code" aria-label="course's code" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button (click)="enrollStudent(course.id,courseCode)" class="btn btn-outline-primary"
+                            type="button">Enroll</button>
                     </div>
                 </div>
+
+
             </div>
         </div>
-    </ng-container>
-</layout>
+    </div>
+</div>

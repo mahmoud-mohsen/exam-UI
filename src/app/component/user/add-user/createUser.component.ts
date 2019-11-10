@@ -1,6 +1,8 @@
-import { UserService } from '../../../service/user.service';
+import { FirebaseService } from './../../../service/firebase.service';
+import { ActiveUser } from '../../../model/ActiveUser.model';
+import { GlobalBackEndService } from '../../../service/backEnd.service';
 import { User, type } from '../../../model/user.model';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,8 +12,9 @@ import { Router } from '@angular/router';
 })
 export class CreateUser implements OnInit {
 
-  constructor(private userService: UserService,private router:Router) {
-
+  activeUser: ActiveUser;
+  constructor(private globalBackEndService: GlobalBackEndService, private router: Router) {
+    this.activeUser = JSON.parse(localStorage.getItem('user'));
   }
   ngOnInit() {
     this.user = new User();
@@ -19,9 +22,9 @@ export class CreateUser implements OnInit {
 
   user: User;
   createNewUser() {
-    this.userService.createNewEntity(this.user,"users",'1').subscribe((data: User) => {
-      this.user = {...data};
-      this.router.navigate(['userProfile',this.user.id]);
+    this.globalBackEndService.createNewEntity(this.user, "users", String(this.activeUser.id)).subscribe((data: any) => {
+      this.user = { ...data };
+      this.router.navigate(['userProfile', this.user.id]);
     });
   }
 

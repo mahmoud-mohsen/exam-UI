@@ -1,20 +1,24 @@
 <div class="wrapper">
     <!-- Sidebar Holder -->
-    <nav id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
+    <nav *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
         <div class="sidebar-header">
-            <h3>{{user.displayName}}</h3>
+            <h3>{{activeUser.displayName}}</h3>
         </div>
 
         <ul class="list-unstyled components">
             <li>
-                <a href="">Home</a>
+                <a [routerLink]="['']">Home</a>
             </li>
             <li>
-                <a href="users">Users</a>
+                <a  [routerLink]="['/users']">Users</a>
             </li>
             <li>
-                <a href="teacher/2/courses">Courses</a>
+                <a (click)="OpenUserCourses()" >Courses</a>
             </li>
+            <li >
+                <a  *ngxPermissionsOnly="['TEACHER']" [routerLink]="['/enrollRequests']">Enroll Requests</a>
+            </li>
+            
         </ul>
 
         <ul class="list-unstyled CTAs">
@@ -30,15 +34,10 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
-                <button type="button" id="sidebarCollapse" (click)="clickEvent()" class="navbar-btn">
+                <button *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" type="button" id="sidebarCollapse" (click)="clickEvent()" class="navbar-btn">
                     <span></span>
                     <span></span>
                     <span></span>
-                </button>
-                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <i class="fas fa-align-justify"></i>
                 </button>
 
                 <div class="nav navbar-nav mx-auto" id="navbarSupportedContent">
@@ -51,9 +50,7 @@
             </div>
         </nav>
         <div class="jumbotron vertical-center">
-
             <ng-content select=".container-body">
-
             </ng-content>
         </div>
 

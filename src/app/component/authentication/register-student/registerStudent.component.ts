@@ -1,6 +1,6 @@
-import { UserService } from '../../../service/user.service';
 import { User, type } from '../../../model/user.model';
 import { Component, OnInit} from '@angular/core';
+import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 
 @Component({
   selector: 'registerStudent',
@@ -9,7 +9,7 @@ import { Component, OnInit} from '@angular/core';
 })
 export class RegisterStudent implements OnInit {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: GlobalBackEndService) {
 
   }
   ngOnInit() {
@@ -19,7 +19,7 @@ export class RegisterStudent implements OnInit {
   user: User;
   createNewStudent() {
     this.user.type=type.STUDENT;
-    this.userService.createNewEntity(this.user,"users",'2').subscribe((data: User) => this.user = {...data});
+    this.userService.createNewEntity(this.user,"users",'2').subscribe((data:any) => this.user = {...data});
   }
 
 }
