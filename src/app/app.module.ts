@@ -26,7 +26,10 @@ import { ViewQuestionsComponent } from './component/question/view-questions/view
 import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
 import { ViewExamSolversComponent } from './component/exam/view-exam-solvers/view-exam-solvers.component';
 import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
-
+import { UpdateCourseComponent } from './component/course/update-course/update-course.component';
+import {MatButtonModule} from '@angular/material';
+import {MatMenuModule} from '@angular/material/menu';
+import { UpdateExamComponent } from './component/exam/update-exam/update-exam.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -56,7 +59,9 @@ const firebaseConfig = {
     ViewEnrollRequestsComponent,
     ViewExamSolversComponent,
     ViewSolverAnswersComponent,
-    CounterComponent
+    CounterComponent,
+    UpdateCourseComponent,
+    UpdateExamComponent
   ],
   imports: [
     BrowserModule,
@@ -68,6 +73,9 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     NgxPermissionsModule.forRoot(),
+    MatMenuModule,
+    MatButtonModule,
+
 
   ],
   providers: [GlobalBackEndService, Active,CounterComponent],

@@ -1,3 +1,5 @@
+import { CourseUpdateDetails } from './../../../model/CourseUpdateDetails.model';
+import { UpdateCourseComponent } from './../update-course/update-course.component';
 import { UserService } from './../../../service/user.service';
 import { ActiveUser } from '../../../model/ActiveUser.model';
 import { Course } from './../../../model/Course.model';
@@ -18,14 +20,21 @@ export class ViewCoursesComponent implements OnInit {
   activeUser: ActiveUser;
   userId;
   courseCode;
+  updateCourseView: boolean;
+  courseUpdateDetails: CourseUpdateDetails;
+  courseIdToUpdate;
   constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute, private globalBackEndService: GlobalBackEndService, private permissionsService: NgxPermissionsService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
     this.courses = new Array();
+    this.updateCourseView = false;
     this.courseCode = '';
+    this.courseUpdateDetails = new CourseUpdateDetails();
 
   }
 
   ngOnInit() {
+    this.updateCourseView = false;
+
     const permissions = [String(this.activeUser.type)];
     this.permissionsService.loadPermissions(permissions);
     this.activatedRoute.paramMap.subscribe(params => {
@@ -72,6 +81,10 @@ export class ViewCoursesComponent implements OnInit {
     this.router.navigate([`course/${courseId}/exams`]);
   }
 
+  isUserTheCreator(courseId): boolean {
+    return this.userService.IsCourseCreatedByUser(courseId);
+  }
+
   isUserIsEnrolledInCourse(courseId): boolean {
     return this.userService.IsUserIsEnrolledInCourse(courseId);
   }
@@ -86,5 +99,28 @@ export class ViewCoursesComponent implements OnInit {
 
   isUserIsApproveEnrolledInCourse(courseId): boolean {
     return this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'APPROVE');
+  }
+
+  viewUpdateCourseForm(c: Course) {
+
+    this.updateCourseView = true;
+
+    this.courseIdToUpdate = c.id;
+    this.courseUpdateDetails.title = c.title;
+    this.courseUpdateDetails.code = c.code;
+    this.courseUpdateDetails.level = c.level;
+  }
+  CloseUpdaetForm() {
+    this.updateCourseView = false;
+
+  }
+
+  deleteCourse(courseId) {
+    let url = `course/${courseId}`;
+    this.globalBackEndService.deleteEntity(url, String(this.activeUser.id)).subscribe(() => {
+      window.location.href=window.location.pathname;
+     }, (error: any) => {
+      alert(error.error.message);
+    });
   }
 }

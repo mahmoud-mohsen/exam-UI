@@ -34,6 +34,19 @@ export class GlobalBackEndService {
     return this.http.post(this.baseUrl + url, JSON.stringify(entity), this.options);
   }
 
+  putEntity(entity: any, url: String, callerUserId: string) {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'USER_ID': callerUserId
+    });
+    this.options = { headers: this.httpHeaders };
+
+    return this.http.put(this.baseUrl + url, JSON.stringify(entity), this.options);
+  }
+
+  
+
   ViewEntities(url: String, callerUserId: string, param?) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -56,5 +69,16 @@ export class GlobalBackEndService {
     this.options = { headers: this.httpHeaders };
 
     return this.http.get(this.baseUrl + url, this.options);
+  }
+
+  deleteEntity(url: String, callerUserId: string) {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'USER_ID': callerUserId
+    });
+    this.options = { headers: this.httpHeaders };
+
+    return this.http.delete(this.baseUrl + url, this.options);
   }
 }

@@ -1,0 +1,80 @@
+<section id="cover" class="min-vh-100">
+
+    <div id="cover-caption">
+        <div class="container">
+            <div class="row text-black">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto text-center form p-4">
+                    <button (click)="CloseUpdateView()" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h1 class="display-4 py-2 text-truncate">Update Course</h1>
+                    <div class="px-2">
+                        <form>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mx-auto text-center">
+                                    <label for="inputTitle">Title</label>
+                                    <input required [(ngModel)]="examUpdateDetails.title" #title="ngModel" name="title"
+                                        type="text" class="form-control" id="inputTitle" placeholder="title">
+                                </div>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="title.touched && !title.valid">
+                                <div>Title is required </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mx-auto text-center">
+                                    <label for="inputEmail4">Code</label>
+                                    <input required [(ngModel)]="examUpdateDetails.code" #code="ngModel" name="code"
+                                        type="text" class="form-control" id="inputCode" placeholder="code">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mx-auto text-center">
+                                    <label for="inputEmail4">Note</label>
+                                    <input required [(ngModel)]="examUpdateDetails.note" #note="ngModel" name="note"
+                                        type="text" class="form-control" id="inputCode" placeholder="note">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6 mx-auto text-center">
+                                    <label for="inputEmail4">Start Date</label>
+                                    <input required [(ngModel)]="fromDate" #startDate="ngModel" name="startDate"
+                                        type="date" class="form-control" id="inputCode" placeholder="start Date">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                    <div class="form-group col-md-6 mx-auto text-center">
+                                        <label for="inputEmail4">End Date</label>
+                                        <input required [(ngModel)]="toDate" #endDate="ngModel" name="endDate"
+                                            type="date" class="form-control" id="inputCode" placeholder="End Date">
+                                    </div>
+                            </div>
+
+                            <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="">Exam period</span>
+                                    </div>
+                                    <input required [(ngModel)]="examTime" name="examPeriodTime" #examPeriodTime="ngModel" id="examPeriodTime"
+                                      type="Number" min="0" class="form-control" placeholder="Period Time">
+                                
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="">Period Unit</span>
+                                    </div>
+                                    <select [(ngModel)]="timeUnit" name="unit" #unit="ngModel" id="unit" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                                      <option value="60">Minutes</option>
+                                      <option value="3600">Hours</option>
+                                    </select>
+                                  </div>
+
+                            <button (click)="updateExam()" type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

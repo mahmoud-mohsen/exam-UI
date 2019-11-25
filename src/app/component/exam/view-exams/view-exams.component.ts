@@ -1,3 +1,4 @@
+import { ExamUpdateDetails } from './../../../model/ExamUpdateDetails.model';
 import { UserService } from './../../../service/user.service';
 import { Exam } from './../../../model/Exam.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,14 +16,22 @@ export class ViewExamsComponent implements OnInit {
 
   activeUser: ActiveUser;
   courseId;
-  exams: Exam[]
+  exams: Exam[];
+  examUpdateDetails: ExamUpdateDetails;
+  examIdToUpdate;
+  viewUpdateExamForm: boolean;
+
   constructor(private router: Router, private userService: UserService, private globalBackEndService: GlobalBackEndService, private activeRouter: ActivatedRoute, private permissionsService: NgxPermissionsService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
     this.exams = new Array();
+    this.examUpdateDetails = new ExamUpdateDetails();
+    this.viewUpdateExamForm = false;
+
 
   }
 
   ngOnInit() {
+    this.viewUpdateExamForm = false;
     const permissions = [String(this.activeUser.type)];
     this.permissionsService.loadPermissions(permissions);
     this.activeRouter.paramMap.subscribe(params => {
@@ -57,12 +66,31 @@ export class ViewExamsComponent implements OnInit {
     });
   }
 
-  isCourseOwner() {          
+  isCourseOwner() {
     return this.userService.IsCourseCreatedByUser(this.courseId);
   }
 
   viewQuestionExamPage(examId) {
     this.router.navigate([`/exam/${examId}/questions`]);
+  }
+
+  CloseUpdateForm() {
+    this.viewUpdateExamForm = false;
+
+  }
+  updateExamView(exam: Exam) {
+    this.viewUpdateExamForm = true;
+
+    this.examIdToUpdate = exam.id;
+
+    this.examUpdateDetails.examTime = exam.examTime;
+    this.examUpdateDetails.title = exam.title;
+    this.examUpdateDetails.code = exam.code;
+    this.examUpdateDetails.note = exam.note;
+    this.examUpdateDetails.toDate = exam.toDate;
+    this.examUpdateDetails.fromDate = exam.fromDate;
+
+
   }
 
 }
