@@ -1,8 +1,13 @@
-const express = require('express');
-const app = express();
-// Run the app by serving the static files
-// in the dist directory
-app.use(express.static(__dirname + '/dist'));
-// Start the app by listening on the default
-// Heroku port
-app.listen(process.env.PORT || 8080);
+var express = require('express');
+var app = express();
+var server = require('http').Server(app);
+var bodyParser = require('body-parser');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}) );
+
+app.use( express.static(__dirname + '/client' ) );
+
+var listener = server.listen(process.env.PORT || 5000, function(){
+    console.log('Listening on port ' + listener.address().port); //Listening on port 5000
+});
