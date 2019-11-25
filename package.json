@@ -6,7 +6,8 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node Server.js",
+    "ng": "ng",
+    "start": "npm start",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
