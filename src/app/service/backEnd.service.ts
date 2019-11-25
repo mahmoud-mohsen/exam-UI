@@ -15,7 +15,7 @@ export class GlobalBackEndService {
     'Content-Type': 'application/json',
     'Accept': 'application/json'
   });
-  options ;
+  options;
 
 
   constructor(private http: HttpClient) {
@@ -29,25 +29,21 @@ export class GlobalBackEndService {
     });
 
     this.httpHeaders.set('USER_ID', callerUserId);
-    this.options = { headers: this.httpHeaders};
-
-    console.log(this.baseUrl + url);
-    console.log(this.options);
-    console.log(JSON.stringify(entity));
+    this.options = { headers: this.httpHeaders };
 
     return this.http.post(this.baseUrl + url, JSON.stringify(entity), this.options);
   }
 
-  ViewEntities(url: String, callerUserId: string,param?) {
+  ViewEntities(url: String, callerUserId: string, param?) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'USER_ID': callerUserId
     });
 
-    this.options = { headers: this.httpHeaders,params:param};
+    this.options = { headers: this.httpHeaders, params: param };
     console.log(this.options);
-    
+
     return this.http.get(this.baseUrl + url, this.options);
   }
 

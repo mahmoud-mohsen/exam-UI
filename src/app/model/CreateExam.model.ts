@@ -13,7 +13,15 @@ export class CreateExamRequest {
 
   startDate: Number;
 
+  examTime: number;
+
   endDate: Number;
+
+  mcqTitle: String;
+
+  trueOrFalseQuestionTitle: String;
+  
+  essayQuestionTitle: String;
 
   totalPoints: Number;
   trueOrFalseQuestion: TrueOrFalseQuestion[];
@@ -30,6 +38,8 @@ export class CreateExamRequest {
     this.mcQuestion = new Array();
     this.essayQuestion = new Array();
     this.totalPoints = null;
-
+    this.mcqTitle = null;
+    this.trueOrFalseQuestionTitle = null;
+    this.essayQuestionTitle = null;
   }
 }

@@ -11,7 +11,7 @@
                 <h3 class="card-title">{{course.title}}</h3>
                 <p class="card-text"><span class="text-black font-weight-bold">Level: </span>{{course.level}}</p>
                 <p class="card-text"><span class="text-black font-weight-bold">Created in:
-                    </span>{{course.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}</p>
+                    </span>{{course.creationTime | date:'dd/MM/yyyy'}}</p>
 
                 <span [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsRejectEnrolledInCourse(course.id))"
                     class="float-right bg-danger text-white">Your request is
@@ -30,7 +30,7 @@
                     <input type="text" class="form-control" (input)="courseCode=$event.target.value"
                         placeholder="Enter course code" aria-label="course's code" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button (click)="enrollStudent(course.id,courseCode)" class="btn btn-outline-primary"
+                        <button (click)="enrollStudent(course.id)" class="btn btn-outline-primary"
                             type="button">Enroll</button>
                     </div>
                 </div>

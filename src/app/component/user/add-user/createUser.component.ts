@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 export class CreateUser implements OnInit {
 
   activeUser: ActiveUser;
+  middleName:string;
   constructor(private globalBackEndService: GlobalBackEndService, private router: Router) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
   }
@@ -22,10 +23,25 @@ export class CreateUser implements OnInit {
 
   user: User;
   createNewUser() {
+    this.user.firstName=this.user.firstName.trim()+' '+this.middleName.trim();
     this.globalBackEndService.createNewEntity(this.user, "users", String(this.activeUser.id)).subscribe((data: any) => {
       this.user = { ...data };
       this.router.navigate(['userProfile', this.user.id]);
+    },(error:any)=>{
+      alert(error.error.message);
     });
   }
 
+  imageName:String=null;
+  prepareImage(image) {
+    var file: File = image.files[0];
+    this.imageName=file.name;
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.user.image = myReader.result;
+    }
+    myReader.readAsDataURL(file);
+    
+  }
 }

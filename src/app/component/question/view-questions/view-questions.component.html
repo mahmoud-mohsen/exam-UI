@@ -1,98 +1,193 @@
+<div *ngxPermissionsOnly="['STUDENT']" class="counter">
+    <counter [timeLeft]="examTime" (submitAnswer)="submitAnswers()"></counter>
+</div>
+
 <div class="form-group" style="margin-top: 10px;">
-    <div *ngFor="let mcqQ of mcQuestions" class="bg-white card mb-4 order-list shadow-sm">
+    <div class="questions-title">
+        <h2 [hidden]="mcQuestions.length==0">{{mcqQuestionsTitle}}</h2>
+    </div>
+    <div *ngFor="let mcqQ of mcQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
         <div class="gold-members p-4">
-            <a href="#">
-            </a>
             <div class="media">
-                <a href="#">
-                    <img class="mr-4" src="">
-                </a>
                 <div class="media-body">
                     <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
                         </span>{{mcqQ.size}}<i class="icofont-check-circled text-success"></i></span>
-                    <h6 class="mb-2">
-                        <a href="#"></a>
-                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                    <h6 class="mb-2" style="color:#007bff;">
+                        <a class="text-black"><span class="text-black font-weight-bold"> {{i+1}}-
                             </span>{{mcqQ.question}}</a>
                     </h6>
-                    <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
-                        </span> {{mcqQ.answer1}} </p>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
-                        </span>{{mcqQ.answer2}}</p>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 3-:
-                        </span>{{mcqQ.answer3}}</p>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 4-:
-                        </span>{{mcqQ.answer4}}</p>
+                    <div *ngxPermissionsOnly="['STUDENT']" class="student-answer-view">
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer1" [name]="'question:'+mcqQ.id"
+                                [value]="mcqQ.answer1">
+                            <label class="custom-control-label"
+                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer1">{{mcqQ.answer1}}</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer2" [name]="'question:'+mcqQ.id"
+                                [value]="mcqQ.answer2">
+                            <label class="custom-control-label"
+                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer2">{{mcqQ.answer2}}</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer3" [name]="'question:'+mcqQ.id"
+                                [value]="mcqQ.answer3">
+                            <label class="custom-control-label"
+                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer3">{{mcqQ.answer3}}</label>
+
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer4" [name]="'question:'+mcqQ.id"
+                                [value]="mcqQ.answer4">
+                            <label class="custom-control-label"
+                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer4">{{mcqQ.answer4}}</label>
+                        </div>
+                    </div>
+                    <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
+                        <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
+                            </span> {{mcqQ.answer1}} </p>
+                        <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
+                            </span>{{mcqQ.answer2}}</p>
+                        <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 3-:
+                            </span>{{mcqQ.answer3}}</p>
+                        <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 4-:
+                            </span>{{mcqQ.answer4}}</p>
+                    </div>
                     <hr>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> Correct-:
+                    <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                            class="text-black font-weight-bold"> Correct-:
                         </span>{{mcqQ.correct}}</p>
                 </div>
             </div>
             <div class="float-right">
-                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
-                    (click)="deleteMCQQuestion(mcqQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+                <button *ngxPermissionsOnly="['TEACHER']" class="btn btn-primary btn-sm" role="button"
+                    aria-pressed="true" (click)="deleteMCQQuestion(mcqQ)"><i
+                        class="icofont-headphone-alt"></i>Delete</button>
             </div>
         </div>
     </div>
+    <div class="questions-title">
+        <h2 [hidden]="trueOrFalseQuestions.length==0">{{trueOrFalseQuestionsTitle}}</h2>
+    </div>
 
-    <div *ngFor="let TFQ of trueOrFalseQuestions" class="bg-white card mb-4 order-list shadow-sm">
+    <div *ngFor="let TFQ of trueOrFalseQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
         <div class="gold-members p-4">
-            <a href="#">
-            </a>
             <div class="media">
-                <a href="#">
-                    <img class="mr-4" src="">
-                </a>
                 <div class="media-body">
                     <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
                         </span>{{TFQ.size}}<i class="icofont-check-circled text-success"></i></span>
-                    <h6 class="mb-2">
-                        <a href="#"></a>
-                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                    <h6 class="mb-2" style="color:#007bff;">
+                        <a class="text-black"><span class="text-black font-weight-bold"> {{i+1}}-
                             </span>{{TFQ.question}}</a>
                     </h6>
-                    <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
-                        </span>true</p>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
-                        </span>false</p>
+
+                    <div *ngxPermissionsOnly="['STUDENT']" class="student-answer-view">
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+TFQ.id+':true'" [name]="'question:'+TFQ.id" [value]="true">
+                            <label class="custom-control-label" [for]="'question:'+TFQ.id+':true'">true</label>
+                        </div>
+
+                        <div class="custom-control custom-radio">
+                            <input (click)="addmTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'question:'+TFQ.id+':false'" [name]="'question:'+TFQ.id" [value]="false">
+                            <label class="custom-control-label" [for]="'question:'+TFQ.id+':false'">false</label>
+                        </div>
+                    </div>
+                    <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
+
+                        <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-:
+                            </span>true</p>
+                        <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-:
+                            </span>false</p>
+                    </div>
                     <hr>
-                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> Correct-:
+                    <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                            class="text-black font-weight-bold"> Correct-:
                         </span>{{TFQ.correct}}</p>
                 </div>
             </div>
             <div class="float-right">
-                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
-                    (click)="deleteTOFQuestion(TFQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+                <button *ngxPermissionsOnly="['TEACHER']" class="btn btn-primary btn-sm" role="button"
+                    aria-pressed="true" (click)="deleteTOFQuestion(TFQ)"><i
+                        class="icofont-headphone-alt"></i>Delete</button>
             </div>
         </div>
 
     </div>
 
-    <div *ngFor="let essayQ of essayQuestions" class="bg-white card mb-4 order-list shadow-sm">
-        <div class="gold-members p-4">
-            <a href="#">
-            </a>
-            <div class="media">
+    <div class="questions-title">
+        <h2 [hidden]="essayQuestions.length==0">{{essayQuestionsTitle}}</h2>
+    </div>
 
-                <a href="#">
-                    <img class="mr-4" src="">
-                </a>
+    <div *ngFor="let essayQ of essayQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
+        <div class="gold-members p-4">
+            <div class="media">
                 <div class="media-body">
                     <span class="float-right text-info"><span class="text-black font-weight-bold"> point-:
                         </span>{{essayQ.size}}<i class="icofont-check-circled text-success"></i></span>
-                    <h6 class="mb-2">
-                        <a href="#"></a>
-                        <a href="#" class="text-black"><span class="text-black font-weight-bold"> Q-
+                    <h6 [hidden]="essayQ.question.length==0" class="mb-2" style="color:#007bff;">
+                        <a class="text-black"><span class="text-black font-weight-bold"> {{i+1}}-
                             </span>{{essayQ.question}}</a>
                     </h6>
+
+                    <div [hidden]="!essayQ.questionsAsImage" class="col-lg-12 order-lg-1 text-center">
+                        <h6 class="mb-2">{{i+1}}</h6>
+                        <img [src]="essayQ.questionsAsImage" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                        <label class="custom-file">
+                            <input type="button" id="file" class="custom-file-input">
+                        </label>
+                    </div>
+
+                    <div *ngxPermissionsOnly="['STUDENT']" class="float-left" class="form-group">
+                        <input (blur)="addEssayAnswer($event)" [name]="'question:'+essayQ.id" id="title" type="text"
+                            class="form-control" placeholder="Enter Answer">
+                    </div>
+
+                    <div *ngxPermissionsOnly="['STUDENT']" class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Image</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" accept="image/*" (change)="addEssayAnswerAsImage($event)"
+                                    class="custom-file-input" [name]="'question:'+essayQ.id" id="image"
+                                    aria-describedby="inputGroupFileAddon01">
+                                <div *ngIf="!imageName">
+                                    <label class="custom-file-label" for="image">Choose file</label>
+                                </div>
+                                <div *ngIf="imageName">
+                                    <label class="custom-file-label" for="image">{{imageName}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
+
             </div>
             <div class="float-right" style="margin-bottom: 10px;">
-                <button class="btn btn-primary btn-sm" role="button" aria-pressed="true"
-                    (click)="deleteEssayQuestion(essayQ)"><i class="icofont-headphone-alt"></i>Delete</button>
+                <button *ngxPermissionsOnly="['TEACHER']" class="btn btn-primary btn-sm" role="button"
+                    aria-pressed="true" (click)="deleteEssayQuestion(essayQ)"><i
+                        class="icofont-headphone-alt"></i>Delete</button>
             </div>
         </div>
     </div>
-    <span [hidden]="!totalPoints" class="float-right text-info"><span class="text-black font-weight-bold"> totla Exam points-:
+    <span [hidden]="!totalPoints" class="float-right text-info" style="margin-bottom: 15px;"><span
+            class="text-black font-weight-bold"> totla Exam
+            points-:
         </span>{{totalPoints}}<i class="icofont-check-circled text-success"></i></span>
+
+    <view-exam-solvers *ngxPermissionsOnly="['TEACHER']" [examId]="examId"> </view-exam-solvers>
+
+    <button *ngxPermissionsOnly="['STUDENT']" (click)="submitAnswers()"
+        class="btn btn-primary btn-lg btn-block">Save</button>
 </div>

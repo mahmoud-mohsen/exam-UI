@@ -1,3 +1,4 @@
+import { CounterComponent } from './component/question/counter/counter.component';
 import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { Active } from './active';
 import { CreateUser } from './component/user/add-user/createUser.component';
@@ -5,11 +6,10 @@ import { RegisterStudent } from './component/authentication/register-student/reg
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { LayoutComponent } from './component/layout/layout.component';
 import { HomeComponent } from './component/home/home.component';
 import { ViewUsersComponent } from './component/user/view-users/view-users.component';
@@ -24,6 +24,8 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { NewExamComponent } from './component/exam/new-exam/new-exam.component';
 import { ViewQuestionsComponent } from './component/question/view-questions/view-questions.component';
 import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
+import { ViewExamSolversComponent } from './component/exam/view-exam-solvers/view-exam-solvers.component';
+import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
 
 
 const firebaseConfig = {
@@ -52,6 +54,9 @@ const firebaseConfig = {
     NewExamComponent,
     ViewQuestionsComponent,
     ViewEnrollRequestsComponent,
+    ViewExamSolversComponent,
+    ViewSolverAnswersComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
@@ -62,10 +67,10 @@ const firebaseConfig = {
     NgbModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
 
   ],
-  providers: [GlobalBackEndService,Active],
+  providers: [GlobalBackEndService, Active,CounterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

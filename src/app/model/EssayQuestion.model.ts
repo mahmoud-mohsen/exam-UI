@@ -3,6 +3,7 @@ export class EssayQuestion {
   id:Number;
 
   question:String;
+  questionsAsImage;
 
   size:Number;
   
@@ -10,5 +11,6 @@ export class EssayQuestion {
     this.id = null;
     this.question = '';
     this.size=null;
+    this.questionsAsImage=null
   }
 }

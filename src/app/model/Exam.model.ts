@@ -13,7 +13,9 @@ export class Exam {
 
 	fromDate:Number;
 
-	toDate:Number;
+  toDate:Number;
+  
+  examTime:Number;
 
   enrollCourseRequest;EnrollCourseRequest;
   constructor() {
@@ -23,6 +25,7 @@ export class Exam {
     this.fromDate = null;
     this.toDate = null;
     this.creationTime = null;
+    this.examTime=null;
 
   }
 }

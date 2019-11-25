@@ -25,7 +25,6 @@ export class ViewExamsComponent implements OnInit {
   ngOnInit() {
     const permissions = [String(this.activeUser.type)];
     this.permissionsService.loadPermissions(permissions);
-
     this.activeRouter.paramMap.subscribe(params => {
       this.courseId = +params.get('id');
       this.viewCourseExam();
@@ -52,10 +51,13 @@ export class ViewExamsComponent implements OnInit {
         return 0;
       });
 
+    }, (error: any) => {
+      alert(error.error.message);
+
     });
   }
 
-  isCourseOwner() {
+  isCourseOwner() {          
     return this.userService.IsCourseCreatedByUser(this.courseId);
   }
 

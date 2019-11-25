@@ -23,10 +23,14 @@ export class NewExamComponent implements OnInit {
   totalPoints: Number;
   courseId;
   activeUser: ActiveUser;
-  examStartDate:string;
-  examEndDate:string;
-  loading: boolean;
-  constructor(private activeRouter: ActivatedRoute, private globalBackEndService: GlobalBackEndService,private router:Router) {
+  timeUnit: string;
+  examTime: Number;
+  examStartDate: string;
+  examEndDate: string;
+  imageName: String = null;
+
+
+  constructor(private activeRouter: ActivatedRoute, private globalBackEndService: GlobalBackEndService, private router: Router) {
     this.trueOrFalseForm = true;
     this.mCQForm = false;
     this.essayForm = false;
@@ -36,7 +40,6 @@ export class NewExamComponent implements OnInit {
     this.mCQ = new MCQuestion();
     this.totalPoints = 0;
     this.activeUser = JSON.parse(localStorage.getItem('user'));
-    this.loading = false;
   }
 
   ngOnInit() {
@@ -71,43 +74,49 @@ export class NewExamComponent implements OnInit {
     this.createExamRequest.trueOrFalseQuestion.push(this.trueOrFalseQ);
     this.totalPoints = Number(this.totalPoints) + Number(this.trueOrFalseQ.size);
     this.trueOrFalseQ = new TrueOrFalseQuestion();
-    this.loading = true;
-    // setTimeout(() => {
-    //   this.loading = false;
-    // }, 100);
 
   }
   addMCQQuestion() {
     this.createExamRequest.mcQuestion.push(this.mCQ);
     this.totalPoints = Number(this.totalPoints) + Number(this.mCQ.size);
     this.mCQ = new MCQuestion();
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 10);
   }
 
   addEssayQuestion() {
     this.createExamRequest.essayQuestion.push(this.essayQ);
     this.totalPoints = Number(this.totalPoints) + Number(this.essayQ.size);
     this.essayQ = new EssayQuestion();
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 10);
+    this.imageName = null;
   }
 
   createNewExam() {
+
     let url = `course/${this.courseId}/exams`;
     this.createExamRequest.totalPoints = this.totalPoints;
-    this.createExamRequest.startDate=new Date(this.examStartDate).valueOf();
-    this.createExamRequest.endDate=new Date(this.examEndDate).valueOf();
-
-    this.globalBackEndService.createNewEntity(this.createExamRequest, url, String(this.activeUser.id)).subscribe((response:any)=>{
-      console.log(response);
+    if (this.examStartDate > this.examEndDate) {
+      alert('Start Date must not be greater than long date');
+      return;
+    }
+    this.createExamRequest.startDate = new Date(this.examStartDate).valueOf();
+    this.createExamRequest.endDate = new Date(this.examEndDate).valueOf();
+    this.createExamRequest.examTime = Number(this.examTime) * Number(this.timeUnit);
+    console.log(this.createExamRequest);
+    
+    this.globalBackEndService.createNewEntity(this.createExamRequest, url, String(this.activeUser.id)).subscribe((response: any) => {
       this.router.navigate([`course/${this.courseId}/exams`]);
-
     });
+
+  }
+
+  prepareImage(image) {
+    var file: File = image.files[0];
+    this.imageName = file.name;
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.essayQ.questionsAsImage = myReader.result;
+    }
+    myReader.readAsDataURL(file);
 
   }
 

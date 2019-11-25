@@ -28,9 +28,7 @@ export class ViewUsersComponent implements OnInit {
   viewUsers() {
     
     this.userService.ViewEntities("users",String(this.activeUser.id)).subscribe((data:any) => {
-      this.users =data.content;
-      console.log(this.users);
-      
+      this.users =data.content;      
     });
   }
 

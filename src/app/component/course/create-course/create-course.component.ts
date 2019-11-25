@@ -13,8 +13,8 @@ import { CourseCourse } from 'src/app/model/CreateCourse.model';
 export class CreateCourseComponent implements OnInit {
   courseRequest: CourseCourse;
   activeUser: ActiveUser;
-  course:Course;
-  constructor(private router:Router, private userService: GlobalBackEndService) {
+  course: Course;
+  constructor(private router: Router, private userService: GlobalBackEndService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
 
   }
@@ -28,9 +28,9 @@ export class CreateCourseComponent implements OnInit {
 
     this.userService.createNewEntity(this.courseRequest, "courses", String(this.activeUser.id)).subscribe((data: any) => {
       this.course = { ...data };
-      this.router.navigate([`user/${this.activeUser.id}/courses`]);
+      window.location.href = `user/${this.activeUser.id}/courses`;
 
-  });
+    });
   }
 
 

@@ -13,7 +13,6 @@ export class UserService {
 
   constructor(private globalBackEndService: GlobalBackEndService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
-    console.log(this.activeUser);
 
     if (this.activeUser) {
       this.getLoggedInUserDetails();
@@ -25,7 +24,6 @@ export class UserService {
     let url = `user/${this.activeUser.id}`;
     this.globalBackEndService.ViewEntity(url, String(this.activeUser.id)).subscribe((response: any) => {
       this.loggedInUserDetails = response;
-      console.log(this.loggedInUserDetails);
 
       if (callback) {
         callback();
@@ -35,6 +33,7 @@ export class UserService {
   }
 
   public IsCourseCreatedByUser(CourseId) {
+
     if (this.loggedInUserDetails) {
       return this.checkCourseInUserCreatedCourses(CourseId)
     } else {
@@ -81,11 +80,11 @@ export class UserService {
 
 
   isUserIsEnrolledInCourseWithStatus(CourseId, status) {
-    
+
     if (this.loggedInUserDetails.enrollCourse) {
 
       for (let index = 0; index < this.loggedInUserDetails.enrollCourse.length; index++) {
-        if (this.loggedInUserDetails.enrollCourse[index].status == status && this.loggedInUserDetails.enrollCourse[index].courseId== CourseId) {          
+        if (this.loggedInUserDetails.enrollCourse[index].status == status && this.loggedInUserDetails.enrollCourse[index].courseId == CourseId) {
           return true;
         }
       }

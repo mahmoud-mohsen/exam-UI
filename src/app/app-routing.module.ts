@@ -1,3 +1,4 @@
+import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
 import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
 import { ViewQuestionsComponent } from './component/question/view-questions/view-questions.component';
 import { NewExamComponent } from './component/exam/new-exam/new-exam.component';
@@ -45,6 +46,7 @@ const routes: Routes = [{
   path: 'user/:id/courses',
   component: ViewCoursesComponent,
   pathMatch: 'full',
+  canActivate: [Active],
   data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
 }, {
   path: 'course/:id/exams',
@@ -53,12 +55,19 @@ const routes: Routes = [{
   canActivate: [Active],
   data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
 
-},{
+}, {
   path: 'exam/:id/questions',
   component: ViewQuestionsComponent,
   pathMatch: 'full',
   canActivate: [Active],
   data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
+
+}, {
+  path: 'exam/:examId/solver/:solverId',
+  component: ViewSolverAnswersComponent,
+  pathMatch: 'full',
+  canActivate: [Active],
+  data: { expectedType: ['TEACHER', 'STUDENT'] }
 
 }, {
   path: 'newCourse',
@@ -72,13 +81,14 @@ const routes: Routes = [{
   canActivate: [Active],
   data: { expectedType: ['TEACHER'] }
 
-},{
+}, {
   path: 'login',
   component: LoginComponent,
 }, {
   path: 'course/:id/newExam',
   component: NewExamComponent,
   pathMatch: 'full',
+  canActivate: [Active],
   data: { expectedType: ['TEACHER'] }
 }
 

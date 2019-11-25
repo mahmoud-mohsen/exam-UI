@@ -28,7 +28,6 @@ export class ViewUserProfileComponent implements OnInit {
   }
 
   viewUserProfile() {
-    console.log(this.activeUser.id);
     let url = `user/${this.userId}`;
     
     this.userService.ViewEntity(url, String(this.activeUser.id)).subscribe((data: any) => {

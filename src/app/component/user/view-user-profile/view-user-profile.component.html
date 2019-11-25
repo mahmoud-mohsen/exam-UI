@@ -24,8 +24,6 @@
                                     {{user.studentLevel}}
                                 </p>
                             </div>
-                        </div>
-                        <div class="col-md-6" [hidden]="!(user.type=='TEACHER')">
 
                             <h6>Title</h6>
                             <p>
@@ -36,6 +34,8 @@
                             <p>
                                 {{user.phone}}
                             </p>
+                        </div>
+                        <div class="col-md-6" [hidden]="!(user.type=='TEACHER')">
 
                             <h6>Created Courses</h6>
                             <div *ngFor="let course of user.createdCourses" class="course-title">
@@ -71,13 +71,13 @@
                                 {{user.enrollCourse.length}} Courses</span>
                             <hr>
 
-                            <ng-template #t let-fill="fill">
-                                <span class="star" [class.full]="fill === 100">
+                            <ng-template hidden #t let-fill="fill">
+                                <span hidden class="star" [class.full]="fill === 100">
                                     <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
                                 </span>
                             </ng-template>
 
-                            <ngb-rating [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
+                            <ngb-rating hidden [rate]="user.rate" [starTemplate]="t" [readonly]="true" max="5">
                             </ngb-rating>
 
                         </div>
@@ -96,7 +96,7 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
-            <img src="//placehold.it/150" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+            <img [src]="user.image" class="mx-auto img-fluid img-circle d-block" [alt]="user.firstName+' '+user.lastName">
             <label class="custom-file">
                 <input type="button" id="file" class="custom-file-input">
             </label>

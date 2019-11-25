@@ -11,7 +11,7 @@ export class User {
   password: String;
   type: type;
   age: Number;
-  image: String;
+  image: any;
   rate: Number;
   sammury: String;
   createdCourses: Course[];
@@ -27,7 +27,6 @@ export class User {
     this.studentLevel = null;
     this.email = '';
     this.password = '';
-    this.image = '';
     this.rate = null;
     this.teacherTitle = '';
     this.numberOfActivestudents=0;
