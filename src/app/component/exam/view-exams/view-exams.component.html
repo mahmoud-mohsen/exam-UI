@@ -1,58 +1,65 @@
 <ng-template [ngIf]="viewUpdateExamForm" [ngIfElse]="examsView">
-        <update-exam [examUpdateDetails]="examUpdateDetails" [examIdToUpdate]="examIdToUpdate"
-            (close)="CloseUpdateForm()"></update-exam>
-    
-    </ng-template>
-    <ng-template #examsView>
-        <div class="col-md-12">
-            <div>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                        
-                        <div class="float-right">
-                            <a class="btn btn-sm btn-primary" role="button" *ngxPermissionsOnly="['TEACHER']"
-                                [hidden]="!isCourseOwner()" aria-pressed="true" href="course/{{courseId}}/newExam"><i
-                                    class="icofont-headphone-alt"></i>New Exam</a>
-                        </div>
-                        <h4 class="font-weight-bold mt-0 mb-4">Exams</h4>
-                        <div *ngFor="let exam of exams" class="bg-white card mb-4 order-list shadow-sm">
-                            <div class="gold-members p-4">
-                                <div class="media">
-                                    <div class="media-body">
-                                            <span class="float-right text-info"><span class="text-black font-weight-bold"> Exam Time-:
-                                                </span>{{exam.examTime}} seconds<i class="icofont-check-circled text-success"></i></span>
-                                                
-                                        <h6 class="mb-2" style="color:#007bff;">
-                                            <a class="text-black">{{exam.title}}</a>
-                                        </h6>
-                                        <p class="text-gray mb-1"><span class="text-black font-weight-bold"> Start:
-                                            </span> {{exam.fromDate | date:'dd/MM/yyyy'}} </p>
-                                        <p class="text-gray mb-3"><span class="text-black font-weight-bold"> End:
-                                            </span>{{exam.fromDate | date:'dd/MM/yyyy'}}</p>
-                                        <hr>
-                                        <div class="float-right">
-                                            <a *ngxPermissionsOnly="['STUDENT']" class="btn btn-sm btn-outline-primary" 
-                                                [routerLink]="['/exam',exam.id,'questions']"><i class="icofont-headphone-alt" ></i>
-                                                Solve</a>
-                                            <a *ngxPermissionsOnly="['TEACHER']" (click)="viewQuestionExamPage(exam.id)"
-                                                class="btn btn-sm btn-outline-primary"><i class="icofont-headphone-alt"></i>
-                                                View</a>
-                                            <a hidden *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
-                                                href="#"><i class="icofont-headphone-alt"></i> Delete</a>
-                                            <a *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
-                                                (click)="updateExamView(exam)"><i class="icofont-refresh"></i>
-                                                Update</a>
-                                        </div>
-                                        <p class="mb-0 text-black text-primary pt-2" [hidden]="!exam.note"><span
-                                                class="text-black font-weight-bold"> Note:</span> {{exam.note}}
-                                        </p>
+    <update-exam [examUpdateDetails]="examUpdateDetails" [examIdToUpdate]="examIdToUpdate" (close)="CloseUpdateForm()">
+    </update-exam>
+
+</ng-template>
+<ng-template #examsView>
+    <div class="col-md-12">
+        <div>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+
+                    <div class="float-right">
+                        <a class="btn btn-sm btn-primary" role="button" *ngxPermissionsOnly="['TEACHER']"
+                            [hidden]="!isCourseOwner()" aria-pressed="true" href="course/{{courseId}}/newExam"><i
+                                class="icofont-headphone-alt"></i>New Exam</a>
+                    </div>
+                    <h4 class="font-weight-bold mt-0 mb-4">Exams</h4>
+                    <div *ngFor="let exam of exams" class="bg-white card mb-4 order-list shadow-sm">
+                        <div class="gold-members p-4">
+                            <div class="media">
+                                <div class="media-body">
+                                    <span class="float-right text-info"><span class="text-black font-weight-bold"> Exam
+                                            Time-:
+                                        </span>{{getExamTimeInMinutes(exam.examTime)}} Minutes<i
+                                            class="icofont-check-circled text-success"></i></span>
+
+                                    <h6 class="mb-2" style="color:#007bff;">
+                                        <a class="text-black">{{exam.title}}</a>
+                                    </h6>
+                                    <p class="text-gray mb-1"><span class="text-black font-weight-bold"> Start:
+                                        </span> {{exam.fromDate | date:'dd/MM/yyyy'}} </p>
+                                    <p class="text-gray mb-3"><span class="text-black font-weight-bold"> End:
+                                        </span>{{exam.toDate | date:'dd/MM/yyyy'}}</p>
+                                    <hr>
+                                    <div class="float-right">
+                                        <a *ngxPermissionsOnly="['STUDENT']" class="btn btn-sm btn-outline-primary"
+                                            [routerLink]="['/exam',exam.id,'questions']"><i
+                                                class="icofont-headphone-alt"></i>
+                                            Solve</a>
+                                        <a *ngxPermissionsOnly="['TEACHER']" (click)="viewQuestionExamPage(exam.id)"
+                                            class="btn btn-sm btn-outline-primary"><i class="icofont-headphone-alt"></i>
+                                            View</a>
+                                        <a hidden *ngxPermissionsOnly="['TEACHER']"
+                                            class="btn btn-sm btn-outline-primary" href="#"><i
+                                                class="icofont-headphone-alt"></i> Delete</a>
+                                        <a *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
+                                            (click)="updateExamView(exam)"><i class="icofont-refresh"></i>
+                                            Update</a>
+                                        <a *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
+                                            (click)="deleteExam(exam.id)"><i class="icofont-refresh"></i>
+                                            Delete</a>
                                     </div>
+                                    <p class="mb-0 text-black text-primary pt-2" [hidden]="!exam.note"><span
+                                            class="text-black font-weight-bold"> Note:</span> {{exam.note}}
+                                    </p>
                                 </div>
-        
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </ng-template>

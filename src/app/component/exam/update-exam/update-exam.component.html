@@ -7,7 +7,7 @@
                     <button (click)="CloseUpdateView()" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h1 class="display-4 py-2 text-truncate">Update Course</h1>
+                    <h4 class="display-9 py-2 text-truncate">Update Exam</h4>
                     <div class="px-2">
                         <form>
 
@@ -38,37 +38,47 @@
                                 </div>
                             </div>
 
+
                             <div class="form-row">
                                 <div class="form-group col-md-6 mx-auto text-center">
-                                    <label for="inputEmail4">Start Date</label>
+                                    <label for="inputEmail4">Start Date (
+                                        {{examUpdateDetails.fromDate|date:'dd/MM/yyyy'}} )</label>
                                     <input required [(ngModel)]="fromDate" #startDate="ngModel" name="startDate"
                                         type="date" class="form-control" id="inputCode" placeholder="start Date">
                                 </div>
                             </div>
 
+
                             <div class="form-row">
-                                    <div class="form-group col-md-6 mx-auto text-center">
-                                        <label for="inputEmail4">End Date</label>
-                                        <input required [(ngModel)]="toDate" #endDate="ngModel" name="endDate"
-                                            type="date" class="form-control" id="inputCode" placeholder="End Date">
-                                    </div>
+                                <div class="form-group col-md-6 mx-auto text-center">
+                                    <label for="inputEmail4">End Date ( {{examUpdateDetails.toDate|date:'dd/MM/yyyy'}}
+                                        )</label>
+                                    <input required [(ngModel)]="toDate" #endDate="ngModel" name="endDate" type="date"
+                                        class="form-control" id="inputCode" placeholder="End Date">
+                                </div>
                             </div>
 
-                            <div class="input-group form-group">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="">Exam period</span>
-                                    </div>
-                                    <input required [(ngModel)]="examTime" name="examPeriodTime" #examPeriodTime="ngModel" id="examPeriodTime"
-                                      type="Number" min="0" class="form-control" placeholder="Period Time">
-                                
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text" id="">Period Unit</span>
-                                    </div>
-                                    <select [(ngModel)]="timeUnit" name="unit" #unit="ngModel" id="unit" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-                                      <option value="60">Minutes</option>
-                                      <option value="3600">Hours</option>
-                                    </select>
-                                  </div>
+                            
+                            <label for="examTime">Exam Time ({{getExamTimeInMinutes()}} Minuts)</label>
+
+                            <div class="input-group form-group form-row" id="examTime">
+
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Exam period</span>
+                                        </div>
+                                        <input required [(ngModel)]="examTime" name="examPeriodTime" #examPeriodTime="ngModel"
+                                            id="examPeriodTime" type="Number" min="0" class="form-control"
+                                            placeholder="Period Time">
+        
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="">Period Unit</span>
+                                        </div>
+                                        <select [(ngModel)]="timeUnit" name="unit" #unit="ngModel" id="unit"
+                                            class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                                            <option value="60">Minutes</option>
+                                            <option value="3600">Hours</option>
+                                        </select>
+                            </div>
 
                             <button (click)="updateExam()" type="submit" class="btn btn-primary">Save</button>
                         </form>

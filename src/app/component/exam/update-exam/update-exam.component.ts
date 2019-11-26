@@ -45,18 +45,22 @@ export class UpdateExamComponent implements OnInit {
     if (this.examTime) {
       this.examUpdateDetails.examTime = Number(this.examTime) * Number(this.timeUnit);
     }
-    if(this.examUpdateDetails.fromDate>this.examUpdateDetails.toDate){
+    if (this.examUpdateDetails.fromDate > this.examUpdateDetails.toDate) {
       alert('Start Date must not be greater than long date');
       return;
     }
     console.log(this.examUpdateDetails);
 
     let url = `exam/${this.examIdToUpdate}`;
-    // this.globalBackEndService.putEntity(this.examUpdateDetails, url, String(this.activeUser.id)).subscribe(() => {
-    //   window.location.href = window.location.pathname;
-    // }, (error: any) => {
-    //   alert(error.error.message);
-    // })
+    this.globalBackEndService.putEntity(this.examUpdateDetails, url, String(this.activeUser.id)).subscribe(() => {
+      window.location.href = window.location.pathname;
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+  }
+
+  getExamTimeInMinutes(): Number {
+    return Number(this.examUpdateDetails.examTime) / 60;
   }
 
 }

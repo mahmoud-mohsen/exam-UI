@@ -30,7 +30,7 @@
                         pending. Waiting teacher approval</span>
 
                     <button type="button"
-                        [hidden]="(!(isUserIsEnrolledInCourse(course.id)&&isUserIsApproveEnrolledInCourse(course.id))&&!(activeUser.type=='TEACHER'))||(!(isUserTheCreator(course.id)&&(activeUser.type=='TEACHER')))"
+                        [hidden]="!viewViewButton(course.id)"
                         (click)="viewCourseExams(course.id)"
                         class="btn btn-outline-primary btn-lg btn-block">View</button>
 

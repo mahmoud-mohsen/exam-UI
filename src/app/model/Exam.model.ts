@@ -1,23 +1,24 @@
+import { EnrollCourse } from './enrollCourse.model';
 export enum type { TEACHER, STUDENT, ADMIN }
 
 export class Exam {
-  id:Number;
+  id: Number;
 
-  code:string;
-  
-  title:string;
+  code: string;
 
-  note:string;
+  title: string;
 
-	creationTime:Number;
+  note: string;
 
-	fromDate:Number;
+  creationTime: Number;
 
-  toDate:Number;
-  
-  examTime:Number;
+  fromDate: Number;
 
-  enrollCourseRequest;EnrollCourseRequest;
+  toDate: Number;
+
+  examTime: Number;
+
+  enrollCourseRequest: EnrollCourse;
   constructor() {
     this.id = null;
     this.code = '';
@@ -25,7 +26,8 @@ export class Exam {
     this.fromDate = null;
     this.toDate = null;
     this.creationTime = null;
-    this.examTime=null;
+    this.examTime = null;
+    this.enrollCourseRequest = new EnrollCourse();
 
   }
 }

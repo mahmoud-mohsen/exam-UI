@@ -93,4 +93,16 @@ export class ViewExamsComponent implements OnInit {
 
   }
 
+  getExamTimeInMinutes(period): Number {
+    return Number(period) / 60;
+  }
+
+  deleteExam(examId) {
+    let url = `exam/${examId}`;
+    this.globalBackEndService.deleteEntity(url, String(this.activeUser.id)).subscribe(() => {
+      window.location.href=window.location.pathname;
+     }, (error: any) => {
+      alert(error.error.message);
+    });
+  }
 }

@@ -1,3 +1,4 @@
+import { User, type } from './../../../model/user.model';
 import { CourseUpdateDetails } from './../../../model/CourseUpdateDetails.model';
 import { UpdateCourseComponent } from './../update-course/update-course.component';
 import { UserService } from './../../../service/user.service';
@@ -118,9 +119,14 @@ export class ViewCoursesComponent implements OnInit {
   deleteCourse(courseId) {
     let url = `course/${courseId}`;
     this.globalBackEndService.deleteEntity(url, String(this.activeUser.id)).subscribe(() => {
-      window.location.href=window.location.pathname;
-     }, (error: any) => {
+      window.location.href = window.location.pathname;
+    }, (error: any) => {
       alert(error.error.message);
     });
+  }
+
+  viewViewButton(couresId): boolean {
+    return ((this.isUserIsEnrolledInCourse(couresId) && this.isUserIsApproveEnrolledInCourse(couresId)) && !(String(this.activeUser.type) == type[type.TEACHER]))
+      || ((this.isUserTheCreator(couresId) && (String(this.activeUser.type) == type[type.TEACHER])))
   }
 }
