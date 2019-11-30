@@ -2,7 +2,22 @@
     <div>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
-                <h4 class="font-weight-bold mt-0 mb-4">Pending Requests</h4>
+
+                <div class="form-group ">
+                    <div class=" col-sm-5 align-items-center center-block" id="examTime">
+                        <select [(ngModel)]="enrollStatus" name="status" #unit="ngModel" id="status" (change)="changeStatus()"
+                            class="custom-select mb-2 mr-sm-2 mb-sm-0">
+                            <option value="PENDING">Pending</option>
+                            <option value="REJECT">Rejected</option>
+                        </select>
+                    </div>
+                </div>
+                <div *ngIf="enrollStatus=='PENDING'">
+                        <h5 class="font-weight-bold mt-0 mb-4">Pending requests</h5>
+                </div>
+                <div *ngIf="enrollStatus=='REJECT'">
+                        <h5 class="font-weight-bold mt-0 mb-4">Rejected requests</h5>
+                </div>
                 <div *ngFor="let enroll of enrollCourse" class="bg-white card mb-4 order-list shadow-sm">
                     <div class="gold-members p-4">
                         <a href="#">
@@ -21,7 +36,7 @@
                                 <div class="float-right">
                                     <a class="btn btn-sm btn-success" (click)="approveEnrollRequest(enroll)">
                                         Approve</a>
-                                    <a class="btn btn-sm btn-danger" (click)="rejectEnrollRequest(enroll)">
+                                    <a [hidden]="enrollStatus=='REJECT'" class="btn btn-sm btn-danger" (click)="rejectEnrollRequest(enroll)">
                                         Reject</a>
                                 </div>
                                 <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">
@@ -36,4 +51,3 @@
         </div>
     </div>
 </div>
-

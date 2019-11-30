@@ -12,9 +12,11 @@ export class ViewEnrollRequestsComponent implements OnInit {
 
   activeUser: ActiveUser;
   enrollCourse: EnrollCourse[];
+  enrollStatus;
   constructor(private globalBackEndService: GlobalBackEndService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
     this.enrollCourse = [];
+    this.enrollStatus="PENDING";
   }
 
   ngOnInit() {
@@ -23,7 +25,7 @@ export class ViewEnrollRequestsComponent implements OnInit {
 
   viewEnrollRequests() {
     let url = 'enrollRequest';
-    this.globalBackEndService.ViewEntities(url, String(this.activeUser.id), { status: 'PENDING' }).subscribe((response: any) => {
+    this.globalBackEndService.ViewEntities(url, String(this.activeUser.id), { status: this.enrollStatus }).subscribe((response: any) => {
       this.enrollCourse = response;
       this.enrollCourse = this.enrollCourse.sort((obj1, obj2) => {
         if (obj1.creationTime < obj2.creationTime) {
@@ -65,5 +67,9 @@ export class ViewEnrollRequestsComponent implements OnInit {
     }, (error => {
       alert(error.error.message);
     }));
+  }
+
+  changeStatus(){
+    this.viewEnrollRequests();
   }
 }
