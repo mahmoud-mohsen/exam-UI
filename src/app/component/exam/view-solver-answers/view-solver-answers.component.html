@@ -109,8 +109,8 @@
                         </div>    
 
                     <div *ngxPermissionsOnly="['TEACHER']" class="input-group mb-3">
-                        <input type="number" min="0" class="form-control" (input)="courseCode=$event.target.value" #point
-                            placeholder="Enter Point" aria-label="course's code" aria-describedby="basic-addon2">
+                        <input type="number" min="0" class="form-control" (input)="$event.target.value" #point
+                            placeholder="Enter Point" aria-label="question's point" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button"
                                 (click)="savePoint(essayQ,point.value)">Add point</button>

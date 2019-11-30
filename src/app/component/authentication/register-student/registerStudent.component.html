@@ -36,7 +36,7 @@
                   <input required [(ngModel)]="user.firstName" name="firstName" #firstName="ngModel" id="firstName" type="text"
                     class="form-control" placeholder="Enter your first name">
                   <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-                    <div *ngIf="firstName.errors.required">first name is required </div>
+                    <div>first name is required </div>
                   </div>
                 </div>
 
@@ -45,7 +45,7 @@
                   <input required [(ngModel)]="user.lastName" name="lastName" #lastName="ngModel" id="lastName" type="text"
                     class="form-control" placeholder="Enter your last name">
                   <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
-                    <div *ngIf="lastName.errors.required">Last Name is required </div>
+                    <div>Last Name is required </div>
                   </div>
                 </div>
           
@@ -54,7 +54,7 @@
                   <input required [(ngModel)]="user.email" name="email" #email="ngModel" id="email" type="text"
                     class="form-control" placeholder="Enter your Email">
                   <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
-                    <div *ngIf="email.errors.required">Email is required </div>
+                    <div>Email is required </div>
                   </div>
                 </div>
           
@@ -63,7 +63,7 @@
                   <input required [(ngModel)]="user.password" name="password" #password="ngModel" id="password" type="text"
                     class="form-control" placeholder="Enter your password">
                   <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
-                    <div *ngIf="password.errors.required">Password is required </div>
+                    <div>Password is required </div>
                   </div>
                 </div>
           
@@ -71,7 +71,7 @@
                   <label for="age">Age</label>
                   <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control" placeholder="Enter your age">
                   <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
-                    <div *ngIf="age.errors.required">Age is required </div>
+                    <div >Age is required </div>
                   </div>
                 </div>
 
@@ -79,13 +79,13 @@
                   <label for="phone">Phone</label>
                   <input [(ngModel)]="user.phone" name="phone" #phone="ngModel" id="phone" type="text" class="form-control" placeholder="Enter your phone">
                   <div class="alert alert-danger" *ngIf="phone.touched && !phone.valid">
-                    <div *ngIf="phone.errors.required">Phone is required </div>
+                    <div >Phone is required </div>
                   </div>
                 </div>
           
                 <div class="form-group">
                   <label for="lavel">Level</label>
-                  <select required [(ngModel)]="user.level" name="level" #level="ngModel" id="level"
+                  <select required [(ngModel)]="user.studentLevel" name="level" #level="ngModel" id="level"
                     class="custom-select mb-2 mr-sm-2 mb-sm-0" >
                     <option value="A1">A1</option>
                     <option value="A2">A2</option>
@@ -101,7 +101,7 @@
                     <option value="C3">C3</option>
                   </select>
                   <div class="alert alert-danger" *ngIf="level.touched && !level.valid">
-                    <div *ngIf="level.errors.required">Level is required </div>
+                    <div >Level is required </div>
                   </div>
                 </div>
           

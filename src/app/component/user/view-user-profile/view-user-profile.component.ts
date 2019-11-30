@@ -1,7 +1,7 @@
 import { FirebaseService } from './../../../service/firebase.service';
 import { ActiveUser } from '../../../model/ActiveUser.model';
 import { GlobalBackEndService } from 'src/app/service/backEnd.service';
-import { User } from './../../../model/user.model';
+import { User, type } from './../../../model/user.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
@@ -29,12 +29,19 @@ export class ViewUserProfileComponent implements OnInit {
 
   viewUserProfile() {
     let url = `user/${this.userId}`;
-    
+
     this.userService.ViewEntity(url, String(this.activeUser.id)).subscribe((data: any) => {
       this.user = data
     },
       (error: any) => {
         alert(error.error.message);
       });
+  }
+
+  isUserTeacher(): boolean {
+    return type[this.user.type] == 'TEACHER';
+  }
+  isUserStudent(): boolean {
+    return type[this.user.type] == 'STUDENT';
   }
 }

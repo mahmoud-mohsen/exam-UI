@@ -35,7 +35,6 @@ export class UpdateExamComponent implements OnInit {
     this.close.emit();
   }
   updateExam() {
-    console.log(this.examUpdateDetails);
 
     if (this.toDate) {
       this.examUpdateDetails.toDate = new Date(this.toDate).valueOf();
@@ -49,7 +48,6 @@ export class UpdateExamComponent implements OnInit {
       alert('Start Date must not be greater than long date');
       return;
     }
-    console.log(this.examUpdateDetails);
 
     let url = `exam/${this.examIdToUpdate}`;
     this.globalBackEndService.putEntity(this.examUpdateDetails, url, String(this.activeUser.id)).subscribe(() => {
