@@ -1,13 +1,14 @@
-var express = require('express');
-var app = express();
-var server = require('http').Server(app);
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}) );
+// Serve static files....
+app.use(express.static(__dirname + '/dist/MY_APP_NAME_HERE'));
 
-app.use( express.static(__dirname + '/client' ) );
-
-var listener = server.listen(process.env.PORT || 5000, function(){
-    console.log('Listening on port ' + listener.address().port); //Listening on port 5000
+// Send all requests to index.html
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/MY_APP_NAME_HERE/index.html'));
 });
+
+// default Heroku PORT
+app.listen(process.env.PORT || 3000);
