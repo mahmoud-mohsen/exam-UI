@@ -20,6 +20,7 @@ export class ViewExamsComponent implements OnInit {
   examUpdateDetails: ExamUpdateDetails;
   examIdToUpdate;
   viewUpdateExamForm: boolean;
+  examCode;
 
   constructor(private router: Router, private userService: UserService, private globalBackEndService: GlobalBackEndService, private activeRouter: ActivatedRoute, private permissionsService: NgxPermissionsService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
@@ -71,7 +72,16 @@ export class ViewExamsComponent implements OnInit {
   }
 
   viewQuestionExamPage(examId) {
-    this.router.navigate([`/exam/${examId}/questions`]);
+    let url = `exam/${examId}/solve/setup`;
+    let entity = { examCode: this.examCode }
+    console.log(entity);
+    
+    this.globalBackEndService.createNewEntity(entity, url, String(this.activeUser.id)).subscribe(() => {
+      this.router.navigate([`/exam/${examId}/questions`]);
+    }, (error: any) => {
+      alert(error.error.message);
+    })
+
   }
 
   CloseUpdateForm() {
@@ -100,8 +110,8 @@ export class ViewExamsComponent implements OnInit {
   deleteExam(examId) {
     let url = `exam/${examId}`;
     this.globalBackEndService.deleteEntity(url, String(this.activeUser.id)).subscribe(() => {
-      window.location.href=window.location.pathname;
-     }, (error: any) => {
+      window.location.href = window.location.pathname;
+    }, (error: any) => {
       alert(error.error.message);
     });
   }

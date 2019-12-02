@@ -36,6 +36,7 @@ export class ViewQuestionsComponent implements OnInit {
   mcqQuestionsTitle;
   trueOrFalseQuestionsTitle;
   essayQuestionsTitle;
+  loading: boolean = true;
 
 
 
@@ -46,11 +47,16 @@ export class ViewQuestionsComponent implements OnInit {
     this.tofAnswers = {};
     this.essayAnswers = {};
     this.startSolve = new Date();
+    this.essayQuestions = new Array();
+    this.trueOrFalseQuestions = new Array();
+    this.mcQuestions = new Array();
+    this.loading = true;
+
   }
 
   ngOnInit() {
 
-
+    this.loading = true;
 
     const permissions = [String(this.activeUser.type)];
     this.permissionsService.loadPermissions(permissions);
@@ -58,12 +64,9 @@ export class ViewQuestionsComponent implements OnInit {
     if (this.router.url.indexOf('newExam') == -1) {
       this.activeRouter.paramMap.subscribe(params => {
         this.examId = +params.get('id');
-
-        if (!(this.activeUser.type.toLocaleString() == "TEACHER")) {
-
-          this.initialAndSetupSolveExam();
-        }
         this.viewExamsWithQuestions();
+
+        this.loading = false;
       });
     }
 
@@ -97,6 +100,8 @@ export class ViewQuestionsComponent implements OnInit {
     let url = `exam/${this.examId}/questions`;
     this.globalBackEndService.ViewEntity(url, String(this.activeUser.id)).subscribe((response: any) => {
 
+      console.log(response);
+
       this.mcQuestions = response.mcqResponses;
       this.trueOrFalseQuestions = response.trueOrFalseResponses;
       this.essayQuestions = response.essayResponses;
@@ -105,6 +110,9 @@ export class ViewQuestionsComponent implements OnInit {
       this.essayQuestionsTitle = response.examResponse.essayQuestionTitle;
       this.mcqQuestionsTitle = response.examResponse.mcqTitle;
       this.trueOrFalseQuestionsTitle = response.examResponse.trueOrFalseQuestionTitle;
+    }, (error: any) => {
+      alert(error.error.message);
+      this.router.navigate([`user/${this.activeUser.id}/courses`]);
     });
   }
 
@@ -137,15 +145,6 @@ export class ViewQuestionsComponent implements OnInit {
       this.essayAnswers[questionId] = String(choosed);
     }
     myReader.readAsDataURL(file);
-  }
-
-  initialAndSetupSolveExam() {
-    let url = `exam/${this.examId}/solve/setup`;
-    this.globalBackEndService.createNewEntity(null, url, String(this.activeUser.id)).subscribe(() => {
-    }, (error: any) => {
-      alert(error.error.message);
-      this.router.navigate([`user/${this.activeUser.id}/courses`]);
-    })
   }
   submitAnswers() {
 

@@ -33,10 +33,17 @@
                                         </span>{{exam.toDate | date:'dd/MM/yyyy'}}</p>
                                     <hr>
                                     <div class="float-right">
-                                        <a *ngxPermissionsOnly="['STUDENT']" class="btn btn-sm btn-outline-primary"
-                                            [routerLink]="['/exam',exam.id,'questions']"><i
-                                                class="icofont-headphone-alt"></i>
-                                            Solve</a>
+                                        <div *ngxPermissionsOnly="['STUDENT']" class="input-group mb-3">
+                                            <input type="text" class="form-control"
+                                                (input)="examCode=$event.target.value" placeholder="Enter Exam code"
+                                                aria-label="course's code" aria-describedby="basic-addon2">
+
+                                            <div class="input-group-append">
+                                                <button (click)="viewQuestionExamPage(exam.id)"
+                                                    class="btn btn-outline-primary" type="button">Solve</button>
+                                            </div>
+                                        </div>
+
                                         <a *ngxPermissionsOnly="['TEACHER']" (click)="viewQuestionExamPage(exam.id)"
                                             class="btn btn-sm btn-outline-primary"><i class="icofont-headphone-alt"></i>
                                             View</a>

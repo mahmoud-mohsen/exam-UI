@@ -30,6 +30,7 @@ import { UpdateCourseComponent } from './component/course/update-course/update-c
 import {MatButtonModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import { UpdateExamComponent } from './component/exam/update-exam/update-exam.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -75,8 +76,7 @@ const firebaseConfig = {
     NgxPermissionsModule.forRoot(),
     MatMenuModule,
     MatButtonModule,
-
-
+    MatProgressSpinnerModule
   ],
   providers: [GlobalBackEndService, Active,CounterComponent],
   bootstrap: [AppComponent]

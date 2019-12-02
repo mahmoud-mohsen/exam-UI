@@ -31,6 +31,8 @@ export class CounterComponent implements OnInit {
   startTimer() {
 
     this.interval = setInterval(() => {
+      console.log(this.timeLeft);
+      
       if (this.timeLeft > 0) {
         this.timeLeft--;
         this.counter = new Date(0, 0, 0, 0, 0, 0);
