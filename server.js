@@ -7,7 +7,7 @@ app.use(express.static(__dirname + '/dist/first-angular-project'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/first-angular-project/index.html'));
+  res.sendFile(path.join(__dirname + '/src/index.html'));
 });
 
 // default Heroku PORT
