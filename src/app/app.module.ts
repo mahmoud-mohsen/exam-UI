@@ -9,7 +9,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { LayoutComponent } from './component/layout/layout.component';
 import { HomeComponent } from './component/home/home.component';
 import { ViewUsersComponent } from './component/user/view-users/view-users.component';
@@ -27,10 +27,15 @@ import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requ
 import { ViewExamSolversComponent } from './component/exam/view-exam-solvers/view-exam-solvers.component';
 import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
 import { UpdateCourseComponent } from './component/course/update-course/update-course.component';
-import {MatButtonModule} from '@angular/material';
-import {MatMenuModule} from '@angular/material/menu';
+import { MatButtonModule, MatIconModule } from '@angular/material';
+import { MatMenuModule } from '@angular/material/menu';
 import { UpdateExamComponent } from './component/exam/update-exam/update-exam.component';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export const createTranslateLoader = (http: HttpClient) => {
+  return new TranslateHttpLoader(http, './assets/i18/', '.json');
+}
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -76,9 +81,17 @@ const firebaseConfig = {
     NgxPermissionsModule.forRoot(),
     MatMenuModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatIconModule,
+    MatProgressSpinnerModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
-  providers: [GlobalBackEndService, Active,CounterComponent],
+  providers: [GlobalBackEndService, Active, CounterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,16 +7,16 @@
                     <div class=" col-sm-5 align-items-center center-block" id="examTime">
                         <select [(ngModel)]="enrollStatus" name="status" #unit="ngModel" id="status" (change)="changeStatus()"
                             class="custom-select mb-2 mr-sm-2 mb-sm-0">
-                            <option value="PENDING">Pending</option>
-                            <option value="REJECT">Rejected</option>
+                            <option value="PENDING">{{'request.pending'|translate}}</option>
+                            <option value="REJECT">{{'request.rejected'|translate}}</option>
                         </select>
                     </div>
                 </div>
                 <div *ngIf="enrollStatus=='PENDING'">
-                        <h5 class="font-weight-bold mt-0 mb-4">Pending requests</h5>
+                        <h5 class="font-weight-bold mt-0 mb-4">{{'request.pendingTitle'|translate}}</h5>
                 </div>
                 <div *ngIf="enrollStatus=='REJECT'">
-                        <h5 class="font-weight-bold mt-0 mb-4">Rejected requests</h5>
+                        <h5 class="font-weight-bold mt-0 mb-4">{{'request.rejectedTitle'|translate}}</h5>
                 </div>
                 <div *ngFor="let enroll of enrollCourse" class="bg-white card mb-4 order-list shadow-sm">
                     <div class="gold-members p-4">
@@ -28,19 +28,19 @@
                             </a>
                             <div class="media-body">
                                 <p class="text-gray mb-1"><span class="text-black font-weight-bold"> {{enroll.userName}}
-                                    </span> asked to join course: <span
+                                    </span> {{'request.ask'|translate}} <span
                                         class="text-black font-weight-bold">{{enroll.courseName}}</span>
                                 </p>
 
                                 <hr>
                                 <div class="float-right">
                                     <a class="btn btn-sm btn-success" (click)="approveEnrollRequest(enroll)">
-                                        Approve</a>
+                                        {{'request.approveRequest'|translate}}</a>
                                     <a [hidden]="enrollStatus=='REJECT'" class="btn btn-sm btn-danger" (click)="rejectEnrollRequest(enroll)">
-                                        Reject</a>
+                                        {{'request.rejectRequest'|translate}}</a>
                                 </div>
                                 <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">
-                                        Date:</span> {{enroll.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}
+                                        {{'request.date'|translate}}:</span> {{enroll.creationTime | date:'dd/MM/yyyy hh:mm:ss'}}
                                 </p>
                             </div>
                         </div>

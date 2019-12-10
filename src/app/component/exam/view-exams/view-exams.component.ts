@@ -6,6 +6,7 @@ import { ActiveUser } from '../../../model/ActiveUser.model';
 import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { type } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-view-exams',
@@ -72,15 +73,21 @@ export class ViewExamsComponent implements OnInit {
   }
 
   viewQuestionExamPage(examId) {
-    let url = `exam/${examId}/solve/setup`;
-    let entity = { examCode: this.examCode }
-    console.log(entity);
-    
-    this.globalBackEndService.createNewEntity(entity, url, String(this.activeUser.id)).subscribe(() => {
+    console.log(this.activeUser.type);
+
+    if (String(this.activeUser.type) == 'TEACHER') {
       this.router.navigate([`/exam/${examId}/questions`]);
-    }, (error: any) => {
-      alert(error.error.message);
-    })
+    } else {
+      let url = `exam/${examId}/solve/setup`;
+      let entity = { examCode: this.examCode }
+      console.log(entity);
+
+      this.globalBackEndService.createNewEntity(entity, url, String(this.activeUser.id)).subscribe(() => {
+        this.router.navigate([`/exam/${examId}/questions`]);
+      }, (error: any) => {
+        alert(error.error.message);
+      });
+    }
 
   }
 

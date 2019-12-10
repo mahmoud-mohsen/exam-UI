@@ -4,9 +4,9 @@
             <div class="tab-pane  fade  active show" id="orders" role="tabpanel" aria-labelledby="orders-tab">
                 <div class="float-right">
                     <a class="btn btn-sm btn-primary" role="button" *ngxPermissionsOnly="['ADMIN']" aria-pressed="true"
-                        href="newUser"><i class="icofont-headphone-alt"></i>New user</a>
+                        href="newUser"><i class="icofont-headphone-alt"></i>{{'button.newUser'|translate}}</a>
                 </div>
-                <h4 class="font-weight-bold mt-0 mb-4">Users</h4>
+                <h4 class="font-weight-bold mt-0 mb-4">{{ 'layout.users' | translate }}</h4>
                 <div *ngFor="let user of users" class="bg-white card mb-4 order-list shadow-sm">
                     <div class="gold-members p-4">
                         <div class="media">
@@ -15,24 +15,28 @@
                                 <span class="float-right text-info">{{user.email}}<i
                                         class="icofont-check-circled text-success"></i></span>
                                 <h6 class="mb-2">
-                                    <a [routerLink]="['/userProfile',user.id]" class="text-black">{{user.firstName}} {{user.lastName}}</a>
+                                    <a [routerLink]="['/userProfile',user.id]" class="text-black">{{user.firstName}}
+                                        {{user.lastName}}</a>
                                 </h6>
                                 <p class="text-gray mb-1" [hidden]="user.type!='TEACHER'"><span
-                                        class="text-black font-weight-bold">Title: </span> {{user.teacherTitle}}
+                                        class="text-black font-weight-bold">{{ 'user.title' | translate }}: </span>
+                                    {{user.teacherTitle}}
                                 </p>
                                 <p class="text-gray mb-1" [hidden]="user.type!='STUDENT'"><span
-                                        class="text-black font-weight-bold">Level: </span> {{user.studentLevel}}
+                                        class="text-black font-weight-bold">{{ 'user.level' | translate }}: </span>
+                                    {{user.studentLevel}}
                                 </p>
-                                <p class="text-gray mb-3"><span class="text-black font-weight-bold">Age:
+                                <p class="text-gray mb-3"><span
+                                        class="text-black font-weight-bold">{{ 'user.age' | translate }}:
                                     </span>{{user.age}}</p>
 
                                 <hr>
                                 <div class="float-right">
                                     <a class="btn btn-sm btn-outline-primary" [routerLink]="['/userProfile',user.id]"><i
-                                            class="icofont-headphone-alt"></i>View Profile</a>
-                                    <a class="btn btn-sm btn-primary" href="user/{{user.id}}/courses"><i
+                                            class="icofont-headphone-alt"></i>{{ 'button.viewprofile' | translate }}</a>
+                                    <a class="btn btn-sm btn-outline-primary" href="user/{{user.id}}/courses"><i
                                             class="icofont-refresh"></i>
-                                        View Courses</a>
+                                        {{ 'button.viewCourses' | translate }}</a>
                                 </div>
                                 <p class="mb-0 text-black text-primary pt-2"><span class="text-black font-weight-bold">
                                         {{user.type}}</span>

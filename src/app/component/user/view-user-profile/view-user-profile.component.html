@@ -18,8 +18,8 @@
                                     {{user.email}}
                                 </p>
                             </div>
-                            <div class="level-column" [hidden]="isUserTeacher()">
-                                <h6>Title</h6>
+                            <div class="level-column" *ngxPermissionsOnly="['STUDENT']">
+                                <h6>Level</h6>
                                 <p>
                                     {{user.studentLevel}}
                                 </p>
@@ -35,7 +35,7 @@
                                 {{user.phone}}
                             </p>
                         </div>
-                        <div class="col-md-6" [hidden]="isUserStudent()">
+                        <div class="col-md-6" *ngxPermissionsOnly="['TEACHER']">
 
                             <h6>Created Courses</h6>
                             <div *ngFor="let course of user.createdCourses" class="course-title">
@@ -60,7 +60,7 @@
 
                         </div>
 
-                        <div class="col-md-6" [hidden]="isUserTeacher()">
+                        <div *ngxPermissionsOnly="['STUDENT']" class="col-md-6">
                             <h6>Courses</h6>
                             <div *ngFor="let course of user.enrollCourse" class="course-title">
                                 <h5> <a class="badge badge-dark badge-pill" style="color: aliceblue;">{{course.courseName}}</a></h5>
@@ -82,7 +82,7 @@
 
                         </div>
 
-                        <div class="col-md-12" [hidden]="isUserStudent()">
+                        <div class="col-md-12" *ngxPermissionsOnly="['TEACHER']">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>
                                 Sammury</h5>
                             <p>

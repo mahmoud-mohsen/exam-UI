@@ -1,0 +1,113 @@
+{
+    "layout": {
+        "home": "الصفحة الرئيسة",
+        "users": "المستخدمون",
+        "course": "الكورسات",
+        "request": "الطلبات",
+        "logout": "تسجيل الخروج"
+    },
+    "user": {
+        "title": "اسم الكورس",
+        "age": "العمر",
+        "level": "المرحلة"
+    },
+    "button": {
+        "viewCourses": "عرض الكورسات",
+        "viewprofile": "عرض الملف الشخصى",
+        "view": "عرض",
+        "update": "تعديل",
+        "delete": "حذف",
+        "enroll": "التحاق",
+        "newCourse": "اضافة كورس جديد",
+        "newUser": "اضافة مستخدم جديد",
+        "save": "حفظ",
+        "newExam": "اضافة امتحان جديد",
+        "solve": "ابد الحل",
+        "questions": {
+            "trueOrFalseHeader": "الصح والخطأ",
+            "mcQuestionHeader": "الاختياري",
+            "essayQuestionHeader": "المقالى"
+        }
+    },
+    "pendingRequesttext": "تم ارسال طلب انضمامك. فى انتظار تاكيد القبول من المدرس ",
+    "rejectedRequesttext": "تم رفض طلب انضمامك",
+    "course": {
+        "createdIn": " وقت الانشاء",
+        "newCourseTitle": "كورس جديد",
+        "title": "اسم الكورس",
+        "code": "الكود السري",
+        "level": "المرحلة",
+        "levels": {
+            "a1": "الأول الابتدائي",
+            "a2": "الثانى الابتدائي",
+            "a3": "الثالث الابتدائي",
+            "a4": "الرابع الابتدائي",
+            "a5": "الخامس الابتدائي",
+            "a6": "السادس الابتدائي",
+            "b1": "الاول الاعدادي",
+            "b2": "الثانى الاعدادي",
+            "b3": "الثالث الاعدادي",
+            "c1": "الاول الثانوي",
+            "c2": "الثانى الثانوي",
+            "c3": "الثالث الثانوي"
+        }
+    },
+    "request": {
+        "pending": "المعلقة",
+        "rejected": "المرفوضة",
+        "pendingTitle": "الطلبات المعلقة",
+        "rejectedTitle": "الطلبات المرفوضة",
+        "ask": "يطلب الانضمام ل كورس ",
+        "approveRequest": "قبول",
+        "rejectRequest": "رفض",
+        "date": "وقت الطلب"
+    },
+    "warning": {
+        "titelCourseRequired": "يجب ادخال اسم الكورس",
+        "titeExamRequired": "يجب ادخال اسم الامتحان",
+        "codeRequired": "يجب ادخال الكود السري ",
+        "levelRequired": "يجب ادخال المرحلة",
+        "startDateRequired": "يجب ادخال وقت بداية الامتحان",
+        "endDateRequired": "يجب ادخال وقت نهاية الامتحان",
+        "examTimeRequired": "يجب ادخال زمن الامتحان",
+        "examTimeUnitRequired": "يجب ادخال وحدة زمن الامتحان",
+        "essayQuestionTitleHeaderRequired": "يجب ادخال عنوان السؤال المقالى",
+        "trueOrFalseQuestionTitleHeaderRequired": "يجب ادخال عنوان سؤال الصح أوالخطأ",
+        "mcQuestionTitleHeaderRequired": "يجب ادخال عنوان السؤال الاختياري",
+        "questionRequired": "يجب ادخال السؤال",
+        "questionPointRequired":"يجب ادخال درجة السؤال"
+    },
+    "exam": {
+        "header": "الامتحانات",
+        "time": "زمن الامتحان",
+        "timeUnit": {
+            "minute": "دقيقة",
+            "hours": "ساعة"
+        },
+        "start": "البداية",
+        "end": "النهاية",
+        "note": "ملحوظة",
+        "code": "الكود السري",
+        "title": "اسم الامتحان",
+        "timeUnitHeader": "وحدة زمن الامتحان",
+        "essayQuestionsTitleHeader": "عنوان السؤال المقالى",
+        "trueOrFalseQuestionsTitleHeader": "عنوان سؤال الصح أوالخطأ",
+        "mcQuestionsTitleHeader": "عنوان السؤال الاختياري"
+    },
+    "placeHolder": {
+        "examCode": "ادخل كود الامتحان",
+        "examTitle": "ادخل اسم الامتحان",
+        "examNote": "ادخل ملحوظة الامتحان",
+        "examTime": "ادخل زمن الامتحان",
+        "essayQuestionTitle": "ادخل عنوان السؤال المقالى",
+        "trueOrFalseQuestionTitle": "ادخل عنوان سؤال الصح أوالخطأ",
+        "mcQuestionTitle": "ادخل عنوان السؤال الاختياري",
+        "essayQuestion": "ادخل السؤال المقالى",
+        "trueOrFalseQuestion": "ادخل سؤال الصح أوالخطأ",
+        "mcQuestion": "ادخل السؤال الاختياري"
+    },
+    "question": {
+        "header": "السؤال",
+        "pointHeader":"درجة السؤال"
+    }
+}

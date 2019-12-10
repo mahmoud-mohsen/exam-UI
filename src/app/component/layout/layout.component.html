@@ -2,28 +2,28 @@
     <!-- Sidebar Holder -->
     <nav *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
         <div class="sidebar-header">
-            <h3>{{activeUser.displayName}}</h3>
+            <h5><a  [routerLink]="['/userProfile',activeUser.id]">{{activeUser.displayName}}</a></h5>
         </div>
 
         <ul class="list-unstyled components">
             <li>
-                <a [routerLink]="['']">Home</a>
+                <a [routerLink]="['']">{{ 'layout.home' | translate }}</a>
             </li>
             <li>
-                <a  [routerLink]="['/users']">Users</a>
+                <a  [routerLink]="['/users']">{{ 'layout.users' | translate }}</a>
             </li>
             <li>
-                <a (click)="OpenUserCourses()" >Courses</a>
+                <a (click)="OpenUserCourses()" >{{ 'layout.course' | translate }}</a>
             </li>
             <li >
-                <a  *ngxPermissionsOnly="['TEACHER']" [routerLink]="['/enrollRequests']">Enroll Requests</a>
+                <a  *ngxPermissionsOnly="['TEACHER']" [routerLink]="['/enrollRequests']">{{ 'layout.request' | translate }}</a>
             </li>
             
         </ul>
 
         <ul class="list-unstyled CTAs">
             <li>
-                <a (click)="logout()">Logout</a>
+                <a (click)="logout()">{{ 'layout.logout' | translate }}</a>
             </li>
         </ul>
     </nav>
