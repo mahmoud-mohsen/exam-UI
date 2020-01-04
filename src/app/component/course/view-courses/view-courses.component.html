@@ -5,54 +5,64 @@
 </ng-template>
 
 <ng-template #coursesView>
-    <div class="float-right">
-        <a class="btn btn-sm btn-primary" role="button" [hidden]="activeUser.id!=userId"
-            *ngxPermissionsOnly="['TEACHER']" aria-pressed="true" [routerLink]="['/newCourse']"><i
-                class="icofont-headphone-alt"></i>{{'button.newCourse'|translate}}</a>
-    </div>
 
-    <h4 class="font-weight-bold mt-0 mb-4">{{'layout.course'|translate}}</h4>
+    <div class="align-start">
 
-    <div class="row">
-        <div *ngFor="let course of courses" class="col-sm-6">
-            <div class="card" style="margin-bottom: 7px;">
-                <div class="card-body">
-                    <h3 class="card-title">{{course.title}}</h3>
-                    <p class="card-text"><span class="text-black font-weight-bold">{{'user.level'|translate}}:
-                        </span>{{course.level}}</p>
-                    <p class="card-text"><span class="text-black font-weight-bold">{{'course.createdIn'|translate}}:
-                        </span>{{course.creationTime | date:'dd/MM/yyyy'}}</p>
+        <div class="flex-space">
+            <div>
+                <h4 class="font-weight-bold mt-0 mb-4">{{'layout.course'|translate}}</h4>
+            </div>
+            
+            <div>
+                <a class="btn btn-sm btn-primary" role="button" [hidden]="activeUser.id!=userId"
+                    *ngxPermissionsOnly="['TEACHER']" aria-pressed="true" [routerLink]="['/newCourse']"><i
+                        class="icofont-headphone-alt"></i>{{'button.newCourse'|translate}}</a>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngFor="let course of courses" class="col-sm-6">
+                <div class="card" style="margin-bottom: 7px;">
+                    <div class="card-body">
+                        <h3 class="card-title">{{course.title}}</h3>
+                        <p class="card-text"><span class="text-black font-weight-bold">{{'user.level'|translate}}:
+                            </span>{{course.level}}</p>
+                        <p class="card-text"><span class="text-black font-weight-bold">{{'course.createdIn'|translate}}:
+                            </span>{{course.creationTime | date:'dd/MM/yyyy'}}</p>
 
-                    <span [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsRejectEnrolledInCourse(course.id))"
-                        class="float-right bg-danger text-white">{{'rejectedRequesttext'|translate}}</span>
+                        <span
+                            [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsRejectEnrolledInCourse(course.id))"
+                            class="float-right bg-danger text-white">{{'rejectedRequesttext'|translate}}</span>
 
-                    <span [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsPendingEnrolledInCourse(course.id))"
-                        class="float-right bg-warning text-white">{{'pendingRequesttext'|translate}}</span>
+                        <span
+                            [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsPendingEnrolledInCourse(course.id))"
+                            class="float-right bg-warning text-white">{{'pendingRequesttext'|translate}}</span>
 
-                    <button type="button" [hidden]="!viewViewButton(course.id)" (click)="viewCourseExams(course.id)"
-                        class="btn btn-outline-primary btn-lg btn-block">{{'button.view'|translate}}</button>
+                        <button type="button" [hidden]="!viewViewButton(course.id)" (click)="viewCourseExams(course.id)"
+                            class="btn btn-outline-primary btn-lg btn-block">{{'button.view'|translate}}</button>
 
-                    <div *ngxPermissionsOnly="['STUDENT']" [hidden]="isUserIsEnrolledInCourse(course.id)"
-                        class="input-group mb-3">
-                        <input type="text" class="form-control" (input)="courseCode=$event.target.value"
-                            placeholder="Enter course code" aria-label="course's code" aria-describedby="basic-addon2">
+                        <div *ngxPermissionsOnly="['STUDENT']" [hidden]="isUserIsEnrolledInCourse(course.id)"
+                            class="input-group mb-3">
+                            <input type="text" class="form-control" (input)="courseCode=$event.target.value"
+                                placeholder="Enter course code" aria-label="course's code"
+                                aria-describedby="basic-addon2">
 
-                        <div class="input-group-append">
-                            <button (click)="enrollStudent(course.id)" class="btn btn-outline-primary"
-                                type="button">{{'button.enroll'|translate}}</button>
+                            <div class="input-group-append">
+                                <button (click)="enrollStudent(course.id)" class="btn btn-outline-primary"
+                                    type="button">{{'button.enroll'|translate}}</button>
+                            </div>
                         </div>
+
+
+                        <button *ngxPermissionsOnly="['TEACHER']" type="button"
+                            [hidden]="!(isUserTheCreator(course.id))" (click)="viewUpdateCourseForm(course)"
+                            class="btn btn-outline-primary btn-lg btn-block">{{'button.update'|translate}}</button>
+
+                        <button *ngxPermissionsOnly="['TEACHER']" type="button"
+                            [hidden]="!(isUserTheCreator(course.id))" (click)="deleteCourse(course.id)"
+                            class="btn btn-outline-primary btn-lg btn-block">{{'button.delete'|translate}}</button>
+
+
                     </div>
-
-
-                    <button *ngxPermissionsOnly="['TEACHER']" type="button" [hidden]="!(isUserTheCreator(course.id))"
-                        (click)="viewUpdateCourseForm(course)"
-                        class="btn btn-outline-primary btn-lg btn-block">{{'button.update'|translate}}</button>
-
-                    <button *ngxPermissionsOnly="['TEACHER']" type="button" [hidden]="!(isUserTheCreator(course.id))"
-                        (click)="deleteCourse(course.id)"
-                        class="btn btn-outline-primary btn-lg btn-block">{{'button.delete'|translate}}</button>
-
-
                 </div>
             </div>
         </div>

@@ -90,7 +90,7 @@ body{
     height: 56px;
     object-fit: cover;
 }
-.order-list img.mr-4 {
+.order-list img.mr-1 {
     width: 70px;
     height: 70px;
     object-fit: cover;

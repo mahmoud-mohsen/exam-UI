@@ -49,7 +49,7 @@
 
   <div class="form-group">
     <label for="age">Age</label>
-    <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="text" class="form-control"
+    <input required [(ngModel)]="user.age" name="age" #age="ngModel" id="age" type="number" min="0" class="form-control"
       placeholder="Enter age">
     <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
       <div>Age is required </div>
@@ -102,6 +102,19 @@
       class="form-control" placeholder="Enter teacher title">
     <div class="alert alert-danger" *ngIf="teacherTitle.touched && !teacherTitle.valid">
       <div>teacherTitle is required </div>
+    </div>
+  </div>
+
+  <div class="form-group" [hidden]="type.value!='TEACHER'">
+    <label for="language">Language</label>
+    <select required [(ngModel)]="user.language" name="language" #language="ngModel" id="language"
+      class="custom-select mb-2 mr-sm-2 mb-sm-0">
+      <option value="ARABIC">Arabic</option>
+      <option value="ENGLISH">English</option>
+      <option value="FRENCH">French</option>
+    </select>
+    <div class="alert alert-danger" *ngIf="language.touched && !language.valid">
+      <div>Language is required </div>
     </div>
   </div>
 

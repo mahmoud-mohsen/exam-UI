@@ -38,6 +38,8 @@ export class ViewQuestionsComponent implements OnInit {
   essayQuestionsTitle;
   loading: boolean = true;
 
+  trueOrFalseAnswers: string[];
+
 
 
   activeUser: ActiveUser;
@@ -51,11 +53,11 @@ export class ViewQuestionsComponent implements OnInit {
     this.trueOrFalseQuestions = new Array();
     this.mcQuestions = new Array();
     this.loading = true;
+    this.trueOrFalseAnswers=[];
 
   }
 
   ngOnInit() {
-
     this.loading = true;
 
     const permissions = [String(this.activeUser.type)];
@@ -100,8 +102,6 @@ export class ViewQuestionsComponent implements OnInit {
     let url = `exam/${this.examId}/questions`;
     this.globalBackEndService.ViewEntity(url, String(this.activeUser.id)).subscribe((response: any) => {
 
-      console.log(response);
-
       this.mcQuestions = response.mcqResponses;
       this.trueOrFalseQuestions = response.trueOrFalseResponses;
       this.essayQuestions = response.essayResponses;
@@ -110,6 +110,16 @@ export class ViewQuestionsComponent implements OnInit {
       this.essayQuestionsTitle = response.examResponse.essayQuestionTitle;
       this.mcqQuestionsTitle = response.examResponse.mcqTitle;
       this.trueOrFalseQuestionsTitle = response.examResponse.trueOrFalseQuestionTitle;
+
+      if (!response || !response.language || response.language == 'ARABIC') {
+        this.trueOrFalseAnswers = ['صح', 'خطأ'];
+      } else if (response.language == 'FRENCH') {
+        this.trueOrFalseAnswers = ['vrais', 'faux'];
+      } else if (response.language == 'ENGLISH') {
+        this.trueOrFalseAnswers = ['True', 'Fasle'];
+      }
+      console.log(this.trueOrFalseAnswers);
+      
     }, (error: any) => {
       alert(error.error.message);
       this.router.navigate([`user/${this.activeUser.id}/courses`]);

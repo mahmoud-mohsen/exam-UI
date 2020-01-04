@@ -13,62 +13,84 @@
     <div>{{'warning.titeExamRequired'|translate}}</div>
   </div>
 
-
-  <div class="form-group input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.code'|translate}}</span>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.note'|translate}}</span>
+        </div>
+        <input [(ngModel)]="createExamRequest.note" name="note" #note="ngModel" id="note" type="text"
+          class="form-control" placeholder="{{'placeHolder.examNote'|translate}}">
+      </div>
     </div>
-    <input [(ngModel)]="createExamRequest.code" name="code" #code="ngModel" id="code" type="text" class="form-control"
-      placeholder="{{'placeHolder.examCode'|translate}}">
-  </div>
 
-  <div class="form-group input-group">
+    <div class="col">
 
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.note'|translate}}</span>
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.code'|translate}}</span>
+        </div>
+        <input [(ngModel)]="createExamRequest.code" name="code" #code="ngModel" id="code" type="text"
+          class="form-control" placeholder="{{'placeHolder.examCode'|translate}}">
+      </div>
     </div>
-    <input [(ngModel)]="createExamRequest.note" name="note" #note="ngModel" id="note" type="text" class="form-control"
-      placeholder="{{'placeHolder.examNote'|translate}}">
   </div>
 
-  <div class="form-group input-group">
-
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.start'|translate}}</span>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.start'|translate}}</span>
+        </div>
+        <input required [(ngModel)]="examStartDate" name="startDate" #startDate="ngModel" id="startDate" type="date"
+          class="form-control">
+      </div>
+      <div class="alert alert-danger" *ngIf="startDate.touched && !startDate.valid">
+        <div>{{'warning.startDateRequired'|translate}}</div>
+      </div>
     </div>
-    <input required [(ngModel)]="examStartDate" name="startDate" #startDate="ngModel" id="startDate" type="date"
-      class="form-control">
-  </div>
-  <div class="alert alert-danger" *ngIf="startDate.touched && !startDate.valid">
-    <div>{{'warning.startDateRequired'|translate}}</div>
+    <div class="col">
+      <div class="form-group input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.end'|translate}}</span>
+        </div>
+        <input required [(ngModel)]="examEndDate" name="endDate" #endDate="ngModel" id="endDate" type="date"
+          class="form_datetime" class="form-control">
+      </div>
+      <div class="alert alert-danger" *ngIf="endDate.touched && !endDate.valid">
+        <div>{{'warning.endDateRequired'|translate}}</div>
+      </div>
+    </div>
   </div>
 
-  <div class="form-group input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.end'|translate}}</span>
+
+  <div class="form-row">
+    <div class="col">
+      <div class="input-group form-group">
+
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.time'|translate}}</span>
+        </div>
+
+        <input required [(ngModel)]="examTime" name="examPeriodTime" #examPeriodTime="ngModel" id="examPeriodTime"
+          type="Number" min="0" class="form-control" placeholder="{{'placeHolder.examTime'|translate}}">
+      </div>
     </div>
-    <input required [(ngModel)]="examEndDate" name="endDate" #endDate="ngModel" id="endDate" type="date"
-      class="form_datetime" class="form-control">
-  </div>
-  <div class="alert alert-danger" *ngIf="endDate.touched && !endDate.valid">
-    <div>{{'warning.endDateRequired'|translate}}</div>
+    <div class="col">
+      <div class="input-group form-group">
+
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="">{{'exam.timeUnitHeader'|translate}}</span>
+        </div>
+
+        <select [(ngModel)]="timeUnit" name="unit" #unit="ngModel" id="unit" class="custom-select mb-2 mr-sm-2 mb-sm-0">
+          <option value="60">{{'exam.timeUnit.minute'|translate}}</option>
+          <option value="3600">{{'exam.timeUnit.hours'|translate}}</option>
+        </select>
+      </div>
+    </div>
   </div>
 
-  <div class="input-group form-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.time'|translate}}</span>
-    </div>
-    <input required [(ngModel)]="examTime" name="examPeriodTime" #examPeriodTime="ngModel" id="examPeriodTime"
-      type="Number" min="0" class="form-control" placeholder="{{'placeHolder.examTime'|translate}}">
-
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.timeUnitHeader'|translate}}</span>
-    </div>
-    <select [(ngModel)]="timeUnit" name="unit" #unit="ngModel" id="unit" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-      <option value="60">{{'exam.timeUnit.minute'|translate}}</option>
-      <option value="3600">{{'exam.timeUnit.hours'|translate}}</option>
-    </select>
-  </div>
   <div class="alert alert-danger" *ngIf="examPeriodTime.touched && !examPeriodTime.valid">
     <div>{{'warning.examTimeRequired'|translate}}</div>
   </div>
@@ -76,58 +98,20 @@
     <div>{{'warning.examTimeUnitRequired'|translate}}</div>
   </div>
 
-  <div class="form-group input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.essayQuestionsTitleHeader'|translate}}</span>
-    </div>
-    <input required [(ngModel)]="createExamRequest.essayQuestionTitle" name="essayQuestionTitle"
-      #essayQuestionTitle="ngModel" id="essayQuestionTitle" type="text" class="form-control" class="form-control"
-      placeholder="{{'placeHolder.essayQuestionTitle'|translate}}">
-  </div>
-
-  <div class="alert alert-danger" *ngIf="essayQuestionTitle.touched && !essayQuestionTitle.valid">
-    <div>{{'warning.essayQuestionTitleHeaderRequired'|translate}}</div>
-  </div>
-
-  <div class="form-group input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.trueOrFalseQuestionsTitleHeader'|translate}}</span>
-    </div>
-    <input required [(ngModel)]="createExamRequest.trueOrFalseQuestionTitle" name="trueOrFalseQuestionTitle"
-      #trueOrFalseQuestionTitle="ngModel" id="trueOrFalseQuestionTitle" type="text" class="form-control"
-      class="form-control" placeholder="{{'placeHolder.trueOrFalseQuestionTitle'|translate}}">
-  </div>
-  <div class="alert alert-danger" *ngIf="trueOrFalseQuestionTitle.touched && !trueOrFalseQuestionTitle.valid">
-    <div>{{'warning.trueOrFalseQuestionTitleHeaderRequired'|translate}}</div>
-  </div>
-
-  <div class="form-group input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="">{{'exam.mcQuestionsTitleHeader'|translate}}</span>
-    </div>
-    <input required [(ngModel)]="createExamRequest.mcqTitle" name="mcqTitle" #mcqTitle="ngModel" id="mcqTitle"
-      type="text" class="form-control" class="form-control" placeholder="{{'placeHolder.mcQuestionTitle'|translate}}">
-  </div>
-  <div class="alert alert-danger" *ngIf="mcqTitle.touched && !mcqTitle.valid">
-    <div>{{'warning.mcQuestionTitleHeaderRequired'|translate}}</div>
-  </div>
-
-
-
   <div class="form-group">
-    <ul class="nav nav-tabs" role="tablist">
+    <ul class="nav nav-tabs " role="tablist">
       <li>
-        <button class="nav-link" [ngClass]="{
+        <button class="nav-link btn-primary" [ngClass]="{
             'active':trueOrFalseForm
           }" (click)="viewTrueOrFalseForm()">{{'button.questions.trueOrFalseHeader'|translate}}</button>
       </li>
       <li class="nav-item">
-        <button class="nav-link" [ngClass]="{
+        <button class="nav-link btn-primary" [ngClass]="{
             'active':mCQForm
           }" (click)="viewMCQForm()">{{'button.questions.mcQuestionHeader'|translate}}</button>
       </li>
       <li class="nav-item">
-        <button class="nav-link" [ngClass]="{
+        <button class="nav-link btn-primary" [ngClass]="{
             'active':essayForm
           }" (click)="viewEssayForm()">{{'button.questions.essayQuestionHeader'|translate}}</button>
       </li>
@@ -140,31 +124,43 @@
                       'container tab-pane fade':!trueOrFalseForm
 
                     }"><br>
+
+        <div class="form-group">
+          <label for="trueOrFalseQuestionTitle">{{'exam.trueOrFalseQuestionsTitleHeader'|translate}}</label>
+          <input required [(ngModel)]="createExamRequest.trueOrFalseQuestionTitle" name="trueOrFalseQuestionTitle"
+            #trueOrFalseQuestionTitle="ngModel" id="trueOrFalseQuestionTitle" type="text" class="form-control"
+            class="form-control" placeholder="{{'placeHolder.trueOrFalseQuestionTitle'|translate}}">
+        </div>
+        <div class="alert alert-danger" *ngIf="trueOrFalseQuestionTitle.touched && !trueOrFalseQuestionTitle.valid">
+          <div>{{'warning.trueOrFalseQuestionTitleHeaderRequired'|translate}}</div>
+        </div>
+
         <div class="form-group">
           <label for="trueOrFalseQuestion">{{'question.header'|translate}}</label>
           <input [(ngModel)]="trueOrFalseQ.question" name="trueOrFalseQuestion" #trueOrFalseQuestion="ngModel"
-            id="trueOrFalseQuestion" type="text" class="form-control" placeholder="{{'placeHolder.trueOrFalseQuestion'|translate}}">
+            id="trueOrFalseQuestion" type="text" class="form-control"
+            placeholder="{{'placeHolder.enterQuestion'|translate}}">
           <div class="alert alert-danger" *ngIf="trueOrFalseQuestion.touched && !trueOrFalseQuestion.valid">
             <div>{{'warning.questionRequired'|translate}}</div>
           </div>
         </div>
 
         <div class="form-group" [hidden]="trueOrFalseQ.question.length==0">
-          <label for="torfcorrect">Correct Answer</label>
+          <label for="torfcorrect">{{'question.answer.correctAnswerLabel'|translate}}</label>
           <select [required]="trueOrFalseQ.question.length!=0" [(ngModel)]="trueOrFalseQ.correct" name="torfcorrect"
             #torfcorrect="ngModel" id="torfcorrect" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-            <option value="true">true</option>
-            <option value="false">false</option>
+            <option value="true">{{'question.answer.true'|translate}}</option>
+            <option value="false">{{'question.answer.false'|translate}}</option>
           </select>
           <div class="alert alert-danger" *ngIf="torfcorrect.touched && !torfcorrect.valid">
-            <div>Correct Answer is required </div>
+            <div>{{'warning.correctAnswerRequired'|translate}}</div>
           </div>
         </div>
         <div class="form-group" [hidden]="trueOrFalseQ.question.length==0">
           <label for="trueOrFalseSize">{{'question.pointHeader'|translate}}</label>
           <input [required]="trueOrFalseQ.question.length!=0" [(ngModel)]="trueOrFalseQ.size" name="trueOrFalseSize"
             #trueOrFalseSize="ngModel" id="trueOrFalseSize" type="number" min="0"
-            class="form-control form-group col-md-2" placeholder="Enter question point">
+            class="form-control form-group col-md-2" placeholder="{{'placeHolder.point'|translate}}">
           <div class="alert alert-danger" *ngIf="trueOrFalseSize.touched && !trueOrFalseSize.valid">
             <div>{{'warning.questionPointRequired'|translate}}</div>
           </div>
@@ -172,55 +168,65 @@
         <div class="float-right" style="margin-bottom: 10px;">
           <button class="btn btn-sm btn-secondary" role="button" aria-pressed="true"
             [disabled]="trueOrFalseQ.question.length==0" (click)="addTrueOrFalseQuestion()"><i
-              class="icofont-headphone-alt"></i>Add</button>
+              class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
       <div id="mCQ" [ngClass]="{
                       'container tab-pane fade active':mCQForm,
                       'container tab-pane fade':!mCQForm
                     }"><br>
+
+        <div class="form-group">
+          <label for="mcqTitle">{{'exam.mcQuestionsTitleHeader'|translate}}</label>
+          <input required [(ngModel)]="createExamRequest.mcqTitle" name="mcqTitle" #mcqTitle="ngModel" id="mcqTitle"
+            type="text" class="form-control" class="form-control"
+            placeholder="{{'placeHolder.mcQuestionTitle'|translate}}">
+        </div>
+        <div class="alert alert-danger" *ngIf="mcqTitle.touched && !mcqTitle.valid">
+          <div>{{'warning.mcQuestionTitleHeaderRequired'|translate}}</div>
+        </div>
         <div class="form-group">
           <label for="mCQuestion">{{'question.header'|translate}}</label>
           <input [(ngModel)]="mCQ.question" name="mCQuestion" #mCQuestion="ngModel" id="mCQuestion" type="text"
-            class="form-control" placeholder="{{'placeHolder.mcQuestion'|translate}}">
+            class="form-control" placeholder="{{'placeHolder.enterQuestion'|translate}}">
           <div class="alert alert-danger" *ngIf="mCQuestion.touched && !mCQuestion.valid">
             <div>{{'warning.questionRequired'|translate}}</div>
           </div>
         </div>
 
         <div class="form-group" [hidden]="mCQ.question.length==0">
-          <label for="answer1">Answer 1</label>
+          <label for="answer1">{{'question.answer.asnwer1Label'|translate}}</label>
           <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer1" name="answer1" #answer1="ngModel"
-            id="answer1" type="text" class="form-control" placeholder="Enter answer 1">
+            id="answer1" type="text" class="form-control" placeholder="{{'placeHolder.answer1'|translate}}">
           <div class="alert alert-danger" *ngIf="answer1.touched && !answer1.valid">
-            <div>Answer 1 is required </div>
+            <div>{{'warning.answer1Required'|translate}}</div>
           </div>
         </div>
 
         <div class="form-group" [hidden]="mCQ.question.length==0">
-          <label for="answer2">Answer 2</label>
+          <label for="answer2">{{'question.answer.asnwer2Label'|translate}}</label>
           <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer2" name="answer2" #answer2="ngModel"
-            id="answer2" type="text" class="form-control" placeholder="Enter answer 2">
+            id="answer2" type="text" class="form-control" placeholder="{{'placeHolder.answer2'|translate}}">
           <div class="alert alert-danger" *ngIf="answer2.touched && !answer2.valid">
-            <div>Answer 2 is required </div>
+            <div>{{'warning.answer2Required'|translate}}</div>
           </div>
         </div>
 
         <div class="form-group" [hidden]="mCQ.question.length==0">
-          <label for="answer3">Answer 3</label>
+          <label for="answer3">{{'question.answer.asnwer3Label'|translate}}</label>
           <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer3" name="answer3" #answer3="ngModel"
-            id="answer3" type="text" class="form-control" placeholder="Enter answer 3">
+            id="answer3" type="text" class="form-control" placeholder="{{'placeHolder.answer3'|translate}}">
           <div class="alert alert-danger" *ngIf="answer3.touched && !answer3.valid">
-            <div>Answer 3 is required </div>
+            <div>{{'warning.answer3Required'|translate}}</div>
           </div>
         </div>
 
         <div class="form-group" [hidden]="mCQ.question.length==0">
-          <label for="answer4">Answer 4</label>
+          <label for="answer4">{{'question.answer.asnwer4Label'|translate}}</label>
           <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.answer4" name="answer4" #answer4="ngModel"
-            id="answer4" type="text" class="form-control" placeholder="Enter answer 4">
+            id="answer4" type="text" class="form-control" placeholder="{{'placeHolder.answer4'|translate}}">
           <div class="alert alert-danger" *ngIf="answer4.touched && !answer4.valid">
-            <div>Answer 4 is required </div>
+            <div>{{'warning.answer4Required'|translate}}</div>
           </div>
         </div>
 
@@ -229,16 +235,16 @@
               ||mCQ.answer2.length==0
               ||mCQ.answer3.length==0
               ||mCQ.answer4.length==0">
-          <label for="mcqCorrect">Correct Answer</label>
+          <label for="mcqCorrect">{{'question.answer.correctAnswerLabel'|translate}}</label>
           <select [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.correct" name="mcqCorrect" #mcqCorrect="ngModel"
             id="mcqCorrect" class="custom-select mb-2 mr-sm-2 mb-sm-0">
-            <option [value]="mCQ.answer1">answer1</option>
-            <option [value]="mCQ.answer2">answer2</option>
-            <option [value]="mCQ.answer3">answer3</option>
-            <option [value]="mCQ.answer4">answer4</option>
+            <option [value]="mCQ.answer1">{{'question.answer.choice1Label'|translate}}</option>
+            <option [value]="mCQ.answer2">{{'question.answer.choice2Label'|translate}}</option>
+            <option [value]="mCQ.answer3">{{'question.answer.choice3Label'|translate}}</option>
+            <option [value]="mCQ.answer4">{{'question.answer.choice4Label'|translate}}</option>
           </select>
           <div class="alert alert-danger" *ngIf="mcqCorrect.touched && !mcqCorrect.valid">
-            <div>Correct answer is required </div>
+            <div>{{'warning.correctAnswerRequired'|translate}}</div>
           </div>
         </div>
 
@@ -246,24 +252,37 @@
           <label for="mcqSize">{{'question.pointHeader'|translate}}</label>
           <input [required]="mCQ.question.length!=0" [(ngModel)]="mCQ.size" name="mcqSize" #mcqSize="ngModel"
             id="mcqSize" type="number" min="0" class="form-control form-group col-md-2"
-            placeholder="Enter question point">
+            placeholder="{{'placeHolder.point'|translate}}">
           <div class="alert alert-danger" *ngIf="mcqSize.touched && !mcqSize.valid">
             <div>{{'warning.questionRequired'|translate}}</div>
           </div>
         </div>
         <div class="float-right" style="margin-bottom: 10px;">
           <button [disabled]="mCQ.question.length==0" class="btn btn-sm btn-secondary" role="button" aria-pressed="true"
-            (click)="addMCQQuestion()"><i class="icofont-headphone-alt"></i>Add</button>
+            (click)="addMCQQuestion()"><i class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
       <div id="essay" [ngClass]="{
           'container tab-pane fade active':essayForm,
           'container tab-pane fade':!essayForm
                     }"><br>
+
+        <div class="form-group">
+          <label for="essayQuestionTitle">{{'exam.essayQuestionsTitleHeader'|translate}}</label>
+
+          <input required [(ngModel)]="createExamRequest.essayQuestionTitle" name="essayQuestionTitle"
+            #essayQuestionTitle="ngModel" id="essayQuestionTitle" type="text" class="form-control"
+            placeholder="{{'placeHolder.essayQuestionTitle'|translate}}">
+        </div>
+
+        <div class="alert alert-danger" *ngIf="essayQuestionTitle.touched && !essayQuestionTitle.valid">
+          <div>{{'warning.essayQuestionTitleHeaderRequired'|translate}}</div>
+        </div>
+
         <div [hidden]="imageName" class="form-group">
           <label for="essayQuestion">{{'question.header'|translate}}</label>
           <input [(ngModel)]="essayQ.question" name="essayQuestion" #essayQuestion="ngModel" id="essayQuestion"
-            type="text" class="form-control" placeholder="{{'placeHolder.essayQuestion'|translate}}">
+            type="text" class="form-control" placeholder="{{'placeHolder.enterQuestion'|translate}}">
           <div class="alert alert-danger" *ngIf="essayQuestion.touched && !essayQuestion.valid">
             <div>{{'warning.questionPointRequired'|translate}}</div>
           </div>
@@ -272,13 +291,13 @@
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="inputGroupFileAddon01">Image</span>
+              <span class="input-group-text" id="inputGroupFileAddon01">{{'image'|translate}}</span>
             </div>
             <div class="custom-file">
               <input type="file" accept="image/*" (change)="prepareImage($event.target)" class="custom-file-input"
                 name="image" id="image" aria-describedby="inputGroupFileAddon01">
               <div *ngIf="!imageName">
-                <label class="custom-file-label" for="image">Choose file</label>
+                <label class="custom-file-label" for="image">{{'imageChoice'|translate}}</label>
               </div>
               <div *ngIf="imageName">
                 <label class="custom-file-label" for="image">{{imageName}}</label>
@@ -291,7 +310,7 @@
           <label for="essayQuestionSize">{{'question.pointHeader'|translate}}</label>
           <input [required]="essayQ.question.length!=0||imageName" [(ngModel)]="essayQ.size" name="essayQuestionSize"
             #essayQuestionSize="ngModel" id="essayQuestionSize" type="number" min="0"
-            class="form-control form-group col-md-2" placeholder="Enter question point">
+            class="form-control form-group col-md-2" placeholder="{{'placeHolder.point'|translate}}">
           <div class="alert alert-danger" *ngIf="essayQuestionSize.touched && !essayQuestionSize.valid">
             <div>{{'warning.questionPointRequired'|translate}}</div>
           </div>
@@ -299,13 +318,14 @@
 
         <div class="float-right" style="margin-bottom: 10px;">
           <button [disabled]="!imageName&&essayQ.question.length==0" class="btn btn-secondary btn-sm" role="button"
-            aria-pressed="true" (click)="addEssayQuestion()"><i class="icofont-headphone-alt"></i>Add</button>
+            aria-pressed="true" (click)="addEssayQuestion()"><i
+              class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
     </div>
   </div>
   <button (click)="createNewExam()" class="btn btn-primary btn-lg btn-block"
-    [disabled]="!createExamForm.valid">Save</button>
+    [disabled]="!createExamForm.valid">{{'button.save'|translate}}</button>
 </form>
 
 <view-questions [(mcQuestions)]="createExamRequest.mcQuestion"

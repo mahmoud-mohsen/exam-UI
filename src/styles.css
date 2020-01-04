@@ -1,2 +1,14 @@
-@import "~bootstrap/dist/css/bootstrap.css"
+@import "~bootstrap/dist/css/bootstrap.css";
 
+.align-end{
+    text-align: end;
+}
+
+.align-start{
+    text-align: start;
+}
+
+.flex-space{
+    display: flex;
+    justify-content: space-between;
+}

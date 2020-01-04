@@ -23,7 +23,6 @@ export class CounterComponent implements OnInit {
   oberserableTimer() {
     const source = timer(1000, 2000);
     const abc = source.subscribe(val => {
-      console.log(val, '-');
       this.subscribeTimer = this.timeLeft - val;
     });
   }

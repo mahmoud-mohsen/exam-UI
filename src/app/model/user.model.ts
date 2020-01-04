@@ -16,9 +16,10 @@ export class User {
   sammury: String;
   createdCourses: Course[];
   teacherTitle: String;
-  numberOfActivestudents:Number;
-  enrollCourse:EnrollCourse[];
-  phone:String;
+  numberOfActivestudents: Number;
+  enrollCourse: EnrollCourse[];
+  phone: String;
+  language: string;
   constructor() {
     this.id = null;
     this.firstName = '';
@@ -29,10 +30,11 @@ export class User {
     this.password = '';
     this.rate = null;
     this.teacherTitle = '';
-    this.numberOfActivestudents=0;
-    this.enrollCourse=new Array();
-    this.createdCourses=new Array();
-    this.sammury='';
-    this.phone='';
+    this.numberOfActivestudents = 0;
+    this.enrollCourse = new Array();
+    this.createdCourses = new Array();
+    this.sammury = '';
+    this.phone = '';
+    this.language = null;
   }
 }

@@ -4,7 +4,7 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item">
                     <a data-target="#profile" aria-expanded="false" aria-controls="profile" data-toggle="tab"
-                        class="nav-link active">Profile</a>
+                        class="nav-link active">{{'user.profileLable'|translate}}</a>
                 </li>
             </ul>
             <div class="tab-content py-4">
@@ -13,40 +13,41 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="email-column">
-                                <h6>Email</h6>
+                                <h6>{{'user.email'|translate}}</h6>
                                 <p>
                                     {{user.email}}
                                 </p>
                             </div>
                             <div class="level-column" *ngxPermissionsOnly="['STUDENT']">
-                                <h6>Level</h6>
+                                <h6>{{'user.level'|translate}}</h6>
                                 <p>
                                     {{user.studentLevel}}
                                 </p>
                             </div>
 
-                            <h6>Title</h6>
+                            <h6>{{'user.title'|translate}}</h6>
                             <p>
                                 {{user.teacherTitle}}
                             </p>
 
-                            <h6>Mobile Number</h6>
+                            <h6>{{'user.mobileNumber'|translate}}</h6>
                             <p>
                                 {{user.phone}}
                             </p>
                         </div>
                         <div class="col-md-6" *ngxPermissionsOnly="['TEACHER']">
 
-                            <h6>Created Courses</h6>
+                            <h6>{{'course.CoursesLabel'|translate}}</h6>
                             <div *ngFor="let course of user.createdCourses" class="course-title">
-                                <h5> <a class="badge badge-dark badge-pill" style="color: aliceblue;">{{course.title}}</a></h5>
+                                <h5> <a class="badge badge-dark badge-pill"
+                                        style="color: aliceblue;">{{course.title}}</a></h5>
                             </div>
                             <hr>
 
                             <span class="badge badge-primary"><i class="fa fa-user"></i>
-                                {{user.createdCourses.length}} Courses</span>
+                                {{user.createdCourses.length}} {{'course.courseLabel'|translate}}</span>
                             <span class="badge badge-success"><i class="fa fa-eye"></i>
-                                {{user.numberOfActivestudents}} Students</span>
+                                {{user.numberOfActivestudents}} {{'user.studentLabel'|translate}}</span>
                             <hr>
 
                             <ng-template #t let-fill="fill">
@@ -61,14 +62,15 @@
                         </div>
 
                         <div *ngxPermissionsOnly="['STUDENT']" class="col-md-6">
-                            <h6>Courses</h6>
+                            <h6>{{'course.coursesLabel'|translate}}</h6>
                             <div *ngFor="let course of user.enrollCourse" class="course-title">
-                                <h5> <a class="badge badge-dark badge-pill" style="color: aliceblue;">{{course.courseName}}</a></h5>
+                                <h5> <a class="badge badge-dark badge-pill"
+                                        style="color: aliceblue;">{{course.courseName}}</a></h5>
                             </div>
                             <hr>
 
                             <span class="badge badge-primary"><i class="fa fa-user"></i>
-                                {{user.enrollCourse.length}} Courses</span>
+                                {{user.enrollCourse.length}} {{'course.courseLabel'|translate}}</span>
                             <hr>
 
                             <ng-template hidden #t let-fill="fill">
@@ -84,7 +86,7 @@
 
                         <div class="col-md-12" *ngxPermissionsOnly="['TEACHER']">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>
-                                Sammury</h5>
+                                {{'user.summary'|translate}}</h5>
                             <p>
                                 {{user.sammury}}
                             </p>
@@ -96,7 +98,8 @@
             </div>
         </div>
         <div class="col-lg-4 order-lg-1 text-center">
-            <img [src]="user.image" class="mx-auto img-fluid img-circle d-block" [alt]="user.firstName+' '+user.lastName">
+            <img [src]="user.image" class="mx-auto img-fluid img-circle d-block"
+                [alt]="user.firstName+' '+user.lastName">
             <label class="custom-file">
                 <input type="button" id="file" class="custom-file-input">
             </label>

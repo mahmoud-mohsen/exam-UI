@@ -3,6 +3,7 @@ import { FirebaseService } from './../../service/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxPermissionsService } from 'ngx-permissions';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'layout',
@@ -11,7 +12,8 @@ import { NgxPermissionsService } from 'ngx-permissions';
 })
 export class LayoutComponent implements OnInit {
   activeUser: ActiveUser;
-  constructor(private permissionsService: NgxPermissionsService, private firebaseService: FirebaseService, private router: Router) {
+  language: string;
+  constructor(public translate: TranslateService, private permissionsService: NgxPermissionsService, private firebaseService: FirebaseService, private router: Router) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
 
   }
@@ -20,6 +22,12 @@ export class LayoutComponent implements OnInit {
 
     const permissions = [String(this.activeUser.type)];
     this.permissionsService.loadPermissions(permissions);
+    if (localStorage.getItem('locale')) {
+      this.language= localStorage.getItem('locale');
+
+    } else {
+      localStorage.setItem('locale', 'en');
+    }
 
   }
 
@@ -30,6 +38,11 @@ export class LayoutComponent implements OnInit {
 
   OpenUserCourses() {
     this.router.navigate([`user/${this.activeUser.id}/courses`])
+  }
+
+  changeLang() {
+    localStorage.setItem('locale', this.language);
+    this.translate.use(this.language);
   }
 
   logout() {

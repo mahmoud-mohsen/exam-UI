@@ -1,11 +1,11 @@
-<div class="wrapper">
+<div class="wrapper" >
     <!-- Sidebar Holder -->
-    <nav *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
+    <nav  *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
         <div class="sidebar-header">
             <h5><a  [routerLink]="['/userProfile',activeUser.id]">{{activeUser.displayName}}</a></h5>
         </div>
-
-        <ul class="list-unstyled components">
+        <div>
+        <ul class="list-unstyled components" >
             <li>
                 <a [routerLink]="['']">{{ 'layout.home' | translate }}</a>
             </li>
@@ -20,11 +20,19 @@
             </li>
             
         </ul>
-
+    </div>
         <ul class="list-unstyled CTAs">
             <li>
                 <a (click)="logout()">{{ 'layout.logout' | translate }}</a>
             </li>
+            <li>
+            <select (change)="changeLang()"
+            [(ngModel)]="language" [(ngModel)]="language" name="lan"
+            #lan="ngModel" id="lan" >
+                <option value="en" data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+              <option  value="ar" data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Arabic</option>
+            </select>
+        </li>
         </ul>
     </nav>
 
@@ -41,7 +49,7 @@
                 </button>
 
                 <div class="nav navbar-nav mx-auto" id="navbarSupportedContent">
-                    <h2>TOGETHER TO BUILD OUR FUTURE</h2>
+                    <h2>{{'menueHeader'|translate}}</h2>
                 </div>
 
                 <a class="navbar-brand" href="#">

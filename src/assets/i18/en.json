@@ -1,4 +1,5 @@
 {
+    "menueHeader":"Together To Build Our Future",
     "layout": {
         "home": "Home",
         "users": "Users",
@@ -6,115 +7,149 @@
         "request": "Request",
         "logout": "Logout"
     },
-    "user":{
-        "title":"Title",
+    "user": {
+        "name":"Name",
+        "title": "Title",
         "age": "Age",
-        "level": "Level"
+        "level": "Level",
+        "profileLable": "Profile",
+        "email": "Email",
+        "mobileNumber": "Mobile Number",
+        "studentLabel": "Students",
+        "summary": "Additional Informations",
+        "examPoints":"Points"
     },
-    "button":{
-        "viewCourses":"View courses",
-        "viewprofile":"View Profile",
-        "view":"View",
-        "update":"update",
-        "delete":"delete",
+    "button": {
+        "viewCourses": "View Courses",
+        "viewprofile": "View Profile",
+        "view": "View",
+        "update": "Update",
+        "delete": "Delete",
         "enroll": "Enroll",
-        "newCourse":"Add new course",
-        "newUser":"Add new user",
-        "save":"Save",
-        "newExam":"Add new exam",
-        "solve":"Solve",
-        "questions":{
-            "trueOrFalseHeader":"True Or false",
-            "mcQuestionHeader":"Multiple choice",
-            "essayQuestionHeader":"Essay"
-        }
-
-    },
-    "pendingRequesttext": "Your request is pending.Waiting teacher approval",
-    "rejectedRequesttext":"Your request is rejected",
-    "course":{
-        "createdIn":"Created in",
-        "newCourseTitle":"New Course",
-        "title":"Title",
-        "code":"Code",
-        "level":"Level",
-        "levels":{
-            "a1":"First primary",
-            "a2":"Second primary",
-            "a3":"Third primary",
-            "a4":"Fourth primary",
-            "a5":"Fith primary",
-            "a6":"Six primary",
-            "b1":"first Preparatory ",
-            "b2":"Second Preparatory ",
-            "b3":"third Preparatory ",
-            "c1":"first Secondary",
-            "c2":"Second Secondary",
-            "c3":"Third Secondary"
-        }
-    },
-    "request":{
-        "pending":"Pending",
-        "rejected":"Rejected",
-        "pendingTitle":"Pending requests",
-        "rejectedTitle":"Rejected requests",
-        "ask":" asked to join course",
-        "approveRequest":"Approve",
-        "rejectRequest":"Reject",
-        "date":"Date"
-    },
-    "warning":{
-        "titelRequired":"Title is required",
-        "titeExamRequired": "Exam title is required",
-        "codeRequired":"Code is required",
-        "levelRequired":"level is required",
-        "startDateRequired":"Start date is required",
-        "endDateRequired":"End date is required",
-        "examTimeRequired":"Time is required",
-        "examTimeUnitRequired":"Time unit is required",
-        "essayQuestionTitleHeaderRequired": "Essay questions title is required",
-        "trueOrFalseQuestionTitleHeaderRequired": "True or false questions title is required",
-        "mcQuestionTitleHeaderRequired": "Multiple choice questions title is required",
-        "questionRequired":"Question is required",
-        "questionPointRequired":"Question Poin is required"
-
-
-    },
-    "exam":{
-        "header":"Exams",
-        "time":"Time",
-        "timeUnit":{
-            "minute":"Minutes",
-            "hours":"Hours"
+        "newCourse": "Add New Course",
+        "newUser": "Add New User",
+        "save": "Save",
+        "newExam": "Add New Exam",
+        "solve": "Solve",
+        "questions": {
+            "trueOrFalseHeader": "True Or False",
+            "mcQuestionHeader": "Multiple Choice",
+            "essayQuestionHeader": "Essay"
         },
-        "start":"Start",
-        "end":"End",
-        "note":"Note",
-        "newExamHeader":"New exam",
-        "code":"Code",
-        "title":"Title",
-        "timeUnitHeader":"Time unit",
-        "essayQuestionsTitleHeader":"Essay questions title",
-        "trueOrFalseQuestionsTitleHeader":"True or false questions title",
-        "mcQuestionsTitleHeader":"Multiple choice questions title"
+        "add": "Add",
+        "viewStudentAnswers":"View Answers",
+        "addPoint":"Add Point"
     },
-    "placeHolder":{
-        "examCode":"Enter exam code",
-        "examTitle":"Enter exam title",
-        "examNote":"Enter exam note",
-        "examTime":"Enter exam time",
-        "essayQuestionTitle":"Enter essay questions title",
-        "trueOrFalseQuestionTitle":"Enter true or false questions title",
-        "mcQuestionTitle":"Enter multiple choice questions title",
-        "essayQuestion":"Enter essay question",
-        "trueOrFalseQuestion":"Enter true or false question",
-        "mcQuestion":"Enter multiple choice question"
-        
-
+    "pendingRequesttext": "Your Request Is Pending,Waiting Teacher Approval",
+    "rejectedRequesttext": "Your Request Is Rejected",
+    "course": {
+        "coursesLabel": "Courses",
+        "courseLabel": "Course",
+        "createdIn": "Created In",
+        "newCourseTitle": "New Course",
+        "title": "Title",
+        "code": "Code",
+        "level": "Level",
+        "levels": {
+            "a1": "First Primary",
+            "a2": "Second Primary",
+            "a3": "Third Primary",
+            "a4": "Fourth Primary",
+            "a5": "Fith Primary",
+            "a6": "Six Primary",
+            "b1": "first Preparatory ",
+            "b2": "Second Preparatory ",
+            "b3": "third Preparatory ",
+            "c1": "first Secondary",
+            "c2": "Second Secondary",
+            "c3": "Third Secondary"
+        },
+        "updateCourseTitle":"Update Course"
     },
-    "question":{
-        "header":"Question",
-        "pointHeader":"Question Poin"
-    }
-
+    "request": {
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "pendingTitle": "Pending Requests",
+        "rejectedTitle": "Rejected requests",
+        "ask": " asked To Join Course",
+        "approveRequest": "Approve",
+        "rejectRequest": "Reject",
+        "date": "Date"
+    },
+    "warning": {
+        "titelRequired": "Title Is Required",
+        "titeExamRequired": "Exam Title Is Required",
+        "codeRequired": "Code Is Required",
+        "levelRequired": "level Is Required",
+        "startDateRequired": "Start Date Is Required",
+        "endDateRequired": "End Date Is Required",
+        "examTimeRequired": "Time Is Required",
+        "examTimeUnitRequired": "Time Unit Is Required",
+        "essayQuestionTitleHeaderRequired": "Essay Questions Title Is Required",
+        "trueOrFalseQuestionTitleHeaderRequired": "True Or False Questions Title Is Required",
+        "mcQuestionTitleHeaderRequired": "Multiple Choice Questions Title Is Required",
+        "questionRequired": "Question Is Required",
+        "questionPointRequired": "Question Poin Is Required",
+        "correctAnswerRequired": "Correct Answer Is Required",
+        "answer1Required": "Answer 1 Is Required",
+        "answer2Required": "Answer 2 Is Required",
+        "answer3Required": "Answer 3 Is Required",
+        "answer4Required": "Answer 4 Is Required"
+    },
+    "exam": {
+        "header": "Exams",
+        "time": "Time",
+        "timeUnit": {
+            "minute": "Minutes",
+            "hours": "Hours"
+        },
+        "start": "Start",
+        "end": "End",
+        "note": "Note",
+        "newExamHeader": "New Exam",
+        "code": "Code",
+        "title": "Title",
+        "timeUnitHeader": "Time Unit",
+        "essayQuestionsTitleHeader": "Essay Qestions Title",
+        "trueOrFalseQuestionsTitleHeader": "True Or False Questions Title",
+        "mcQuestionsTitleHeader": "Multiple Choice Questions Title",
+        "updateExamTitle":"Update Exam"
+    },
+    "placeHolder": {
+        "examCode": "Enter Exam Code",
+        "examTitle": "Enter Exam Title",
+        "examNote": "Enter Exam Note",
+        "examTime": "Enter Exam Time",
+        "essayQuestionTitle": "Enter Essay Questions Title",
+        "trueOrFalseQuestionTitle": "Enter True Or False Questions Title",
+        "mcQuestionTitle": "Enter Multiple Choice Questions Title",
+        "enterQuestion": "Enter Question",
+        "answer1": "Enter Answer 1",
+        "answer2": "Enter Answer 2",
+        "answer3": "Enter Answer 3",
+        "answer4": "Enter Answer 4",
+        "point": "Enter Question Point"
+    },
+    "question": {
+        "header": "Question",
+        "pointHeader": "Question Point",
+        "answer": {
+            "Label":"Answer",
+            "correctAnswerLabel": "Correct Answer",
+            "asnwer1Label": "Answer 1",
+            "asnwer2Label": "Answer 2",
+            "asnwer3Label": "Answer 3",
+            "asnwer4Label": "Answer 4",
+            "choice1Label": "Choice 1",
+            "choice2Label": "Choice 2",
+            "choice3Label": "Choice 3",
+            "choice4Label": "Choice 4",
+            "true": "True",
+            "false": "False"
+        },
+        "totalPointsLabel":"Total Points"
+    },
+    "imageChoice": "Choose Image",
+    "image": "Image",
+    "languageDirection":"ltr"
 }
