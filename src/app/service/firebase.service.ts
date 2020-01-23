@@ -63,7 +63,7 @@ export class FirebaseService {
   logout() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
-      window.location.href='/login';
+      window.location.href='';
     })
   }
 
