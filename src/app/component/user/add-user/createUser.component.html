@@ -107,7 +107,7 @@
 
   <div class="form-group" [hidden]="type.value!='TEACHER'">
     <label for="language">Language</label>
-    <select required [(ngModel)]="user.language" name="language" #language="ngModel" id="language"
+    <select [required]="type.value=='TEACHER'" [(ngModel)]="user.language" name="language" #language="ngModel" id="language"
       class="custom-select mb-2 mr-sm-2 mb-sm-0">
       <option value="ARABIC">Arabic</option>
       <option value="ENGLISH">English</option>
