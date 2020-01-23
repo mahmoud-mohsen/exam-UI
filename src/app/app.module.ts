@@ -36,7 +36,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18/', '.json');
 }
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -92,7 +91,7 @@ const firebaseConfig = {
       }
     })
   ],
-  providers: [GlobalBackEndService, Active, CounterComponent,{provide:LocationStrategy, useClass:HashLocationStrategy}],
+  providers: [GlobalBackEndService, Active, CounterComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
