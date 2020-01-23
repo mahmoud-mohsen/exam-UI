@@ -82,7 +82,7 @@ export class ViewCoursesComponent implements OnInit {
     this.router.navigate([`course/${courseId}/exams`]);
   }
 
-  isUserTheCreator(courseId): boolean {
+  isUserTheCreator(courseId): boolean {    
     return this.userService.IsCourseCreatedByUser(courseId);
   }
 
