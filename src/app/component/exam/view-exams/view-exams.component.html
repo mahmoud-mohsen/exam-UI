@@ -15,7 +15,7 @@
 
                         <div class="float-right">
                             <a class="btn btn-sm btn-primary" role="button" *ngxPermissionsOnly="['TEACHER']"
-                                [hidden]="!isCourseOwner()" aria-pressed="true" href="course/{{courseId}}/newExam"><i
+                                [hidden]="!isCourseOwner()" aria-pressed="true" [routerLink]="['course',courseId,'newExam']"><i
                                     class="icofont-headphone-alt"></i>{{'button.newExam'|translate}}</a>
                         </div>
                     </div>

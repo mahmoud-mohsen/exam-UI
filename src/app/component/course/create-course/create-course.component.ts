@@ -22,12 +22,14 @@ export class CreateCourseComponent implements OnInit {
 
   ngOnInit() {
     this.courseRequest = new CourseCourse();
+
   }
 
   createNewCourse() {
 
     this.userService.createNewEntity(this.courseRequest, "courses", String(this.activeUser.id)).subscribe((data: any) => {
       this.course = { ...data };
+      
       window.location.href = `user/${this.activeUser.id}/courses`;
 
     });

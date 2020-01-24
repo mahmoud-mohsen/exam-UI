@@ -30,7 +30,8 @@ export class UpdateCourseComponent implements OnInit {
   updateCourse() {
     let url = `course/${this.courseIdToUpdate}`;
     this.globalBackEndService.putEntity(this.courseUpdateDetails, url, String(this.activeUser.id)).subscribe(() => {      
-      window.location.href=window.location.pathname;
+      
+      window.location.reload();
     }, (error: any) => {
       alert(error.error.message);
     })

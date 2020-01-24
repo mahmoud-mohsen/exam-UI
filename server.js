@@ -3,13 +3,12 @@ const path = require('path');
 const app = express();
 
 // Serve static files....
-app.use(express.static(__dirname + '/dist/first-angular-project'));
+app.use(express.static(__dirname + '/dist/exam'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  console.log("//////////////////////////"+__dirname + '/../index.html');
   
-  res.sendFile(path.join(__dirname + '/src/index.html'));
+  res.sendfile('./dist/index.html');
 });
 
 

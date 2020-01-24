@@ -82,24 +82,24 @@ export class ViewCoursesComponent implements OnInit {
     this.router.navigate([`course/${courseId}/exams`]);
   }
 
-  isUserTheCreator(courseId): boolean {    
-    return this.userService.IsCourseCreatedByUser(courseId);
+  isUserTheCreator(courseId): boolean {
+    return this.activeUser.type.toString() == 'TEACHER' && this.userService.IsCourseCreatedByUser(courseId);
   }
 
   isUserIsEnrolledInCourse(courseId): boolean {
-    return this.userService.IsUserIsEnrolledInCourse(courseId);
+    return this.activeUser.type.toString() == 'STUDENT' && this.userService.IsUserIsEnrolledInCourse(courseId);
   }
 
   isUserIsPendingEnrolledInCourse(courseId): boolean {
-    return this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'PENDING');
+    return this.activeUser.type.toString() == 'STUDENT' && this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'PENDING');
   }
 
   isUserIsRejectEnrolledInCourse(courseId): boolean {
-    return this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'REJECT');
+    return this.activeUser.type.toString() == 'STUDENT' && this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'REJECT');
   }
 
   isUserIsApproveEnrolledInCourse(courseId): boolean {
-    return this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'APPROVE');
+    return this.activeUser.type.toString() == 'STUDENT' && this.userService.isUserIsEnrolledInCourseWithStatus(courseId, 'APPROVE');
   }
 
   viewUpdateCourseForm(c: Course) {
@@ -119,7 +119,7 @@ export class ViewCoursesComponent implements OnInit {
   deleteCourse(courseId) {
     let url = `course/${courseId}`;
     this.globalBackEndService.deleteEntity(url, String(this.activeUser.id)).subscribe(() => {
-      window.location.href = window.location.pathname;
+      window.location.reload();
     }, (error: any) => {
       alert(error.error.message);
     });
