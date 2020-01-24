@@ -7,8 +7,9 @@ app.use(express.static(__dirname + '/dist/exam'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
+  console.log(path.join(__dirname + '/src/index.html'));
   
-  res.sendFile(__dirname+'/src/index.html');
+  res.sendFile(path.join(__dirname + '/src/index.html'));
 });
 
 
