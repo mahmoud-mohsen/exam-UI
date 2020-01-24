@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/dist/exam'));
 // Send all requests to index.html
 app.get('/*', function(req, res) {
   
-  res.sendfile('./dist/index.html');
+  res.sendFile(__dirname+'/src/index.html');
 });
 
 
