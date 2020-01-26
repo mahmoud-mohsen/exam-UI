@@ -51,7 +51,7 @@ export class UpdateExamComponent implements OnInit {
 
     let url = `exam/${this.examIdToUpdate}`;
     this.globalBackEndService.putEntity(this.examUpdateDetails, url, String(this.activeUser.id)).subscribe(() => {
-      window.location.href = window.location.pathname;
+      window.location.reload();
     }, (error: any) => {
       alert(error.error.message);
     })

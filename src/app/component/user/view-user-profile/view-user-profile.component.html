@@ -35,8 +35,7 @@
                                 {{user.phone}}
                             </p>
                         </div>
-                        <div class="col-md-6" *ngxPermissionsOnly="['TEACHER']">
-
+                        <div hidden class="col-md-6" *ngxPermissionsOnly="['TEACHER']">
                             <h6>{{'course.CoursesLabel'|translate}}</h6>
                             <div *ngFor="let course of user.createdCourses" class="course-title">
                                 <h5> <a class="badge badge-dark badge-pill"

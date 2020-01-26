@@ -127,7 +127,7 @@
 
         <div class="form-group">
           <label for="trueOrFalseQuestionTitle">{{'exam.trueOrFalseQuestionsTitleHeader'|translate}}</label>
-          <input required [(ngModel)]="createExamRequest.trueOrFalseQuestionTitle" name="trueOrFalseQuestionTitle"
+          <input [(ngModel)]="createExamRequest.trueOrFalseQuestionTitle" name="trueOrFalseQuestionTitle"
             #trueOrFalseQuestionTitle="ngModel" id="trueOrFalseQuestionTitle" type="text" class="form-control"
             class="form-control" placeholder="{{'placeHolder.trueOrFalseQuestionTitle'|translate}}">
         </div>
@@ -178,9 +178,8 @@
 
         <div class="form-group">
           <label for="mcqTitle">{{'exam.mcQuestionsTitleHeader'|translate}}</label>
-          <input required [(ngModel)]="createExamRequest.mcqTitle" name="mcqTitle" #mcqTitle="ngModel" id="mcqTitle"
-            type="text" class="form-control" class="form-control"
-            placeholder="{{'placeHolder.mcQuestionTitle'|translate}}">
+          <input [(ngModel)]="createExamRequest.mcqTitle" name="mcqTitle" #mcqTitle="ngModel" id="mcqTitle" type="text"
+            class="form-control" class="form-control" placeholder="{{'placeHolder.mcQuestionTitle'|translate}}">
         </div>
         <div class="alert alert-danger" *ngIf="mcqTitle.touched && !mcqTitle.valid">
           <div>{{'warning.mcQuestionTitleHeaderRequired'|translate}}</div>
@@ -270,7 +269,7 @@
         <div class="form-group">
           <label for="essayQuestionTitle">{{'exam.essayQuestionsTitleHeader'|translate}}</label>
 
-          <input required [(ngModel)]="createExamRequest.essayQuestionTitle" name="essayQuestionTitle"
+          <input [(ngModel)]="createExamRequest.essayQuestionTitle" name="essayQuestionTitle"
             #essayQuestionTitle="ngModel" id="essayQuestionTitle" type="text" class="form-control"
             placeholder="{{'placeHolder.essayQuestionTitle'|translate}}">
         </div>

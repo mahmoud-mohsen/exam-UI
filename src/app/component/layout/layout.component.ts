@@ -20,10 +20,13 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit() {
 
-    const permissions = [String(this.activeUser.type)];
-    this.permissionsService.loadPermissions(permissions);
+    if (this.activeUser) {
+      const permissions = [String(this.activeUser.type)];
+      this.permissionsService.loadPermissions(permissions);
+    }
+
     if (localStorage.getItem('locale')) {
-      this.language= localStorage.getItem('locale');
+      this.language = localStorage.getItem('locale');
 
     } else {
       localStorage.setItem('locale', 'en');

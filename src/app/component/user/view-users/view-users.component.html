@@ -47,7 +47,7 @@
                                         <a class="btn btn-sm btn-outline-primary"
                                             [routerLink]="['/userProfile',user.id]"><i
                                                 class="icofont-headphone-alt"></i>{{ 'button.viewprofile' | translate }}</a>
-                                        <a class="btn btn-sm btn-outline-primary" href="user/{{user.id}}/courses"><i
+                                        <a class="btn btn-sm btn-outline-primary"  [routerLink]="['/user',user.id,'courses']"><i
                                                 class="icofont-refresh"></i>
                                             {{ 'button.viewCourses' | translate }}</a>
                                     </div>
