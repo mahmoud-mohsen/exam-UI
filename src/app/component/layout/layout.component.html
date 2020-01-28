@@ -29,8 +29,10 @@
             <select (change)="changeLang()"
             [(ngModel)]="language" [(ngModel)]="language" name="lan"
             #lan="ngModel" id="lan" >
-                <option value="en" data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-              <option  value="ar" data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Arabic</option>
+                <option value="en">English</option>
+              <option  value="ar" >Arabic</option>
+              <option  value="fr" >French</option>
+
             </select>
         </li>
         </ul>

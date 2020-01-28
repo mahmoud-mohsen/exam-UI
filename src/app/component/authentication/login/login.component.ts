@@ -16,6 +16,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem('user'));
+    
+    if(localStorage.getItem('user')){      
+      this.router.navigate(['/']);
+    }
   }
   login() {
     this.firebaseService.login(this.email, this.password);
