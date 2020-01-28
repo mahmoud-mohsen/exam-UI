@@ -11,29 +11,34 @@
                 <div class="tab-pane active" id="profile">
                     <h5 class="mb-3">{{user.firstName}} {{user.lastName}}</h5>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div [class]="user.teacherTitle" class="col-md-6">
                             <div class="email-column">
                                 <h6>{{'user.email'|translate}}</h6>
                                 <p>
                                     {{user.email}}
                                 </p>
                             </div>
-                            <div class="level-column" *ngxPermissionsOnly="['STUDENT']">
+                            <div class="level-column" *ngIf="user.studentLevel">
                                 <h6>{{'user.level'|translate}}</h6>
                                 <p>
                                     {{user.studentLevel}}
                                 </p>
                             </div>
 
-                            <h6>{{'user.title'|translate}}</h6>
-                            <p>
-                                {{user.teacherTitle}}
-                            </p>
+                            <div class="level-column" *ngIf="user.teacherTitle">
+                                <h6>{{'user.title'|translate}}</h6>
+                                <p>
+                                    {{user.teacherTitle}}
+                                </p>
+                            </div>
 
-                            <h6>{{'user.mobileNumber'|translate}}</h6>
-                            <p>
-                                {{user.phone}}
-                            </p>
+                            <div class="level-column" *ngIf="user.phone">
+
+                                <h6>{{'user.mobileNumber'|translate}}</h6>
+                                <p>
+                                    {{user.phone}}
+                                </p>
+                            </div>
                         </div>
                         <div hidden class="col-md-6" *ngxPermissionsOnly="['TEACHER']">
                             <h6>{{'course.CoursesLabel'|translate}}</h6>
