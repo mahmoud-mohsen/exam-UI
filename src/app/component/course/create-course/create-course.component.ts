@@ -30,12 +30,8 @@ export class CreateCourseComponent implements OnInit {
 
     this.globalBackEndService.createNewEntity(this.courseRequest, "courses", String(this.activeUser.id)).subscribe((data: any) => {
       this.course = { ...data };
-      console.log(this.course);
 
-      console.log(this.userService.loggedInUserDetails.createdCourses);
-      
       this.userService.loggedInUserDetails.createdCourses.push(this.course);
-      console.log(this.userService.loggedInUserDetails.createdCourses);
 
       this.router.navigate(['user', `${this.activeUser.id}`, 'courses']);
       

@@ -5,6 +5,7 @@ export enum level { A1, A2, A3, A4, A5, A6, B1, B2, B3, C1, C2, C3 }
 export class User {
   id: Number;
   firstName: String;
+  middleName:String;
   lastName: String;
   studentLevel: level;
   email: String;
@@ -23,6 +24,7 @@ export class User {
   constructor() {
     this.id = null;
     this.firstName = '';
+    this.middleName='';
     this.type = null;
     this.lastName = '';
     this.studentLevel = null;

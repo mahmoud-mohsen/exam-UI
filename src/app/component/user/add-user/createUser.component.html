@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <label for="middle">Middle Name</label>
-    <input required [(ngModel)]="middleName" name="middle" #middle="ngModel" id="middle" type="text"
+    <input required [(ngModel)]="user.middleName" name="middle" #middle="ngModel" id="middle" type="text"
       class="form-control" placeholder="Enter lastName">
     <div class="alert alert-danger" *ngIf="middle.touched && !middle.valid">
       <div>Middle Name is required </div>

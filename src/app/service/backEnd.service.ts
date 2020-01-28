@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch'; // don't forget this, or you'll get a runtime 
 })
 export class GlobalBackEndService {
 
-  baseUrl: string = 'https://junko.herokuapp.com/';
+  baseUrl: string = 'http://localhost:8080/';
 
   activeUser
   httpHeaders = new HttpHeaders({

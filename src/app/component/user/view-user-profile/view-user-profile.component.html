@@ -83,7 +83,7 @@
 
                         </div>
 
-                        <div class="col-md-12" *ngxPermissionsOnly="['TEACHER']">
+                        <div class="col-md-12" *ngIf="user.sammury">
                             <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span>
                                 {{'user.summary'|translate}}</h5>
                             <p>
