@@ -37,6 +37,7 @@ export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18/', '.json');
 }
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NotFoundComponent } from './component/common/not-found/not-found.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -68,7 +69,8 @@ const firebaseConfig = {
     ViewSolverAnswersComponent,
     CounterComponent,
     UpdateCourseComponent,
-    UpdateExamComponent
+    UpdateExamComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -89,10 +89,9 @@
             <div class="media">
                 <div class="media-body">
                     <div class="flex-space">
-                        <h6 class="mb-2" style="color:#007bff;">
-                            <a class="text-black"><span class="text-black font-weight-bold">
-                                </span>{{essayQ.question}}</a>
-                        </h6>
+                        <textarea class="mb-2" style="color:#007bff;" class="form-control text-black font-weight-bold"
+                            cols="40" rows="5">{{essayQ.question}}
+                        </textarea>
                         <span class="float-right text-info"><span class="text-black font-weight-bold">
                                 {{'question.pointHeader'|translate}}:
                             </span>{{essayQ.point}}/{{essayQ.size}}<i
@@ -109,9 +108,13 @@
 
                     <hr>
 
-                    <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
-                            class="text-black font-weight-bold"> {{'question.answer.Label'|translate}}:
-                        </span>{{essayQ.answer}}</p>
+                    <div class="essay-answer">
+                        <span class="text-black font-weight-bold"> {{'question.answer.Label'|translate}}:
+                        </span>
+                        <textarea *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3 form-control" cols="40"
+                            rows="5">{{essayQ.answer}}</textarea>
+                    </div>
+
 
                     <div [hidden]="!essayQ.answerAsImage" class="col-lg-12 order-lg-1 text-center">
                         <img [src]="essayQ.answerAsImage" class="mx-auto img-fluid img-circle d-block" alt="avatar">

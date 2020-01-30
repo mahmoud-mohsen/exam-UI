@@ -132,7 +132,7 @@
     },
     "question": {
         "header": "Question",
-        "pointHeader": "Question Point",
+        "pointHeader": "Point",
         "answer": {
             "Label":"Answer",
             "correctAnswerLabel": "Correct Answer",

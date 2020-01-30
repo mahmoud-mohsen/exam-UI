@@ -278,16 +278,17 @@
           <div>{{'warning.essayQuestionTitleHeaderRequired'|translate}}</div>
         </div>
 
-        <div [hidden]="imageName" class="form-group">
+        <div >
           <label for="essayQuestion">{{'question.header'|translate}}</label>
-          <input [(ngModel)]="essayQ.question" name="essayQuestion" #essayQuestion="ngModel" id="essayQuestion"
-            type="text" class="form-control" placeholder="{{'placeHolder.enterQuestion'|translate}}">
+          <textarea [(ngModel)]="essayQ.question" name="essayQuestion" #essayQuestion="ngModel" id="essayQuestion"
+            type="textar" class="form-control" placeholder="{{'placeHolder.enterQuestion'|translate}}" cols="40"
+            rows="5"></textarea>
           <div class="alert alert-danger" *ngIf="essayQuestion.touched && !essayQuestion.valid">
             <div>{{'warning.questionPointRequired'|translate}}</div>
           </div>
         </div>
 
-        <div class="form-group">
+        <div hidden class="form-group">
           <div class="input-group">
             <div class="input-group-prepend">
               <span class="input-group-text" id="inputGroupFileAddon01">{{'image'|translate}}</span>

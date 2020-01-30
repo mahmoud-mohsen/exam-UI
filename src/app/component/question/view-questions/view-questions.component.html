@@ -151,16 +151,14 @@
         <div class="gold-members p-4">
             <div class="media">
                 <div class="media-body">
+
                     <div class="flex-space">
+                        <textarea readonly [hidden]="essayQ.question.length==0" class="form-control text-black"
+                            style="color:#007bff;" cols="40" rows="5">{{i+1}}- {{essayQ.question}}
+                        </textarea>
 
-
-                        <h6 [hidden]="essayQ.question.length==0" class="mb-2" style="color:#007bff;">
-                            <a class="text-black"><span class="text-black font-weight-bold"> {{i+1}}-
-                                </span>{{essayQ.question}}</a>
-                        </h6>
-                        <span class="float-right text-info"><span class="text-black font-weight-bold">
-                                {{'question.pointHeader'|translate}}:
-                            </span>{{essayQ.size}}<i class="icofont-check-circled text-success"></i></span>
+                        <span class="float-right text-info display-15"><span class="text-black font-weight-bold">
+                                {{'question.pointHeader'|translate}}:</span>{{essayQ.size}}</span>
 
                     </div>
                     <div [hidden]="!essayQ.questionsAsImage" class="col-lg-12 order-lg-1 text-center">
@@ -171,12 +169,12 @@
                         </label>
                     </div>
 
-                    <div *ngxPermissionsOnly="['STUDENT']" class="float-left" class="form-group">
-                        <input (blur)="addEssayAnswer($event)" [name]="'question:'+essayQ.id" id="title" type="text"
-                            class="form-control" placeholder="Enter Answer">
+                    <div *ngxPermissionsOnly="['STUDENT']" class="form-group col-xs-6">
+                        <textarea (blur)="addEssayAnswer($event)" [name]="'question:'+essayQ.id" id="title" type="text"
+                            class="form-control text-black mt-2" placeholder="Enter Answer"></textarea>
                     </div>
 
-                    <div *ngxPermissionsOnly="['STUDENT']" class="form-group">
+                    <div hidden *ngxPermissionsOnly="['STUDENT']" class="form-group">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroupFileAddon01">Image</span>

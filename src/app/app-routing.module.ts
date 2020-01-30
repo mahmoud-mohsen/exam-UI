@@ -1,3 +1,4 @@
+import { NotFoundComponent } from './component/common/not-found/not-found.component';
 import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
 import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
 import { ViewQuestionsComponent } from './component/question/view-questions/view-questions.component';
@@ -90,6 +91,10 @@ const routes: Routes = [{
   pathMatch: 'full',
   canActivate: [Active],
   data: { expectedType: ['TEACHER'] }
+},{
+  path: '**',
+  component: NotFoundComponent,
+  canActivate: [Active],
 }
 
 
