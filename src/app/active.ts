@@ -13,7 +13,6 @@ export class Active implements CanActivate {
 
     canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         this.activeUser = JSON.parse(localStorage.getItem('user'));
-        console.log(this.router.url.indexOf("signUp"));
 
         if (!this.activeUser && this.router.url.indexOf("signUp") == -1) {
             this.router.navigate(['login'])
