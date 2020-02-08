@@ -11,18 +11,21 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private firebaseService: FirebaseService,private router:Router) { 
-    
+  constructor(private firebaseService: FirebaseService, private router: Router) {
+
   }
 
   ngOnInit() {
-    console.log(localStorage.getItem('user'));
-    
-    if(localStorage.getItem('user')){      
+
+    if (localStorage.getItem('user')) {
       this.router.navigate(['/']);
     }
   }
   login() {
     this.firebaseService.login(this.email, this.password);
+  }
+
+  openSignUpPage() {
+    this.router.navigate(['signUp']);
   }
 }

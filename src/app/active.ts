@@ -13,36 +13,32 @@ export class Active implements CanActivate {
 
     canActivate(activatedRouteSnapshot: ActivatedRouteSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         this.activeUser = JSON.parse(localStorage.getItem('user'));
-        if (this.firebaseService.isLoggedIn !== true) {
-            this.router.navigate(['login'])
-        }
+        console.log(this.router.url.indexOf("signUp"));
 
-        if (this.activeUser.type) {
+        if (!this.activeUser && this.router.url.indexOf("signUp") == -1) {
+            this.router.navigate(['login'])
+
+        } else {
 
             const authorisedType = activatedRouteSnapshot.data.expectedType;
-            if(authorisedType){
+            if (authorisedType) {
                 let found = false;
-            for (let index = 0; index < authorisedType.length; index++) {
-                const type = authorisedType[index];
-                if (type == this.activeUser.type) {
-                    found = true;
+                for (let index = 0; index < authorisedType.length; index++) {
+                    const type = authorisedType[index];
+                    if (type == this.activeUser.type) {
+                        found = true;
+                    }
                 }
-            }
-            if (!found) {
-                alert('not allowed to acces this page');
-                this.router.navigate(['']);
-                return true;
-            }
-            }else{
+                if (!found) {
+                    alert('not allowed to acces this page');
+                    this.router.navigate(['']);
+                    return true;
+                }
+            } else {
                 alert('No authorized type define for this page');
                 this.router.navigate(['']);
 
             }
-
-            
-        } else {
-            alert('user has no type');
-            this.router.navigate(['']);
         }
 
         return true;

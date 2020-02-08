@@ -34,6 +34,17 @@ export class GlobalBackEndService {
     return this.http.post(this.baseUrl + url, JSON.stringify(entity), this.options);
   }
 
+  signUp(entity: any) {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+
+    this.options = { headers: this.httpHeaders };
+
+    return this.http.post(this.baseUrl + "signUp", JSON.stringify(entity), this.options);
+  }
+
   putEntity(entity: any, url: String, callerUserId: string) {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -45,7 +56,7 @@ export class GlobalBackEndService {
     return this.http.put(this.baseUrl + url, JSON.stringify(entity), this.options);
   }
 
-  
+
 
   ViewEntities(url: String, callerUserId: string, param?) {
     this.httpHeaders = new HttpHeaders({

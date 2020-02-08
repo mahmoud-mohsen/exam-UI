@@ -17,7 +17,11 @@
         "mobileNumber": "Numéro de portable",
         "studentLabel": "Étudiants",
         "summary": "Informations supplémentaires",
-        "examPoints":"Points"
+        "examPoints":"Points",
+        "fistName": "Prénom",
+        "middleName": "Deuxième nom",
+        "lastName": "Nom de famille",
+        "password": "Mot de passe"
     },
     "button": {
         "viewCourses": "Voir les cours",
@@ -38,7 +42,9 @@
         },
         "add": "Ajouter",
         "viewStudentAnswers":"Voir les réponses",
-        "addPoint":"Ajouter un point"
+        "addPoint":"Ajouter un point",
+        "loginPage":"Vous avez déjà un compte?",
+        "signUp":"s'inscrire maintenant"
     },
     "pendingRequesttext": "Votre demande est en attente, en attente de l'approbation du professeur",
     "rejectedRequesttext": "Votre demande est rejetée",
@@ -94,7 +100,15 @@
         "answer1Required": "La réponse 1 est requise",
         "answer2Required": "La réponse 2 est requise",
         "answer3Required": "La réponse 3 est requise",
-        "answer4Required": "La réponse 4 est requise"
+        "answer4Required": "La réponse 4 est requise",
+        "phoneReqiured": "Le téléphone est requis",
+        "ageRequired": "L'âge est requis",
+        "passwordRequired": "Mot de passe requis",
+        "emailRequired": "L'email est requis",
+        "firstNameRequired": "Le prénom est requis",
+        "middleNameRequired": "Le deuxième prénom est requis",
+        "lastNameRequired": "Le nom de famille est requis"
+
     },
     "exam": {
         "header": "Examens",
@@ -128,7 +142,14 @@
         "answer2": "Entrez la réponse 2",
         "answer3": "Entrez la réponse 3",
         "answer4": "Entrez la réponse 4",
-        "point": "Entrez le point de question"
+        "point": "Entrez le point de question",
+        "firstName":"Entrez votre prénom",
+        "middleName":"Entrez votre deuxième prénom",
+        "lastName":"Entrez votre nom de famille",
+        "email":"Entrer votre Email",
+        "password":"Tapez votre mot de passe",
+        "age":"Entrez votre âge",
+        "phone":"Entrez votre numéro de téléphone"
     },
     "question": {
         "header": "Question",
@@ -151,5 +172,7 @@
     },
     "imageChoice": "Choisissez l'image",
     "image": "Image",
-    "languageDirection":"ltr"
+    "languageDirection":"ltr",
+    "signUpLabel":"s'inscrire"
+
 }

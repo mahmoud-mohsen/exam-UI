@@ -22,10 +22,6 @@ const routes: Routes = [{
   component: HomeComponent,
   canActivate: [Active],
   data: { expectedType: ['ADMIN', 'TEACHER', 'STUDENT'] }
-}
-  , {
-  path: 'signUp',
-  component: RegisterStudent
 }, {
   path: 'newUser',
   component: CreateUser,
@@ -86,12 +82,15 @@ const routes: Routes = [{
   path: 'login',
   component: LoginComponent,
 }, {
+  path: 'signUp',
+  component: RegisterStudent,
+}, {
   path: 'course/:id/newExam',
   component: NewExamComponent,
   pathMatch: 'full',
   canActivate: [Active],
   data: { expectedType: ['TEACHER'] }
-},{
+}, {
   path: '**',
   component: NotFoundComponent,
   canActivate: [Active],

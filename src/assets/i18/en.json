@@ -1,5 +1,5 @@
 {
-    "menueHeader":"Together To Build Our Future",
+    "menueHeader": "Together To Build Our Future",
     "layout": {
         "home": "Home",
         "users": "Users",
@@ -8,7 +8,7 @@
         "logout": "Logout"
     },
     "user": {
-        "name":"Name",
+        "name": "Name",
         "title": "Title",
         "age": "Age",
         "level": "Level",
@@ -17,7 +17,11 @@
         "mobileNumber": "Mobile Number",
         "studentLabel": "Students",
         "summary": "Additional Informations",
-        "examPoints":"Points"
+        "examPoints": "Points",
+        "fistName": "First Name",
+        "middleName": "Middle Name",
+        "lastName": "Last Name",
+        "password": "Password"
     },
     "button": {
         "viewCourses": "View Courses",
@@ -37,8 +41,11 @@
             "essayQuestionHeader": "Essay"
         },
         "add": "Add",
-        "viewStudentAnswers":"View Answers",
-        "addPoint":"Add Point"
+        "viewStudentAnswers": "View Answers",
+        "addPoint": "Add Point",
+        "loginPage":"Already have an account?",
+        "signUp":"sign Up Now"
+
     },
     "pendingRequesttext": "Your Request Is Pending,Waiting Teacher Approval",
     "rejectedRequesttext": "Your Request Is Rejected",
@@ -64,7 +71,7 @@
             "c2": "Second Secondary",
             "c3": "Third Secondary"
         },
-        "updateCourseTitle":"Update Course"
+        "updateCourseTitle": "Update Course"
     },
     "request": {
         "pending": "Pending",
@@ -94,7 +101,14 @@
         "answer1Required": "Answer 1 Is Required",
         "answer2Required": "Answer 2 Is Required",
         "answer3Required": "Answer 3 Is Required",
-        "answer4Required": "Answer 4 Is Required"
+        "answer4Required": "Answer 4 Is Required",
+        "phoneReqiured": "Mobile Number Is Required",
+        "ageRequired": "Age Is Required",
+        "passwordRequired": "Password Is Required",
+        "emailRequired": "Email Is Required",
+        "firstNameRequired": "First Name Is Required",
+        "middleNameRequired": "Middle Name Is Required",
+        "lastNameRequired": "Last Name Is Required"
     },
     "exam": {
         "header": "Exams",
@@ -113,7 +127,7 @@
         "essayQuestionsTitleHeader": "Essay Questions Title",
         "trueOrFalseQuestionsTitleHeader": "True Or False Questions Title",
         "mcQuestionsTitleHeader": "Multiple Choice Questions Title",
-        "updateExamTitle":"Update Exam"
+        "updateExamTitle": "Update Exam"
     },
     "placeHolder": {
         "examCode": "Enter Exam Code",
@@ -128,13 +142,20 @@
         "answer2": "Enter Answer 2",
         "answer3": "Enter Answer 3",
         "answer4": "Enter Answer 4",
-        "point": "Enter Question Point"
+        "point": "Enter Question Point",
+        "firstName": "Enter Your First Name",
+        "middleName": "Enter Your Middle Name",
+        "lastName": "Enter Your Last Name",
+        "email": "Enter Your Email",
+        "password": "Enter Your Password",
+        "age": "Enter Your Age",
+        "phone": "Enter Your Mobile Number"
     },
     "question": {
         "header": "Question",
         "pointHeader": "Point",
         "answer": {
-            "Label":"Answer",
+            "Label": "Answer",
             "correctAnswerLabel": "Correct Answer",
             "asnwer1Label": "Answer 1",
             "asnwer2Label": "Answer 2",
@@ -147,9 +168,10 @@
             "true": "True",
             "false": "False"
         },
-        "totalPointsLabel":"Total Points"
+        "totalPointsLabel": "Total Points"
     },
     "imageChoice": "Choose Image",
     "image": "Image",
-    "languageDirection":"ltr"
+    "languageDirection": "ltr",
+    "signUpLabel": "Sign up",
 }
