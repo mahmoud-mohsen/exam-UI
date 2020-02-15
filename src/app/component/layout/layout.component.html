@@ -1,6 +1,6 @@
 <div class="wrapper" >
     <!-- Sidebar Holder -->
-    <nav  *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" [ngClass]="status ? 'active' : 'notActive'">
+    <nav  *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" class="align-start" [ngClass]="status ? 'active' : 'notActive'">
         <div class="sidebar-header">
             <h5><a  [routerLink]="['/userProfile',activeUser.id]">{{activeUser.displayName}}</a></h5>
         </div>

@@ -29,7 +29,7 @@ export class LayoutComponent implements OnInit {
       this.language = localStorage.getItem('locale');
 
     } else {
-      localStorage.setItem('locale', 'en');
+      localStorage.setItem('locale', 'ar');
     }
 
   }

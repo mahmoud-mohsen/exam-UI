@@ -44,7 +44,10 @@
         "viewStudentAnswers":"Voir les réponses",
         "addPoint":"Ajouter un point",
         "loginPage":"Vous avez déjà un compte?",
-        "signUp":"s'inscrire maintenant"
+        "signUp":"s'inscrire maintenant",
+        "login":"S'identifier",
+        "signUpInLoginPage":"Inscrivez-vous ici"
+
     },
     "pendingRequesttext": "Votre demande est en attente, en attente de l'approbation du professeur",
     "rejectedRequesttext": "Votre demande est rejetée",
@@ -149,7 +152,10 @@
         "email":"Entrer votre Email",
         "password":"Tapez votre mot de passe",
         "age":"Entrez votre âge",
-        "phone":"Entrez votre numéro de téléphone"
+        "phone":"Entrez votre numéro de téléphone",
+        "loginEmail":"Entrez votre e-mail",
+        "loginPassword":"Entrer le mot de passe"
+        
     },
     "question": {
         "header": "Question",
@@ -173,6 +179,14 @@
     "imageChoice": "Choisissez l'image",
     "image": "Image",
     "languageDirection":"ltr",
-    "signUpLabel":"s'inscrire"
+    "signUpLabel":"s'inscrire",
+    "login":{
+        "label":"S'identifier",
+        "emailAddress":"Adresse électronique",
+        "password":"Mot de passe",
+        "paragraph":{
+            "doNotHaveAccount":"Vous n'avez pas de compte?"
+        }
+    }
 
 }

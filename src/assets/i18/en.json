@@ -44,7 +44,9 @@
         "viewStudentAnswers": "View Answers",
         "addPoint": "Add Point",
         "loginPage":"Already have an account?",
-        "signUp":"sign Up Now"
+        "signUp":"sign Up Now",
+        "login":"Login",
+        "signUpInLoginPage":"Sign up here"
 
     },
     "pendingRequesttext": "Your Request Is Pending,Waiting Teacher Approval",
@@ -149,7 +151,9 @@
         "email": "Enter Your Email",
         "password": "Enter Your Password",
         "age": "Enter Your Age",
-        "phone": "Enter Your Mobile Number"
+        "phone": "Enter Your Mobile Number",
+        "loginEmail":"Enter Email",
+        "loginPassword":"Enter Password"
     },
     "question": {
         "header": "Question",
@@ -173,5 +177,13 @@
     "imageChoice": "Choose Image",
     "image": "Image",
     "languageDirection": "ltr",
-    "signUpLabel": "Sign up"
+    "signUpLabel": "Sign up",
+    "login":{
+        "label":"Login",
+        "emailAddress":"Email address",
+        "password":"Password",
+        "paragraph":{
+            "doNotHaveAccount":"Don't have account?"
+        }
+    }
 }

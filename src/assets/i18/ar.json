@@ -44,7 +44,10 @@
         "viewStudentAnswers":"عرض الاجابات",
         "addPoint":"اضف الدرجة",
         "loginPage":"لديك حساب؟",
-        "signUp":"حفظ البيانات"
+        "signUp":"حفظ البيانات",
+        "login":"دخول",
+        "signUpInLoginPage":"انشأ حساب جديد من هنا "
+
     },
     "pendingRequesttext": "تم ارسال طلب انضمامك. فى انتظار تاكيد القبول من المدرس ",
     "rejectedRequesttext": "تم رفض طلب انضمامك",
@@ -148,7 +151,9 @@
         "email":"ادخل البريد الاكترونى ",
         "password":"ادخل الرقم السري ",
         "age":"ادخل عمرك",
-        "phone":"ادخل رقم الهاتف المحمول"
+        "phone":"ادخل رقم الهاتف المحمول",
+        "loginEmail":"ادخل البريد الالكترونى",
+        "loginPassword":"ادخل الرقم السري"
     },
     "question": {
         "header": "السؤال",
@@ -172,6 +177,14 @@
     "imageChoice": "تحميل الصورة",
     "image": "الصورة",
     "languageDirection":"rtl",
-    "signUpLabel":"حساب جديد"
+    "signUpLabel":"حساب جديد",
+    "login":{
+        "label":"تسجيل الدخول",
+        "emailAddress":"البريد الالكترونى",
+        "password":"كلمة السر",
+        "paragraph":{
+            "doNotHaveAccount":"لا يوجد لديك حساب؟"
+        }
+    }
 
 }
