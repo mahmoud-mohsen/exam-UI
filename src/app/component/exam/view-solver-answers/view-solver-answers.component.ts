@@ -17,6 +17,7 @@ export class ViewSolverAnswersComponent implements OnInit {
   mcQuestionsAnswers: [];
   trueOrFalseQuestionsAnswers: [];
   essayQuestionsAnswers: [];
+  paragraphQuestionAnswers:[] ;
   totalPoints;
 
   constructor(private router: Router, private globalBackEndService: GlobalBackEndService, private activatedRoute: ActivatedRoute) {
@@ -34,11 +35,12 @@ export class ViewSolverAnswersComponent implements OnInit {
   }
 
   getSolverAnswers() {
-    let url = `exam/${this.examId}/solve/user/${this.solverId}`
+    let url = `exam/${this.examId}/solver/${this.solverId}`
     this.globalBackEndService.ViewEntities(url, String(this.activeUser.id)).subscribe((response: any) => {
       this.essayQuestionsAnswers = response.essayWithAnswerResponses;
       this.mcQuestionsAnswers = response.mcqWithAnswerResponses;
       this.trueOrFalseQuestionsAnswers = response.trueOrFalseWithAnswerResponses;
+      this.paragraphQuestionAnswers=response.paragraphWithAnswerResponses;
       this.totalPoints = response.score
 
 

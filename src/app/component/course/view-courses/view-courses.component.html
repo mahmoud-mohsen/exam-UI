@@ -1,6 +1,6 @@
 <ng-template [ngIf]="updateCourseView" [ngIfElse]="coursesView">
     <update-course [courseUpdateDetails]="courseUpdateDetails" [courseIdToUpdate]="courseIdToUpdate"
-        (close)="CloseUpdaetForm()"></update-course>
+        (close)="CloseUpdateForm()"></update-course>
 
 </ng-template>
 
@@ -12,7 +12,7 @@
             <div>
                 <h4 class="font-weight-bold mt-0 mb-4">{{'layout.course'|translate}}</h4>
             </div>
-            
+
             <div>
                 <a class="btn btn-sm btn-primary" role="button" [hidden]="activeUser.id!=userId"
                     *ngxPermissionsOnly="['TEACHER']" aria-pressed="true" [routerLink]="['/newCourse']"><i
@@ -37,9 +37,6 @@
                             [hidden]="!(isUserIsEnrolledInCourse(course.id)&&isUserIsPendingEnrolledInCourse(course.id))"
                             class="float-right bg-warning text-white">{{'pendingRequesttext'|translate}}</span>
 
-                        <button type="button" [hidden]="!viewViewButton(course.id)" (click)="viewCourseExams(course.id)"
-                            class="btn btn-outline-primary btn-lg btn-block">{{'button.view'|translate}}</button>
-
                         <div *ngxPermissionsOnly="['STUDENT']" [hidden]="isUserIsEnrolledInCourse(course.id)"
                             class="input-group mb-3">
                             <input type="text" class="form-control" (input)="courseCode=$event.target.value"
@@ -52,16 +49,36 @@
                             </div>
                         </div>
 
+                        <div [hidden]="!(isUserTheCreator(course.id)||isUserIsApproveEnrolledInCourse(course.id))"
+                            class="align-end">
+                            <button mat-icon-button [matMenuTriggerFor]="menu"
+                                aria-label="Example icon-button with a menu">
+                                <mat-icon>list</mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu" xPosition="before">
+                                <button
+                                    class="text-center btn btn-sm btn-outline-primary"
+                                    [hidden]="!viewViewButton(course.id)" (click)="viewCourseExams(course.id)"
+                                    mat-menu-item>
+                                    {{'button.view'|translate}}
+                                </button>
 
-                        <button *ngxPermissionsOnly="['TEACHER']" type="button"
-                            [hidden]="!(isUserTheCreator(course.id))" (click)="viewUpdateCourseForm(course)"
-                            class="btn btn-outline-primary btn-lg btn-block">{{'button.update'|translate}}</button>
+                                <button *ngxPermissionsOnly="['TEACHER']"
+                                    class="text-center btn btn-sm btn-outline-primary"
+                                    [hidden]="!(isUserTheCreator(course.id))" (click)="viewUpdateCourseForm(course)"
+                                    mat-menu-item>
+                                    {{'button.update'|translate}}
+                                </button>
 
-                        <button *ngxPermissionsOnly="['TEACHER']" type="button"
-                            [hidden]="!(isUserTheCreator(course.id))" (click)="deleteCourse(course.id)"
-                            class="btn btn-outline-primary btn-lg btn-block">{{'button.delete'|translate}}</button>
+                                <button *ngxPermissionsOnly="['TEACHER']"
+                                    class="text-center btn btn-sm btn-outline-primary"
+                                    [hidden]="!(isUserTheCreator(course.id))" (click)="deleteCourse(course.id)"
+                                    mat-menu-item>
+                                    {{'button.delete'|translate}}
+                                </button>
 
-
+                            </mat-menu>
+                        </div>
                     </div>
                 </div>
             </div>

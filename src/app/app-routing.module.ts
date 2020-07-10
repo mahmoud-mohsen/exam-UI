@@ -1,3 +1,5 @@
+import { ViewExamHistoryComponent } from './component/exam/view-exam-history/view-exam-history.component';
+import { ViewExamSolversComponent } from './component/exam/view-exam-solvers/view-exam-solvers.component';
 import { NotFoundComponent } from './component/common/not-found/not-found.component';
 import { ViewSolverAnswersComponent } from './component/exam/view-solver-answers/view-solver-answers.component';
 import { ViewEnrollRequestsComponent } from './component/course/view-enroll-requests/view-enroll-requests.component';
@@ -90,6 +92,18 @@ const routes: Routes = [{
   pathMatch: 'full',
   canActivate: [Active],
   data: { expectedType: ['TEACHER'] }
+}, {
+  path: 'exam/:examId/solver',
+  component: ViewExamSolversComponent,
+  pathMatch: 'full',
+  canActivate: [Active],
+  data: { expectedType: ['TEACHER'] }
+}, {
+  path: 'exam/history',
+  component: ViewExamHistoryComponent,
+  canActivate: [Active],
+  data: { expectedType: ['STUDENT'] }
+
 }, {
   path: '**',
   component: NotFoundComponent,

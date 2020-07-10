@@ -31,6 +31,7 @@
                                                 <a class="text-black">{{exam.title}}</a>
                                             </h6>
                                         </div>
+
                                         <div>
                                             <span class="float-right text-info"><span
                                                     class="text-black font-weight-bold">
@@ -55,6 +56,7 @@
                                                 {{exam.note}}
                                             </p>
                                         </div>
+
                                         <div>
                                             <div *ngxPermissionsOnly="['STUDENT']" class="input-group mb-3">
                                                 <input type="text" class="form-control"
@@ -69,16 +71,44 @@
                                                 </div>
                                             </div>
 
-                                            <a *ngxPermissionsOnly="['TEACHER']" (click)="viewQuestionExamPage(exam.id)"
-                                                class="btn btn-sm btn-outline-primary"><i
-                                                    class="icofont-headphone-alt"></i>
-                                                {{'button.view'|translate}}</a>
-                                            <a *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
-                                                (click)="updateExamView(exam)"><i class="icofont-refresh"></i>
-                                                {{'button.update'|translate}}</a>
-                                            <a *ngxPermissionsOnly="['TEACHER']" class="btn btn-sm btn-outline-primary"
-                                                (click)="deleteExam(exam.id)"><i class="icofont-refresh"></i>
-                                                {{'button.delete'|translate}}</a>
+
+                                            <div *ngxPermissionsOnly="['TEACHER']" class="exam-options">
+                                                <button mat-icon-button [matMenuTriggerFor]="menu"
+                                                    aria-label="Example icon-button with a menu">
+                                                    <mat-icon>list</mat-icon>
+                                                </button>
+                                                <mat-menu #menu="matMenu" xPosition="before">
+
+                                                    <button class="text-center btn btn-sm btn-outline-primary"
+                                                        (click)="viewQuestionExamPage(exam.id)" mat-menu-item>
+                                                        {{'button.view'|translate}}
+                                                    </button>
+                                                    <button class="text-center btn btn-sm btn-outline-primary"
+                                                        [routerLink]="['/exam',exam.id,'solver']" mat-menu-item>
+                                                        {{'button.solver'|translate}}
+                                                    </button>
+                                                    <button class="text-center btn btn-sm btn-outline-primary"
+                                                        (click)="updateExamView(exam)" mat-menu-item>
+                                                        {{'button.update'|translate}}
+                                                    </button>
+                                                    <button class="text-center btn btn-sm btn-outline-primary"
+                                                        (click)="deleteExam(exam.id)" mat-menu-item>
+                                                        {{'button.delete'|translate}}
+                                                    </button>
+
+                                                    <div *ngIf="exam.published">
+                                                    <button disabled
+                                                        class="btn btn-success" mat-menu-item
+                                                        type="button"> {{'button.publish'|translate}}</button>
+                                                    </div>
+                                                    <div *ngIf="!exam.published">
+                                                    <button (click)="publishExam(exam.id)"
+                                                        class="text-center btn btn-sm btn-outline-primary" mat-menu-item
+                                                        type="button"> {{'button.publish'|translate}}</button>
+                                                    </div>
+
+                                                </mat-menu>
+                                            </div>
                                         </div>
 
                                     </div>

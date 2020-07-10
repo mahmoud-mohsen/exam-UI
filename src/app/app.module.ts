@@ -33,11 +33,17 @@ import { UpdateExamComponent } from './component/exam/update-exam/update-exam.co
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+
 export const createTranslateLoader = (http: HttpClient) => {
   return new TranslateHttpLoader(http, './assets/i18/', '.json');
 }
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { NotFoundComponent } from './component/common/not-found/not-found.component';
+import { ViewExamHistoryComponent } from './component/exam/view-exam-history/view-exam-history.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBfRqp0pr7VuoS9u2f7McRrhTY99-fwHjw",
@@ -70,7 +76,8 @@ const firebaseConfig = {
     CounterComponent,
     UpdateCourseComponent,
     UpdateExamComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ViewExamHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +92,10 @@ const firebaseConfig = {
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    MatExpansionModule,
+    MatFormFieldModule,
     MatProgressSpinnerModule,
+    BrowserAnimationsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -94,7 +104,7 @@ const firebaseConfig = {
       }
     })
   ],
-  providers: [GlobalBackEndService, Active, CounterComponent,{provide:LocationStrategy, useClass:HashLocationStrategy}],
+  providers: [GlobalBackEndService, Active, CounterComponent, { provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

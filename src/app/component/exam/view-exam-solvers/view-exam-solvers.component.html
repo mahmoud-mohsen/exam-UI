@@ -1,21 +1,21 @@
-<div [hidden]="hideSolverTable" class="table-wrapper-scroll-y my-custom-scrollbar align-start">
+<div class="table-wrapper-scroll-y my-custom-scrollbar align-start">
     <table class="table table-bordered table-striped mb-0">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">{{'user.name'|translate}}</th>
-                <th scope="col">{{'exam.start'|translate}}</th>
-                <th scope="col">{{'exam.end'|translate}}</th>
-                <th scope="col">{{'user.examPoints'|translate}}</th>
-                <th scope="col"></th>
+                <th class="text-center" scope="col">{{'user.name'|translate}}</th>
+                <th class="text-center" scope="col">{{'exam.start'|translate}}</th>
+                <th class="text-center" scope="col">{{'exam.end'|translate}}</th>
+                <th class="text-center" scope="col">{{'user.examPoints'|translate}}</th>
+                <th class="text-center" scope="col"></th>
 
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let solver of examSolvers">
-                <td>{{solver.userName}}</td>
-                <td>{{solver.start| date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                <td>{{solver.end| date:'dd/MM/yyyy hh:mm:ss'}}</td>
-                <td>{{solver.score}}</td>
+                <td class="text-center">{{solver.userName}}</td>
+                <td class="text-center">{{solver.start| date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                <td class="text-center">{{solver.end| date:'dd/MM/yyyy hh:mm:ss'}}</td>
+                <td class="text-center">{{solver.score}}</td>
                 <td style="text-align: center">
                     <button *ngxPermissionsOnly="['TEACHER']" class="btn btn-primary btn-sm" role="button"
                         aria-pressed="true" (click)="viewUserAnswer(solver.userId)"><i

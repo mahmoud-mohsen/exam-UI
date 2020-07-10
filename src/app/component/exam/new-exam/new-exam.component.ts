@@ -1,3 +1,4 @@
+import { ParagraphQuestion } from './../../../model/paragraphQuestion.model';
 import { ActiveUser } from './../../../model/ActiveUser.model';
 import { GlobalBackEndService } from './../../../service/backEnd.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +18,9 @@ export class NewExamComponent implements OnInit {
   trueOrFalseForm: boolean = true;
   mCQForm: boolean = false;
   essayForm: boolean = false;
+  paragraphForm: boolean = false;
   trueOrFalseQ: TrueOrFalseQuestion;
+  paragraphQ: ParagraphQuestion;
   essayQ: EssayQuestion;
   mCQ: MCQuestion;
   totalPoints: Number;
@@ -34,8 +37,10 @@ export class NewExamComponent implements OnInit {
     this.trueOrFalseForm = true;
     this.mCQForm = false;
     this.essayForm = false;
+    this.paragraphForm = false;
     this.createExamRequest = new CreateExamRequest();
     this.essayQ = new EssayQuestion();
+    this.paragraphQ = new ParagraphQuestion();
     this.trueOrFalseQ = new TrueOrFalseQuestion();
     this.mCQ = new MCQuestion();
     this.totalPoints = 0;
@@ -56,18 +61,28 @@ export class NewExamComponent implements OnInit {
     this.trueOrFalseForm = true;
     this.mCQForm = false;
     this.essayForm = false;
+    this.paragraphForm = false;
   }
 
   viewEssayForm() {
     this.trueOrFalseForm = false;
     this.mCQForm = false;
     this.essayForm = true;
+    this.paragraphForm = false;
   }
 
   viewMCQForm() {
     this.trueOrFalseForm = false;
     this.mCQForm = true;
     this.essayForm = false;
+    this.paragraphForm = false;
+  }
+
+  viewParagrappForm() {
+    this.trueOrFalseForm = false;
+    this.mCQForm = false;
+    this.essayForm = false;
+    this.paragraphForm = true;
   }
 
   addTrueOrFalseQuestion() {
@@ -89,9 +104,33 @@ export class NewExamComponent implements OnInit {
     this.imageName = null;
   }
 
+  addParagraphQuestion() {
+    let paragraphSize = 0;
+    for (let index = 0; index < this.paragraphQ.trueOrFalseQuestion.length; index++) {
+      paragraphSize += Number(this.paragraphQ.trueOrFalseQuestion[index].size);
+    }
+
+    for (let index = 0; index < this.paragraphQ.mcQuestion.length; index++) {
+      paragraphSize += Number(this.paragraphQ.mcQuestion[index].size);
+    }
+
+    for (let index = 0; index < this.paragraphQ.essayQuestion.length; index++) {
+      paragraphSize += Number(this.paragraphQ.essayQuestion[index].size);
+    }
+
+    this.paragraphQ.size = paragraphSize;
+
+    this.createExamRequest.paragraphQuestions.push(this.paragraphQ);
+
+
+    this.totalPoints = Number(this.totalPoints) + Number(this.paragraphQ.size);
+    this.paragraphQ = new ParagraphQuestion();
+
+  }
+
   createNewExam() {
 
-    let url = `course/${this.courseId}/exams`;
+    let url = `exams/course/${this.courseId}`;
     this.createExamRequest.totalPoints = this.totalPoints;
     if (this.examStartDate > this.examEndDate) {
       alert('Start Date must not be greater than long date');
@@ -100,8 +139,7 @@ export class NewExamComponent implements OnInit {
     this.createExamRequest.startDate = new Date(this.examStartDate).valueOf();
     this.createExamRequest.endDate = new Date(this.examEndDate).valueOf();
     this.createExamRequest.examTime = Number(this.examTime) * Number(this.timeUnit);
-    console.log(this.createExamRequest);
-    
+
     this.globalBackEndService.createNewEntity(this.createExamRequest, url, String(this.activeUser.id)).subscribe((response: any) => {
       this.router.navigate([`course/${this.courseId}/exams`]);
     });

@@ -115,6 +115,11 @@
             'active':essayForm
           }" (click)="viewEssayForm()">{{'button.questions.essayQuestionHeader'|translate}}</button>
       </li>
+      <li class="nav-item">
+        <button class="nav-link btn-primary" [ngClass]="{
+            'active':essayForm
+          }" (click)="viewParagrappForm()">{{'button.questions.paragraphQuestionHeader'|translate}}</button>
+      </li>
     </ul>
 
     <!-- Tab panes -->
@@ -166,11 +171,12 @@
           </div>
         </div>
         <div class="float-right" style="margin-bottom: 10px;">
-          <button class="btn btn-sm btn-secondary" role="button" aria-pressed="true"
-            [disabled]="trueOrFalseQ.question.length==0" (click)="addTrueOrFalseQuestion()"><i
+          <button [disabled]="!trueOrFalseSize.valid||!trueOrFalseQ.question" class="btn btn-sm btn-secondary"
+            role="button" aria-pressed="true" (click)="addTrueOrFalseQuestion()"><i
               class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
+
       <div id="mCQ" [ngClass]="{
                       'container tab-pane fade active':mCQForm,
                       'container tab-pane fade':!mCQForm
@@ -257,10 +263,12 @@
           </div>
         </div>
         <div class="float-right" style="margin-bottom: 10px;">
-          <button [disabled]="mCQ.question.length==0" class="btn btn-sm btn-secondary" role="button" aria-pressed="true"
-            (click)="addMCQQuestion()"><i class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
+          <button [disabled]="!mcqSize.valid||!mCQ.question" class="btn btn-sm btn-secondary" role="button"
+            aria-pressed="true" (click)="addMCQQuestion()"><i
+              class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
+
       <div id="essay" [ngClass]="{
           'container tab-pane fade active':essayForm,
           'container tab-pane fade':!essayForm
@@ -278,7 +286,7 @@
           <div>{{'warning.essayQuestionTitleHeaderRequired'|translate}}</div>
         </div>
 
-        <div >
+        <div>
           <label for="essayQuestion">{{'question.header'|translate}}</label>
           <textarea [(ngModel)]="essayQ.question" name="essayQuestion" #essayQuestion="ngModel" id="essayQuestion"
             type="textar" class="form-control" placeholder="{{'placeHolder.enterQuestion'|translate}}" cols="40"
@@ -317,18 +325,90 @@
         </div>
 
         <div class="float-right" style="margin-bottom: 10px;">
-          <button [disabled]="!imageName&&essayQ.question.length==0" class="btn btn-secondary btn-sm" role="button"
+          <button [disabled]="!essayQuestionSize.valid||!essayQ.question" class="btn btn-secondary btn-sm" role="button"
             aria-pressed="true" (click)="addEssayQuestion()"><i
               class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
         </div>
       </div>
+
+      <div id="paragraph" [ngClass]="{
+        'container tab-pane fade active':paragraphForm,
+        'container tab-pane fade':!paragraphForm
+                  }"><br>
+        <form class="paragraphQuestions">
+          <div class="form-group">
+            <label for="paragraphQuestionTitle">{{'exam.paragraphQuestionsTitleHeader'|translate}}</label>
+
+            <input [(ngModel)]="createExamRequest.paragraphQuestionTitle" name="paragraphQuestionTitle"
+              #paragraphQuestionTitle="ngModel" id="paragraphQuestionTitle" type="text" class="form-control"
+              placeholder="{{'placeHolder.paragraphQuestionTitle'|translate}}">
+          </div>
+
+          <div class="alert alert-danger" *ngIf="paragraphQuestionTitle.touched && !paragraphQuestionTitle.valid">
+            <div>{{'warning.paragraphQuestionTitleHeaderRequired'|translate}}</div>
+          </div>
+
+          <div>
+            <label for="paragraphQuestion">{{'question.paragraph'|translate}}</label>
+            <textarea [(ngModel)]="paragraphQ.paragraph" name="paragraphQuestion" #paragraphQuestion="ngModel"
+              id="paragraphQuestion" type="textar" class="form-control"
+              placeholder="{{'placeHolder.enterparagraph'|translate}}" cols="40" rows="5"></textarea>
+            <div class="alert alert-danger" *ngIf="paragraphQuestion.touched && !paragraphQuestion.valid">
+              <div>{{'warning.questionPointRequired'|translate}}</div>
+            </div>
+          </div>
+
+          <div class="mb-2 mt-2">
+            <label for="TOrFParagraphQuestions">{{'question.trueOrFalseHeader'|translate}}</label>
+            <select multiple [(ngModel)]="paragraphQ.trueOrFalseQuestion" name="TOrFParagraphQuestions"
+              #TOrFParagraphQuestions="ngModel" id="TOrFParagraphQuestions" class="custom-select mt-2" size="3">
+              <option *ngFor="let trueOrFaleQuestion of createExamRequest.trueOrFalseQuestion"
+                [value]="trueOrFaleQuestion">{{trueOrFaleQuestion.question}}</option>
+            </select>
+          </div>
+
+          <div class="mb-2 mt-2">
+            <label for="TOrFParMcqParagraphQuestionsagraphQuestions">{{'question.mcQuestionHeader'|translate}}</label>
+            <select multiple [(ngModel)]="paragraphQ.mcQuestion" name="McqParagraphQuestions"
+              #McqParagraphQuestions="ngModel" id="McqParagraphQuestions" class="custom-select mt-2" size="3">
+              <option *ngFor="let mcQuestion of createExamRequest.mcQuestion" [value]="mcQuestion">
+                {{mcQuestion.question}}
+              </option>
+            </select>
+          </div>
+
+          <div class="mb-2 mt-2">
+            <label for="eParagraphQuestions">{{'question.essayQuestionHeader'|translate}}</label>
+            <select multiple [(ngModel)]="paragraphQ.essayQuestion" name="eParagraphQuestions"
+              #eParagraphQuestions="ngModel" id="eParagraphQuestions" class="custom-select mt-2" size="3">
+              <option *ngFor="let essayQuestion of createExamRequest.essayQuestion" [value]="essayQuestion">
+                {{essayQuestion.question}}</option>
+            </select>
+          </div>
+
+          <div class="float-right" style="margin-bottom: 10px;">
+            <button [disabled]="!paragraphQ.paragraph" class="btn btn-secondary btn-sm" role="button"
+              aria-pressed="true" (click)="addParagraphQuestion()"><i
+                class="icofont-headphone-alt"></i>{{'button.add'|translate}}</button>
+          </div>
+        </form>
+      </div>
+
     </div>
   </div>
+
+
+  <view-questions [(mcQuestions)]="createExamRequest.mcQuestion"
+    [(trueOrFalseQuestions)]="createExamRequest.trueOrFalseQuestion"
+    [(essayQuestions)]="createExamRequest.essayQuestion" [(totalPoints)]="totalPoints"
+    [(paragraphQuestions)]="createExamRequest.paragraphQuestions"
+    [(paragraphQuestionsTitle)]="createExamRequest.paragraphQuestionTitle"
+    [(essayQuestionsTitle)]="createExamRequest.essayQuestionTitle"
+    [(trueOrFalseQuestionsTitle)]="createExamRequest.trueOrFalseQuestionTitle"
+    [(mcqQuestionsTitle)]="createExamRequest.mcqTitle"
+    [httpRequestExam]="false">
+  </view-questions>
+
   <button (click)="createNewExam()" class="btn btn-primary btn-lg btn-block"
     [disabled]="!createExamForm.valid">{{'button.save'|translate}}</button>
 </form>
-
-<view-questions [(mcQuestions)]="createExamRequest.mcQuestion"
-  [(trueOrFalseQuestions)]="createExamRequest.trueOrFalseQuestion" [(essayQuestions)]="createExamRequest.essayQuestion"
-  [(totalPoints)]="totalPoints" [isSavedQuestions]="false">
-</view-questions>

@@ -23,6 +23,7 @@ export class ViewExamsComponent implements OnInit {
   viewUpdateExamForm: boolean;
   examCode;
 
+
   constructor(private router: Router, private userService: UserService, private globalBackEndService: GlobalBackEndService, private activeRouter: ActivatedRoute, private permissionsService: NgxPermissionsService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
     this.exams = new Array();
@@ -41,6 +42,17 @@ export class ViewExamsComponent implements OnInit {
       this.viewCourseExam();
 
     });
+  }
+
+  publishExam(examId) {
+    let url = `exam/${examId}/publish`;
+    this.globalBackEndService.putEntity(null, url, String(this.activeUser.id)).subscribe(() => {
+      window.location.reload();
+    }, (error: any) => {
+      alert(error.error.message);
+
+    });
+
   }
 
   viewCourseExam() {
@@ -73,14 +85,12 @@ export class ViewExamsComponent implements OnInit {
   }
 
   viewQuestionExamPage(examId) {
-    console.log(this.activeUser.type);
 
     if (String(this.activeUser.type) == 'TEACHER') {
       this.router.navigate([`/exam/${examId}/questions`]);
     } else {
       let url = `exam/${examId}/solve/setup`;
       let entity = { examCode: this.examCode }
-      console.log(entity);
 
       this.globalBackEndService.createNewEntity(entity, url, String(this.activeUser.id)).subscribe(() => {
         this.router.navigate([`/exam/${examId}/questions`]);
@@ -123,7 +133,7 @@ export class ViewExamsComponent implements OnInit {
     });
   }
 
-  openAddExamPage(courseId){
-    this.router.navigate(['course',courseId,'newExam']);
+  openAddExamPage(courseId) {
+    this.router.navigate(['course', courseId, 'newExam']);
   }
 }

@@ -5,7 +5,8 @@
         "users": "Utilisateurs",
         "course": "Cours",
         "request": "Demande",
-        "logout": "Se déconnecter"
+        "logout": "Se déconnecter",
+        "examHisotry": "Historique des examens"
     },
     "user": {
         "name":"Nom",
@@ -35,10 +36,12 @@
         "save": "sauvegarder",
         "newExam": "Ajouter un nouvel examen",
         "solve": "Résoudre",
+        "options":"Les options",
         "questions": {
             "trueOrFalseHeader": "Vrai ou faux",
             "mcQuestionHeader": "Choix multiple",
-            "essayQuestionHeader": "Essai"
+            "essayQuestionHeader": "Essai",
+            "paragraphQuestionHeader":"Paragraphe"
         },
         "add": "Ajouter",
         "viewStudentAnswers":"Voir les réponses",
@@ -46,7 +49,10 @@
         "loginPage":"Vous avez déjà un compte?",
         "signUp":"s'inscrire maintenant",
         "login":"S'identifier",
-        "signUpInLoginPage":"Inscrivez-vous ici"
+        "signUpInLoginPage":"Inscrivez-vous ici",
+        "solver":"Solveur",
+        "publish": "Publier le résultat de l'examen"
+
 
     },
     "pendingRequesttext": "Votre demande est en attente, en attente de l'approbation du professeur",
@@ -114,6 +120,7 @@
 
     },
     "exam": {
+        "examLabel":"Examen",
         "header": "Examens",
         "time": "Temps",
         "timeUnit": {
@@ -130,7 +137,11 @@
         "essayQuestionsTitleHeader": "Titre des questions d’essai",
         "trueOrFalseQuestionsTitleHeader": "Titre des questions d’essai",
         "mcQuestionsTitleHeader": "Titre des questions à choix multiples",
-        "updateExamTitle":"Mettre à jour l'examen"
+        "paragraphQuestionsTitleHeader": "Paragraphe Question Titre",
+        "updateExamTitle":"Mettre à jour l'examen",
+        "solvedDate":"Date résolue",
+        "point": "Point",
+        "totalPoint": "Points totaux"
     },
     "placeHolder": {
         "examCode": "Entrez le code d'examen",
@@ -140,6 +151,8 @@
         "essayQuestionTitle": "Entrez le titre des questions d’essai",
         "trueOrFalseQuestionTitle": "Entrez le titre des questions vraies ou fausses",
         "mcQuestionTitle": "Entrez le titre des questions à choix multiples",
+        "paragraphQuestionTitle":"Entrez le titre de la question du paragraphe",
+        "enterParagraph":"Entrez le paragraphe",
         "enterQuestion": "Entrez la question",
         "answer1": "Entrez la réponse 1",
         "answer2": "Entrez la réponse 2",
@@ -174,7 +187,11 @@
             "true": "Vrai",
             "false": "Faux"
         },
-        "totalPointsLabel":"Points totaux"
+        "totalPointsLabel":"Points totaux",
+        "paragraph":" Paragraphe",
+        "trueOrFalseHeader":"Vrai ou faux",
+        "mcQuestionHeader":"Choix multiple",
+        "essayQuestionHeader":"Rédaction"
     },
     "imageChoice": "Choisissez l'image",
     "image": "Image",

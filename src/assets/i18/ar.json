@@ -5,7 +5,8 @@
         "users": "المستخدمون",
         "course": "الكورسات",
         "request": "الطلبات",
-        "logout": "تسجيل الخروج"
+        "logout": "تسجيل الخروج",
+        "examHisotry": "الامتحانات السابقة"
     },
     "user": {
         "name":"الاسم",
@@ -35,10 +36,12 @@
         "save": "حفظ",
         "newExam": "اضافة امتحان جديد",
         "solve": "ابد الحل",
+        "options":"الخيارات",
         "questions": {
             "trueOrFalseHeader": "الصح والخطأ",
             "mcQuestionHeader": "الاختياري",
-            "essayQuestionHeader": "المقالى"
+            "essayQuestionHeader": "المقالى",
+            "paragraphQuestionHeader":"الجملة"
         },
         "add": "اضف",
         "viewStudentAnswers":"عرض الاجابات",
@@ -46,7 +49,9 @@
         "loginPage":"لديك حساب؟",
         "signUp":"حفظ البيانات",
         "login":"دخول",
-        "signUpInLoginPage":"انشأ حساب جديد من هنا "
+        "signUpInLoginPage":"انشأ حساب جديد من هنا ",
+        "solver":"المجيبون",
+        "publish": "عرض نتيجة الامتحان"
 
     },
     "pendingRequesttext": "تم ارسال طلب انضمامك. فى انتظار تاكيد القبول من المدرس ",
@@ -114,6 +119,7 @@
 
     },
     "exam": {
+        "examLabel":"امتحان",
         "header": "الامتحانات",
         "time": "زمن الامتحان",
         "timeUnit": {
@@ -129,7 +135,11 @@
         "essayQuestionsTitleHeader": "عنوان السؤال المقالى",
         "trueOrFalseQuestionsTitleHeader": "عنوان سؤال الصح أوالخطأ",
         "mcQuestionsTitleHeader": "عنوان السؤال الاختياري",
-        "updateExamTitle": "تعديل الامتحان"
+        "paragraphQuestionsTitleHeader": "عنوان سؤال الجملة",
+        "updateExamTitle": "تعديل الامتحان",
+        "solvedDate":"تاريخ الاجابة",
+        "point": "الدرجة",
+        "totalPoint": "الدرجة الكلية"
     },
     "placeHolder": {
         "examCode": "ادخل كود الامتحان",
@@ -139,6 +149,8 @@
         "essayQuestionTitle": "ادخل عنوان السؤال المقالى",
         "trueOrFalseQuestionTitle": "ادخل عنوان سؤال الصح أوالخطأ",
         "mcQuestionTitle": "ادخل عنوان السؤال الاختياري",
+        "paragraphQuestionTitle":"ادخل عنوان سؤال الجملة",
+        "enterParagraph":"ادخل الجملة",
         "enterQuestion": "ادخل السؤال",
         "answer1": "ادخل الاجابة الاولى",
         "answer2": "ادخل الاجابة الثانية",
@@ -172,7 +184,11 @@
             "true": "صح",
             "false": "خطأ"
         },
-        "totalPointsLabel": "مجموع الدرجات"
+        "totalPointsLabel": "مجموع الدرجات",
+        "paragraph":" الجملة",
+        "trueOrFalseHeader":"صح او خطأ",
+        "mcQuestionHeader":"الاختيارى",
+        "essayQuestionHeader":"المقالى"
     },
     "imageChoice": "تحميل الصورة",
     "image": "الصورة",

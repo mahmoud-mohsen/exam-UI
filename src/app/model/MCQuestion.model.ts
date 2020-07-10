@@ -19,6 +19,6 @@ export class MCQuestion {
     this.answer3 = '';
     this.answer4 = '';
     this.correct = '';
-    this.size=null;
+    this.size=0;
   }
 }

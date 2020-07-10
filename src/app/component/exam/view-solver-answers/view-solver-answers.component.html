@@ -60,9 +60,9 @@
                     <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
 
                         <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-
-                            </span>true</p>
+                            </span>صح</p>
                         <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-
-                            </span>false</p>
+                            </span>خطأ</p>
                     </div>
                     <hr>
 
@@ -135,6 +135,158 @@
             </div>
         </div>
     </div>
+
+
+    <div *ngFor="let paragraphQ of paragraphQuestionAnswers;let i = index"
+        class="bg-white card mb-4 order-list shadow-sm">
+
+        <div class="gold-members p-4">
+            <div class="media">
+                <div class="media-body">
+                    <div class="flex-space">
+
+                        <textarea readonly class="form-control text-black" style="color:#007bff;" cols="40"
+                            rows="5">{{i+1}}- {{paragraphQ.paragraph}}</textarea>
+                        <span class="float-right text-info"><span class="text-black font-weight-bold">
+                                {{'question.pointHeader'|translate}}:
+                            </span>{{paragraphQ.point}}/{{paragraphQ.size}}<i
+                                class="icofont-check-circled text-success"></i></span>
+                    </div>
+
+                    <div *ngFor="let TFQ of paragraphQ.trueOrFalseWithAnswerResponses"
+                        class="bg-white card mb-4 mt-4 order-list shadow-sm">
+
+                        <div class="flex-space">
+
+                            <h6 class="mb-2" style="color:#007bff;">
+                                <a class="text-black"><span class="text-black font-weight-bold">
+                                    </span>{{TFQ.question}}</a>
+                            </h6>
+                            <span class="float-right text-info"><span class="text-black font-weight-bold">
+                                    {{'question.pointHeader'|translate}}:
+                                </span>{{TFQ.point}}/{{TFQ.size}}<i
+                                    class="icofont-check-circled text-success"></i></span>
+
+                        </div>
+                        <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
+
+                            <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-
+                                </span>صح</p>
+                            <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-
+                                </span>خطأ</p>
+                        </div>
+                        <hr>
+
+                        <div class="p-1 mb-1 text-black" [ngClass]="{
+                                                            'bg-success':TFQ.answer==TFQ.correct,
+                                                            'bg-danger':!(TFQ.answer==TFQ.correct)
+                                                                      }">
+                            <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                                    class="text-black font-weight-bold"> {{'question.answer.Label'|translate}}:
+                                </span>{{TFQ.answer}}</p>
+
+                            <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                                    class="text-black font-weight-bold">
+                                    {{'question.answer.correctAnswerLabel'|translate}}:
+                                </span>{{TFQ.correct}}</p>
+                        </div>
+
+                    </div>
+
+                    <div *ngFor="let mcqQ of paragraphQ.mcqWithAnswerResponses"
+                        class="bg-white card mb-4 order-list shadow-sm">
+                        <div class="flex-space">
+                            <h6 class="mb-2" style="color:#007bff;">
+                                <a class="text-black"><span class="text-black font-weight-bold"> -
+                                    </span>{{mcqQ.question}}</a>
+                            </h6>
+
+                            <span class="float-right text-info"><span class="text-black font-weight-bold">
+                                    {{'question.pointHeader'|translate}}:
+                                </span>{{mcqQ.point}}/{{mcqQ.size}}<i
+                                    class="icofont-check-circled text-success"></i></span>
+
+                        </div>
+                        <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
+                            <p class="text-gray mb-1"><span class="text-black font-weight-bold"> 1-
+                                </span> {{mcqQ.answer1}}</p>
+                            <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 2-
+                                </span> {{mcqQ.answer2}}</p>
+                            <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 3-
+                                </span> {{mcqQ.answer3}}</p>
+                            <p class="text-gray mb-3"><span class="text-black font-weight-bold"> 4-
+                                </span> {{mcqQ.answer4}}</p>
+                        </div>
+                        <hr>
+                        <div class="p-1 mb-1 text-black" [ngClass]="{
+                                            'bg-success':mcqQ.answer==mcqQ.correct,
+                                            'bg-danger':!(mcqQ.answer==mcqQ.correct)
+                                                      }">
+                            <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                                    class="text-black font-weight-bold"> {{'question.answer.Label'|translate}}:
+                                </span>{{mcqQ.answer}}</p>
+
+                            <p *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3"><span
+                                    class="text-black font-weight-bold">
+                                    {{'question.answer.correctAnswerLabel'|translate}}:
+                                </span>{{mcqQ.correct}}</p>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let essayQ of paragraphQ.essayWithAnswerResponses"
+                        class="bg-white card mb-4 order-list shadow-sm">
+                        <div class="flex-space">
+                            <textarea readonly class="mb-2" style="color:#007bff;"
+                                class="form-control text-black font-weight-bold" cols="40" rows="5">{{essayQ.question}}
+                                            </textarea>
+                            <span class="float-right text-info"><span class="text-black font-weight-bold">
+                                    {{'question.pointHeader'|translate}}:
+                                </span>{{essayQ.point}}/{{essayQ.size}}<i
+                                    class="icofont-check-circled text-success"></i></span>
+
+
+                        </div>
+                        <div [hidden]="!essayQ.questionsAsImage" class="col-lg-12 order-lg-1 text-center">
+                            <img [src]="essayQ.questionsAsImage" class="mx-auto img-fluid img-circle d-block"
+                                alt="avatar">
+                            <label class="custom-file">
+                                <input type="button" id="file" class="custom-file-input">
+                            </label>
+                        </div>
+
+                        <hr>
+
+                        <div class="essay-answer">
+                            <span class="text-black font-weight-bold"> {{'question.answer.Label'|translate}}:
+                            </span>
+                            <textarea *ngxPermissionsOnly="['TEACHER']" class="text-gray mb-3 form-control" cols="40"
+                                rows="5">{{essayQ.answer}}</textarea>
+                        </div>
+
+
+                        <div [hidden]="!essayQ.answerAsImage" class="col-lg-12 order-lg-1 text-center">
+                            <img [src]="essayQ.answerAsImage" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                            <label class="custom-file">
+                                <input type="button" id="file" class="custom-file-input">
+                            </label>
+                        </div>
+
+                        <div *ngxPermissionsOnly="['TEACHER']" class="input-group mb-3">
+                            <input type="number" min="0" class="form-control" (input)="$event.target.value" #point
+                                placeholder="Enter Point" aria-label="question's point" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-primary" type="button"
+                                    (click)="savePoint(essayQ,point.value)">{{'button.addPoint'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
     <span [hidden]="!totalPoints" class="float-right text-info" style="margin-bottom: 15px;"><span
             class="text-black font-weight-bold"> {{'question.totalPointsLabel'|translate}}:
         </span>{{totalPoints}}<i class="icofont-check-circled text-success"></i></span>

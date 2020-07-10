@@ -1,3 +1,4 @@
+import { ParagraphQuestion } from './paragraphQuestion.model';
 import { Course } from './Course.model';
 import { MCQuestion } from './MCQuestion.model';
 import { EssayQuestion } from './EssayQuestion.model';
@@ -20,13 +21,17 @@ export class CreateExamRequest {
   mcqTitle: String;
 
   trueOrFalseQuestionTitle: String;
-  
+
   essayQuestionTitle: String;
+
+  paragraphQuestionTitle: String;
 
   totalPoints: Number;
   trueOrFalseQuestion: TrueOrFalseQuestion[];
   essayQuestion: EssayQuestion[];
   mcQuestion: MCQuestion[];
+  paragraphQuestions: ParagraphQuestion[];
+
 
   constructor() {
     this.code = '';
@@ -37,9 +42,12 @@ export class CreateExamRequest {
     this.trueOrFalseQuestion = new Array();
     this.mcQuestion = new Array();
     this.essayQuestion = new Array();
+    this.paragraphQuestions = new Array();
     this.totalPoints = null;
     this.mcqTitle = null;
     this.trueOrFalseQuestionTitle = null;
+    this.paragraphQuestionTitle = null;
     this.essayQuestionTitle = null;
+
   }
 }

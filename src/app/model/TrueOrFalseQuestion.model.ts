@@ -12,6 +12,6 @@ export class TrueOrFalseQuestion {
     this.id = null;
     this.question = '';
     this.correct = '';
-    this.size=null;
+    this.size=0;
   }
 }

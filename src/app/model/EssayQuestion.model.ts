@@ -10,7 +10,7 @@ export class EssayQuestion {
   constructor() {
     this.id = null;
     this.question = '';
-    this.size=null;
+    this.size=0;
     this.questionsAsImage=null
   }
 }

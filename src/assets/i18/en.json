@@ -5,7 +5,8 @@
         "users": "Users",
         "course": "Course",
         "request": "Request",
-        "logout": "Logout"
+        "logout": "Logout",
+        "examHisotry": "Exam History"
     },
     "user": {
         "name": "Name",
@@ -35,10 +36,12 @@
         "save": "Save",
         "newExam": "Add New Exam",
         "solve": "Solve",
+        "options":"Options",
         "questions": {
             "trueOrFalseHeader": "True Or False",
             "mcQuestionHeader": "Multiple Choice",
-            "essayQuestionHeader": "Essay"
+            "essayQuestionHeader": "Essay",
+            "paragraphQuestionHeader":"Paragraph"
         },
         "add": "Add",
         "viewStudentAnswers": "View Answers",
@@ -46,7 +49,9 @@
         "loginPage":"Already have an account?",
         "signUp":"sign Up Now",
         "login":"Login",
-        "signUpInLoginPage":"Sign up here"
+        "signUpInLoginPage":"Sign up here",
+        "solver":"Solver",
+        "publish": "Publish The Exam Result"
 
     },
     "pendingRequesttext": "Your Request Is Pending,Waiting Teacher Approval",
@@ -113,6 +118,7 @@
         "lastNameRequired": "Last Name Is Required"
     },
     "exam": {
+        "examLabel":"Exam",
         "header": "Exams",
         "time": "Time",
         "timeUnit": {
@@ -129,7 +135,11 @@
         "essayQuestionsTitleHeader": "Essay Questions Title",
         "trueOrFalseQuestionsTitleHeader": "True Or False Questions Title",
         "mcQuestionsTitleHeader": "Multiple Choice Questions Title",
-        "updateExamTitle": "Update Exam"
+        "paragraphQuestionsTitleHeader": "Paragraph Question Title",
+        "updateExamTitle": "Update Exam",
+        "solvedDate":"Solved Date",
+        "point": "Point",
+        "totalPoint": "Total points"
     },
     "placeHolder": {
         "examCode": "Enter Exam Code",
@@ -139,6 +149,8 @@
         "essayQuestionTitle": "Enter Essay Questions Title",
         "trueOrFalseQuestionTitle": "Enter True Or False Questions Title",
         "mcQuestionTitle": "Enter Multiple Choice Questions Title",
+        "paragraphQuestionTitle":"Enter Paragraph Question Title",
+        "enterParagraph":"Enter The Paragraph",
         "enterQuestion": "Enter Question",
         "answer1": "Enter Answer 1",
         "answer2": "Enter Answer 2",
@@ -172,7 +184,11 @@
             "true": "True",
             "false": "False"
         },
-        "totalPointsLabel": "Total Points"
+        "totalPointsLabel": "Total Points",
+        "paragraph":" Paragraph",
+        "trueOrFalseHeader":"True Or False",
+        "mcQuestionHeader":"Multiple Choice",
+        "essayQuestionHeader":"Essay"
     },
     "imageChoice": "Choose Image",
     "image": "Image",

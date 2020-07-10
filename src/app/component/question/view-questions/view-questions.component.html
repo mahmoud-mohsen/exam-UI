@@ -6,9 +6,11 @@
 
 
 <div class="form-group align-start" style="margin-top: 10px;">
-    <div class="questions-title">
-        <h2 [hidden]="mcQuestions.length==0">{{mcqQuestionsTitle}}</h2>
+
+    <div class="mcqQuestions-title">
+        <h4 [hidden]="mcQuestions&&mcQuestions.length==0">{{mcqQuestionsTitle}}</h4>
     </div>
+
     <div *ngFor="let mcqQ of mcQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
         <div class="gold-members p-4">
             <div class="media">
@@ -26,36 +28,36 @@
                     </div>
                     <div *ngxPermissionsOnly="['STUDENT']" class="student-answer-view">
                         <div class="custom-control custom-radio">
-                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer1" [name]="'question:'+mcqQ.id"
+                            <input (click)="addMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer1" [name]="'mcQuestion:'+mcqQ.id"
                                 [value]="mcqQ.answer1">
                             <label class="custom-control-label"
-                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer1">{{mcqQ.answer1}}</label>
+                                [for]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer1">{{mcqQ.answer1}}</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer2" [name]="'question:'+mcqQ.id"
+                            <input (click)="addMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer2" [name]="'mcQuestion:'+mcqQ.id"
                                 [value]="mcqQ.answer2">
                             <label class="custom-control-label"
-                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer2">{{mcqQ.answer2}}</label>
+                                [for]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer2">{{mcqQ.answer2}}</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer3" [name]="'question:'+mcqQ.id"
+                            <input (click)="addMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer3" [name]="'mcQuestion:'+mcqQ.id"
                                 [value]="mcqQ.answer3">
                             <label class="custom-control-label"
-                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer3">{{mcqQ.answer3}}</label>
+                                [for]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer3">{{mcqQ.answer3}}</label>
 
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input (click)="addmMcqAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+mcqQ.id+':'+mcqQ.answer4" [name]="'question:'+mcqQ.id"
+                            <input (click)="addMcqAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer4" [name]="'mcQuestion:'+mcqQ.id"
                                 [value]="mcqQ.answer4">
                             <label class="custom-control-label"
-                                [for]="'question:'+mcqQ.id+':'+mcqQ.answer4">{{mcqQ.answer4}}</label>
+                                [for]="'mcQuestion:'+mcqQ.id+':'+mcqQ.answer4">{{mcqQ.answer4}}</label>
                         </div>
                     </div>
                     <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
@@ -84,8 +86,9 @@
             </div>
         </div>
     </div>
-    <div class="questions-title">
-        <h2 [hidden]="trueOrFalseQuestions&&trueOrFalseQuestions.length==0">{{trueOrFalseQuestionsTitle}}</h2>
+
+    <div class="trueOrFalseQuestions-title">
+        <h4 [hidden]="trueOrFalseQuestions&&trueOrFalseQuestions.length==0">{{trueOrFalseQuestionsTitle}}</h4>
     </div>
 
     <div *ngFor="let TFQ of trueOrFalseQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
@@ -105,17 +108,17 @@
                     </div>
                     <div *ngxPermissionsOnly="['STUDENT']" class="student-answer-view">
                         <div class="custom-control custom-radio">
-                            <input (click)="addmTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+TFQ.id+':true'" [name]="'question:'+TFQ.id" [value]="true">
+                            <input (click)="addTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'trueOrFalseQuestion:'+TFQ.id+':true'" [name]="'trueOrFalseQuestion:'+TFQ.id" [value]="true">
                             <label class="custom-control-label"
-                                [for]="'question:'+TFQ.id+':true'">{{trueOrFalseAnswers[0]}}</label>
+                                [for]="'trueOrFalseQuestion:'+TFQ.id+':true'">{{trueOrFalseAnswers[0]}}</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input (click)="addmTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
-                                [id]="'question:'+TFQ.id+':false'" [name]="'question:'+TFQ.id" [value]="false">
+                            <input (click)="addTrueOrFalseAnswer($event)" type="radio" class="custom-control-input"
+                                [id]="'trueOrFalseQuestion:'+TFQ.id+':false'" [name]="'trueOrFalseQuestion:'+TFQ.id" [value]="false">
                             <label class="custom-control-label"
-                                [for]="'question:'+TFQ.id+':false'">{{trueOrFalseAnswers[1]}}</label>
+                                [for]="'trueOrFalseQuestion:'+TFQ.id+':false'">{{trueOrFalseAnswers[1]}}</label>
                         </div>
                     </div>
                     <div *ngxPermissionsOnly="['TEACHER']" class="teacher-answer-view">
@@ -143,8 +146,8 @@
 
     </div>
 
-    <div class="questions-title">
-        <h2 [hidden]="essayQuestions.length==0">{{essayQuestionsTitle}}</h2>
+    <div class="essayQuestions-title">
+        <h4 [hidden]="essayQuestions&&essayQuestions.length==0">{{essayQuestionsTitle}}</h4>
     </div>
 
     <div *ngFor="let essayQ of essayQuestions;let i = index" class="bg-white card mb-4 order-list shadow-sm">
@@ -154,7 +157,7 @@
 
                     <div class="flex-space">
                         <textarea readonly [hidden]="essayQ.question.length==0" class="form-control text-black"
-                            style="color:#007bff;" cols="40" rows="5">{{i+1}}- {{essayQ.question}}
+                            style="color:#007bff;" cols="40" rows="3">{{i+1}}- {{essayQ.question}}
                         </textarea>
 
                         <span class="float-right text-info display-15"><span class="text-black font-weight-bold">
@@ -208,12 +211,51 @@
             </div>
         </div>
     </div>
+
+    <div class="paragraphQuestions-title">
+        <h4 [hidden]="paragraphQuestions&&paragraphQuestions.length==0">{{paragraphQuestionsTitle}}</h4>
+    </div>
+
+    <div [hidden]="paragraphQuestions.length==0">
+
+        <div *ngFor="let paragraphQ of paragraphQuestions;let i = index"
+            class="bg-white card mb-4 order-list shadow-sm">
+
+            <div class="gold-members p-4">
+                <div class="media">
+                    <div class="media-body">
+                        <div class="flex-space">
+
+                            <textarea readonly class="form-control text-black" style="color:#007bff;" cols="40"
+                                rows="5">{{i+1}}- {{paragraphQ.paragraph}}</textarea>
+                            <span class="float-right text-info display-15"><span class="text-black font-weight-bold">
+                                    {{'question.pointHeader'|translate}}:</span>{{paragraphQ.size}}</span>
+                        </div>
+                        <div class="mr-2 ml=2">
+                            <view-questions [(mcQuestions)]="paragraphQ.mcQuestion"
+                                [(trueOrFalseQuestions)]="paragraphQ.trueOrFalseQuestion"
+                                [(essayQuestions)]="paragraphQ.essayQuestion"
+                                [(essayQuestionsTitle)]="essayQuestionsTitle"
+                                [(trueOrFalseQuestionsTitle)]="trueOrFalseQuestionsTitle" [(examId)]="examId"
+                                [(mcqQuestionsTitle)]="mcqQuestionsTitle"
+                                [(paragraphQuestionsTitle)]="paragraphQuestionsTitle"
+                                [(trueOrFalseAnswers)]="trueOrFalseAnswers" [httpRequestExam]="false"
+                                [(paragraphId)]="paragraphQ.id"
+                                (addTrueOrFAlseAnswerEmmiter)="appendChildTrueOrFalseAnswer($event)"
+                                (addMcqAnswerEmmiter)="appendChildMcqAnswer($event)"
+                                (addEssayAnswerEmmiter)="appendChildEssayAnswer($event)">
+                            </view-questions>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <span [hidden]="!totalPoints" class="float-right text-info" style="margin-bottom: 15px;"><span
             class="text-black font-weight-bold"> {{'question.totalPointsLabel'|translate}}:
         </span>{{totalPoints}}<i class="icofont-check-circled text-success"></i></span>
 
-    <view-exam-solvers *ngxPermissionsOnly="['TEACHER']" [examId]="examId"> </view-exam-solvers>
-
-    <button *ngxPermissionsOnly="['STUDENT']" (click)="submitAnswers()"
+    <button *ngxPermissionsOnly="['STUDENT']" [hidden]="!httpRequestExam" (click)="submitAnswers()"
         class="btn btn-primary btn-lg btn-block">{{'button.save'|translate}}</button>
 </div>

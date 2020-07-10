@@ -1,40 +1,45 @@
-<div class="wrapper" >
+<div class="wrapper">
     <!-- Sidebar Holder -->
-    <nav  *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" class="align-start" [ngClass]="status ? 'active' : 'notActive'">
+    <nav *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" id="sidebar" class="align-start"
+        [ngClass]="status ? 'active' : 'notActive'">
         <div class="sidebar-header">
-            <h5><a  [routerLink]="['/userProfile',activeUser.id]">{{activeUser.displayName}}</a></h5>
+            <h5><a [routerLink]="['/userProfile',activeUser.id]">{{activeUser.displayName}}</a></h5>
         </div>
         <div>
-        <ul class="list-unstyled components" >
-            <li>
-                <a [routerLink]="['']">{{ 'layout.home' | translate }}</a>
-            </li>
-            <li>
-                <a  [routerLink]="['/users']">{{ 'layout.users' | translate }}</a>
-            </li>
-            <li>
-                <a (click)="OpenUserCourses()" >{{ 'layout.course' | translate }}</a>
-            </li>
-            <li >
-                <a  *ngxPermissionsOnly="['TEACHER']" [routerLink]="['/enrollRequests']">{{ 'layout.request' | translate }}</a>
-            </li>
-            
-        </ul>
-    </div>
+            <ul class="list-unstyled components">
+                <li>
+                    <a [routerLink]="['']">{{ 'layout.home' | translate }}</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/users']">{{ 'layout.users' | translate }}</a>
+                </li>
+                <li>
+                    <a (click)="OpenUserCourses()">{{ 'layout.course' | translate }}</a>
+                </li>
+                <li>
+                    <a *ngxPermissionsOnly="['TEACHER']"
+                        [routerLink]="['/enrollRequests']">{{ 'layout.request' | translate }}</a>
+                </li>
+                <li>
+                    <a *ngxPermissionsOnly="['STUDENT']"
+                        [routerLink]="['/exam/history']">{{ 'layout.examHisotry' | translate }}</a>
+                </li>
+
+            </ul>
+        </div>
         <ul class="list-unstyled CTAs">
             <li>
                 <a (click)="logout()">{{ 'layout.logout' | translate }}</a>
             </li>
             <li>
-            <select (change)="changeLang()"
-            [(ngModel)]="language" [(ngModel)]="language" name="lan"
-            #lan="ngModel" id="lan" >
-                <option value="en">English</option>
-              <option  value="ar" >Arabic</option>
-              <option  value="fr" >French</option>
+                <select (change)="changeLang()" [(ngModel)]="language" [(ngModel)]="language" name="lan" #lan="ngModel"
+                    id="lan">
+                    <option value="en">English</option>
+                    <option value="ar">Arabic</option>
+                    <option value="fr">French</option>
 
-            </select>
-        </li>
+                </select>
+            </li>
         </ul>
     </nav>
 
@@ -44,7 +49,8 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
-                <button *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" type="button" id="sidebarCollapse" (click)="clickEvent()" class="navbar-btn">
+                <button *ngxPermissionsOnly="['TEACHER','STUDENT','ADMIN']" type="button" id="sidebarCollapse"
+                    (click)="clickEvent()" class="navbar-btn">
                     <span></span>
                     <span></span>
                     <span></span>

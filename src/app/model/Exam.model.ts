@@ -18,6 +18,8 @@ export class Exam {
 
   examTime: Number;
 
+  published: boolean;
+
   enrollCourseRequest: EnrollCourse;
   constructor() {
     this.id = null;
@@ -28,6 +30,6 @@ export class Exam {
     this.creationTime = null;
     this.examTime = null;
     this.enrollCourseRequest = new EnrollCourse();
-
+    this.published = false;
   }
 }

@@ -87,6 +87,7 @@ export class ViewCoursesComponent implements OnInit {
   }
 
   isUserIsEnrolledInCourse(courseId): boolean {
+    
     return this.activeUser.type.toString() == 'STUDENT' && this.userService.IsUserIsEnrolledInCourse(courseId);
   }
 
@@ -111,7 +112,7 @@ export class ViewCoursesComponent implements OnInit {
     this.courseUpdateDetails.code = c.code;
     this.courseUpdateDetails.level = c.level;
   }
-  CloseUpdaetForm() {
+  CloseUpdateForm() {
     this.updateCourseView = false;
 
   }
@@ -126,7 +127,6 @@ export class ViewCoursesComponent implements OnInit {
   }
 
   viewViewButton(couresId): boolean {
-    return ((this.isUserIsEnrolledInCourse(couresId) && this.isUserIsApproveEnrolledInCourse(couresId)) && !(String(this.activeUser.type) == type[type.TEACHER]))
-      || ((this.isUserTheCreator(couresId) && (String(this.activeUser.type) == type[type.TEACHER])))
+    return (this.isUserIsApproveEnrolledInCourse(couresId))|| ((this.isUserTheCreator(couresId)))
   }
 }

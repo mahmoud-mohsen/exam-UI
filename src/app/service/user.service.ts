@@ -33,7 +33,7 @@ export class UserService {
   }
 
   public IsCourseCreatedByUser(CourseId) {
-    
+
     if (this.loggedInUserDetails) {
       return this.checkCourseInUserCreatedCourses(CourseId)
     } else {
@@ -45,9 +45,9 @@ export class UserService {
   }
 
   private checkCourseInUserCreatedCourses(CourseId) {
-    
+
     if (this.loggedInUserDetails.createdCourses) {
-      for (let index = 0; index < this.loggedInUserDetails.createdCourses.length; index++) {        
+      for (let index = 0; index < this.loggedInUserDetails.createdCourses.length; index++) {
         if (this.loggedInUserDetails.createdCourses[index].id == CourseId) {
           return true;
         }
@@ -68,6 +68,8 @@ export class UserService {
   }
 
   private checkUserIsEnrolledInCourse(CourseId) {
+    console.log();
+
     if (this.loggedInUserDetails.enrollCourse) {
       for (let index = 0; index < this.loggedInUserDetails.enrollCourse.length; index++) {
         if (this.loggedInUserDetails.enrollCourse[index].courseId == CourseId) {

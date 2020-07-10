@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ExamSolver } from './../../../model/ExamSolver.model';
 import { GlobalBackEndService } from 'src/app/service/backEnd.service';
 import { ActiveUser } from './../../../model/ActiveUser.model';
@@ -13,23 +13,22 @@ export class ViewExamSolversComponent implements OnInit {
 
   activeUser: ActiveUser;
   examSolvers: ExamSolver[];
-  hideSolverTable;
   @Input() examId;
-  constructor(private router: Router, private globalBackEndService: GlobalBackEndService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private globalBackEndService: GlobalBackEndService) {
     this.activeUser = JSON.parse(localStorage.getItem('user'));
-
   }
 
   ngOnInit() {
-    if (this.router.url.indexOf('newExam') == -1) {
+    this.activatedRoute.paramMap.subscribe(params => {
+      this.examId = +params.get('examId');
       this.getExamSolvers();
-    }else{
-      this.hideSolverTable=true;      
-    }
+
+    });
+
   }
 
   getExamSolvers() {
-    let url = `exam/${this.examId}/solve/users`
+    let url = `exam/${this.examId}/solver`
     this.globalBackEndService.ViewEntities(url, String(this.activeUser.id)).subscribe((response: any) => {
       this.examSolvers = response
     }, (error: any) => {
